@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<meta name="description" content="Garrison Cole works with owner-run service businesses in Placer County on advertising, sales and the numbers to run the business by. Based in Roseville, CA.">
+<meta property="og:title" content="Garrison Cole">
+<meta property="og:description" content="Advertising, sales and strategy for owner-run service businesses in Placer County.">
+<meta property="og:image" content="https://garrisoncole.com/garrison.jpg">
+<title>Garrison Cole | Growth for service businesses in Placer County</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,500;12..96,700;12..96,800&family=Public+Sans:wght@400;500;600&display=swap">
+<style>
+  :root{
+    --bg:#F3F5F1; --surface:#FFFFFF; --ink:#16201B; --muted:#5E6A63; --line:#DDE3DE;
+    --accent:#2C6A4B; --accent-deep:#1F4F38; --accent-ink:#FFFFFF; --accent-soft:#E2EEE6;
+    --shadow:0 12px 32px rgba(22,32,27,.10);
+    --display:"Bricolage Grotesque","Helvetica Neue",Arial,sans-serif;
+    --body:"Public Sans","Helvetica Neue",Arial,sans-serif;
+  }
+  @media (prefers-color-scheme: dark){
+    :root:not([data-theme="light"]){
+      color-scheme:dark;
+      --bg:#121816; --surface:#1A2320; --ink:#EAEFEB; --muted:#9CA8A1; --line:#2B3631;
+      --accent:#6FC397; --accent-deep:#57A87E; --accent-ink:#0F1A14; --accent-soft:#1E2F27;
+      --shadow:0 12px 32px rgba(0,0,0,.35);
+    }
+  }
+  :root[data-theme="dark"]{
+    color-scheme:dark;
+    --bg:#121816; --surface:#1A2320; --ink:#EAEFEB; --muted:#9CA8A1; --line:#2B3631;
+    --accent:#6FC397; --accent-deep:#57A87E; --accent-ink:#0F1A14; --accent-soft:#1E2F27;
+    --shadow:0 12px 32px rgba(0,0,0,.35);
+  }
+  *{box-sizing:border-box}
+  html{scroll-behavior:smooth}
+  body{margin:0;background:var(--bg);color:var(--ink);font-family:var(--body);font-size:17px;line-height:1.55;-webkit-font-smoothing:antialiased}
+  a{color:inherit}
+  .wrap{max-width:1080px;margin:0 auto;padding-inline:20px}
+
+  /* header */
+  .nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:10;background:color-mix(in srgb,var(--bg) 88%,transparent);backdrop-filter:blur(10px);border-bottom:1px solid var(--line)}
+  .nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;height:64px}
+  .brand{font-family:var(--display);font-weight:800;font-size:19px;letter-spacing:-0.01em;text-decoration:none}
+  .brand small{display:block;font-family:var(--body);font-weight:600;font-size:11px;letter-spacing:.08em;text-transform:uppercase;color:var(--muted);margin-top:-2px}
+  .navlinks{display:flex;align-items:center;gap:18px}
+  .navlinks a.txt{font-size:15px;font-weight:500;text-decoration:none;color:var(--muted)}
+  .navlinks a.txt:hover{color:var(--ink)}
+  .btn{display:inline-flex;align-items:center;gap:10px;background:var(--accent);color:var(--accent-ink);text-decoration:none;font-weight:600;padding:12px 18px;border-radius:8px;font-size:16px;font-variant-numeric:tabular-nums;border:1px solid transparent;transition:background .15s}
+  .btn:hover{background:var(--accent-deep)}
+  .btn.ghost{background:transparent;color:var(--ink);border-color:var(--line)}
+  .btn.ghost:hover{background:var(--surface)}
+  .btn svg{width:18px;height:18px;flex:none}
+  .btn:focus-visible,a:focus-visible{outline:3px solid var(--accent);outline-offset:3px}
+  .nav .btn{padding:10px 14px;font-size:15px}
+
+  /* hero */
+  .hero{padding-block:clamp(40px,7vw,88px);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:clamp(28px,6vw,64px);align-items:center}
+  .eyebrow{font-size:12px;letter-spacing:.1em;text-transform:uppercase;color:var(--accent);font-weight:600;margin:0 0 14px}
+  h1{font-family:var(--display);font-weight:800;font-size:clamp(38px,5.6vw,66px);line-height:.98;letter-spacing:-0.03em;margin:0 0 20px;text-wrap:balance}
+  h1 em{font-style:normal;color:var(--accent)}
+  .lede{font-size:clamp(17px,1.5vw,20px);margin:0 0 28px;max-width:32em;color:var(--ink)}
+  .cta{display:flex;flex-wrap:wrap;gap:12px;align-items:center}
+  .cta .note{font-size:14px;color:var(--muted);flex-basis:100%}
+  .card{max-width:320px;margin-left:auto;background:var(--surface);border:1px solid var(--line);border-radius:18px;padding:14px;box-shadow:var(--shadow)}
+  .card img{width:100%;max-width:100%;height:auto;aspect-ratio:1/1;object-fit:cover;object-position:50% 30%;border-radius:12px;display:block}
+  .card .who{padding:14px 6px 4px;display:flex;align-items:center;justify-content:space-between;gap:12px}
+  .card b{display:block;font-family:var(--display);font-size:17px;letter-spacing:-0.01em;line-height:1.2}
+  .card span{display:block;font-size:13px;color:var(--muted);line-height:1.4;margin-top:2px}
+  .card .pin{flex:none;width:34px;height:34px;border-radius:999px;background:var(--accent-soft);color:var(--accent);display:inline-flex;align-items:center;justify-content:center}
+  .card .pin svg{width:18px;height:18px}
+
+  /* proof strip */
+  .strip{border-block:1px solid var(--line);background:var(--surface)}
+  .strip .wrap{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));gap:16px;padding-block:18px}
+  .strip div{display:flex;align-items:center;gap:10px;font-size:14px;font-weight:500;color:var(--muted)}
+  .strip svg{width:18px;height:18px;color:var(--accent);flex:none}
+
+  /* sections */
+  section{padding-block:clamp(48px,7vw,88px)}
+  .sechead{max-width:40em;margin-bottom:clamp(24px,4vw,40px)}
+  h2{font-family:var(--display);font-weight:800;font-size:clamp(28px,3.4vw,42px);letter-spacing:-0.025em;line-height:1.05;margin:0 0 12px;text-wrap:balance}
+  h3{font-family:var(--display);font-weight:700;font-size:20px;letter-spacing:-0.015em;margin:0 0 8px;line-height:1.2}
+  p{margin:0 0 12px}
+  .muted{color:var(--muted)}
+
+  .steps{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:20px;counter-reset:step}
+  .step{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:22px 22px 20px;position:relative}
+  .step::before{counter-increment:step;content:counter(step);font-family:var(--display);font-weight:800;font-size:15px;color:var(--accent-ink);background:var(--accent);width:30px;height:30px;border-radius:999px;display:inline-flex;align-items:center;justify-content:center;margin-bottom:14px}
+  .step p{font-size:15.5px;color:var(--muted);margin:0}
+
+  .services{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:20px}
+  .svc{border-top:3px solid var(--accent);padding-top:16px}
+  .svc p{font-size:15.5px;color:var(--muted);margin:0}
+
+  .fit{background:var(--surface);border-top:1px solid var(--line);border-bottom:1px solid var(--line)}
+  .fit .wrap{display:grid;grid-template-columns:minmax(0,5fr) minmax(0,7fr);gap:clamp(24px,5vw,56px);align-items:start}
+  .chips{display:flex;flex-wrap:wrap;gap:8px;padding:0;margin:0;list-style:none}
+  .chips li{background:var(--accent-soft);border-radius:999px;padding:8px 14px;font-size:14px;font-weight:500}
+
+  .pains{display:grid;grid-template-columns:repeat(2,minmax(0,1fr));gap:14px;padding:0;margin:0;list-style:none}
+  .pains li{background:var(--surface);border:1px solid var(--line);border-radius:12px;padding:16px 18px;font-size:16px;line-height:1.45;display:flex;gap:12px;align-items:flex-start}
+  .pains li::before{content:"";flex:none;width:10px;height:10px;border-radius:999px;background:var(--accent);margin-top:8px}
+  @media (max-width:700px){.pains{grid-template-columns:1fr}}
+
+  /* closing band */
+  .band{background:var(--accent);color:var(--accent-ink);border-radius:20px;padding:clamp(28px,5vw,48px);display:grid;grid-template-columns:minmax(0,7fr) minmax(0,5fr);gap:24px;align-items:center}
+  .band h2{color:inherit;margin-bottom:8px}
+  .band p{color:inherit;opacity:.9;margin:0}
+  .band .contact{display:grid;gap:14px;justify-items:start}
+  .band .big{font-family:var(--display);font-weight:800;font-size:clamp(26px,3.4vw,38px);letter-spacing:-0.02em;line-height:1.05;color:inherit;text-decoration:none;font-variant-numeric:tabular-nums}
+  .band .mail{font-size:17px;font-weight:600;color:inherit;text-decoration:underline;text-underline-offset:4px;text-decoration-color:color-mix(in srgb,var(--accent-ink) 40%,transparent)}
+  .band .lbl{font-size:12px;letter-spacing:.1em;text-transform:uppercase;font-weight:600;opacity:.8}
+
+  footer{padding-block:28px 40px;font-size:13px;color:var(--muted)}
+  footer .wrap{display:flex;justify-content:space-between;gap:12px;flex-wrap:wrap}
+
+  @media (max-width:900px){
+    .hero{grid-template-columns:1fr}
+    .card{max-width:320px;margin-left:0}
+    .strip .wrap{grid-template-columns:repeat(2,minmax(0,1fr))}
+    .steps{grid-template-columns:1fr}
+    .fit .wrap{grid-template-columns:1fr}
+    .band{grid-template-columns:1fr}
+  }
+  @media (max-width:560px){
+    .navlinks a.txt{display:none}
+    .services{grid-template-columns:1fr}
+    .strip .wrap{grid-template-columns:1fr;gap:10px}
+    .card{max-width:100%}
+  }
+  @media (prefers-reduced-motion:no-preference){
+    .hero>*{animation:rise .5s ease both}
+    .hero>*:nth-child(2){animation-delay:.1s}
+    @keyframes rise{from{opacity:.001;transform:translateY(8px)}to{opacity:1;transform:none}}
+  }
+</style>
+</head>
+<body>
+
+
+<div class="nav">
+  <div class="wrap">
+    <a class="brand" href="#top">Garrison Cole<small>Roseville, California</small></a>
+    <div class="navlinks">
+      <a class="txt" href="#how">How it works</a>
+      <a class="txt" href="#work">What we work on</a>
+      <a class="btn" href="tel:+17606444559">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6.2 6.2l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
+        760-644-4559
+      </a>
+    </div>
+  </div>
+</div>
+
+<main id="top">
+  <div class="wrap hero">
+    <div>
+      <p class="eyebrow">For owners of service businesses in Placer County</p>
+      <h1>You built a company people recommend. Now build one that <em>runs without you.</em></h1>
+      <p class="lede">I'm Garrison, out of Roseville. I work with owner-run service companies that are good at the work and stuck on everything around it: where the next job comes from, who answers the phone, what gets quoted and what actually closes. Advertising that pays for itself, a sales process your crew can follow, and the numbers to run it by.</p>
+      <div class="cta">
+        <a class="btn" href="tel:+17606444559">Call or text 760-644-4559</a>
+        <a class="btn ghost" href="#how">See how it works</a>
+        <span class="note">The first thing you get from me is a free video walkthrough of your business. Nothing to sign.</span>
+      </div>
+    </div>
+    <div class="card">
+      <img src="garrison.jpg" alt="Garrison Cole" width="900" height="900">
+      <div class="who">
+        <div>
+          <b>Garrison Cole</b>
+          <span>Advertising, sales and strategy for owner-run companies. Roseville, CA.</span>
+        </div>
+        <span class="pin" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
+      </div>
+    </div>
+  </div>
+
+  <div class="strip">
+    <div class="wrap">
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0z"/><circle cx="12" cy="10" r="3"/></svg>Based in Roseville, works Placer County</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="m21 21-4.3-4.3"/></svg>Advertising that pays for itself</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.9M16 3.1a4 4 0 0 1 0 7.8"/></svg>A sales process your crew can follow</div>
+      <div><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><rect x="3" y="4" width="18" height="16" rx="2"/><path d="M3 10h18M8 15h5"/></svg>Numbers you can run the business by</div>
+    </div>
+  </div>
+
+  <section id="pain" class="wrap">
+    <div class="sechead">
+      <p class="eyebrow">Sound familiar?</p>
+      <h2>The work is great. The business still runs on your phone.</h2>
+    </div>
+    <ul class="pains">
+      <li>Your reviews are better than the company that's busier than you.</li>
+      <li>You pay Angi or HomeAdvisor for leads that three other guys got at the same time.</li>
+      <li>Quotes go out and half of them never get a follow-up because you were on a job.</li>
+      <li>Slammed in spring, quiet in winter, and no way to smooth it out.</li>
+      <li>You hired a marketing company once. You got a report about impressions.</li>
+      <li>You know your price is fair and you still flinch when someone says they're getting three bids.</li>
+    </ul>
+  </section>
+
+  <section id="how" class="wrap" style="padding-top:0">
+    <div class="sechead">
+      <p class="eyebrow">How it works</p>
+      <h2>I look before I ask you for anything.</h2>
+      <p class="muted">Most people in my line of work want you on a call before they've looked at your business. I do it the other way around.</p>
+    </div>
+    <div class="steps">
+      <div class="step">
+        <h3>A two minute video of your business, free</h3>
+        <p>Your Google listing, your website and the search a customer would actually type, walked through the way they see it. I'll point at the one thing I'd fix first. It's yours whether or not we ever talk.</p>
+      </div>
+      <div class="step">
+        <h3>A short call to find the real bottleneck</h3>
+        <p>Sometimes it's ads. Just as often it's the follow-up, the pricing, or who's answering the phone at 4pm. I'll tell you which, what it costs to fix, and what I'd expect it to be worth. If I'm the wrong fit, I'll say that too.</p>
+      </div>
+      <div class="step">
+        <h3>Build it, run it, review the numbers</h3>
+        <p>Campaigns, the page they land on, call tracking, and the sales process behind it, built and live within a couple of weeks. You pay ad spend directly and see every dollar. We sit down with the numbers at 30 and 90 days.</p>
+      </div>
+    </div>
+  </section>
+
+  <div class="fit">
+    <div class="wrap" style="padding-block:clamp(40px,6vw,64px)">
+      <div>
+        <p class="eyebrow">Who this is for</p>
+        <h2>Owner-run companies that already do good work.</h2>
+        <p class="muted">If the work is good and the business still depends on you for every lead, quote and close, that's what I fix. If the work isn't there yet, I'll tell you, and I won't take your money to advertise it.</p>
+      </div>
+      <ul class="chips" aria-label="Types of businesses">
+        <li>Concrete and pavers</li><li>Fencing</li><li>Tree service</li><li>Landscape and turf</li><li>Epoxy floors</li><li>Windows and glass</li><li>Pools</li><li>Demolition and hauling</li><li>Painting</li><li>Garage doors</li><li>Coaches and consultants</li>
+      </ul>
+    </div>
+  </div>
+
+  <section id="work" class="wrap">
+    <div class="sechead">
+      <p class="eyebrow">What we work on</p>
+      <h2>Get found. Get the call answered. Close it at a price that makes sense.</h2>
+    </div>
+    <div class="services">
+      <div class="svc">
+        <h3>Getting found</h3>
+        <p>Google Search for the people typing "fence contractor roseville" right now. Meta for the before-and-after work that sells itself. A page built to get the call, with tracking on every click, so you know what a lead costs before you spend the second dollar.</p>
+      </div>
+      <div class="svc">
+        <h3>Turning calls into booked jobs</h3>
+        <p>Speed to lead, a follow-up sequence that runs without you, and a quote that gets a yes. I take sales calls for businesses I work with and coach owners on the calls themselves: what to say when someone's getting three bids, and when to hold your price.</p>
+      </div>
+      <div class="svc">
+        <h3>Pricing and margin</h3>
+        <p>Most owner-run companies undercharge because they've never seen the real cost of a job on paper. We put it on paper. Then we price so the busy months carry the slow ones.</p>
+      </div>
+      <div class="svc">
+        <h3>Running it by the numbers</h3>
+        <p>Cost per lead, close rate, cost per booked job, revenue per crew per week. Four numbers on one page. Once you can see them, you stop guessing about what to do next.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="wrap" style="padding-top:0">
+    <div class="band">
+      <div>
+        <h2>Want the video first?</h2>
+        <p>Call or text me your company name. I'll send the walkthrough within a day or two, with the one thing I'd change this week.</p>
+      </div>
+      <div class="contact">
+        <span class="lbl">Call or text</span>
+        <a class="big" href="tel:+17606444559">760-644-4559</a>
+        <span class="lbl">Email</span>
+        <a class="mail" href="mailto:garrison@garrisoncole.com">garrison@garrisoncole.com</a>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <span>Garrison Cole, Roseville, CA</span>
+    <span>Roseville, Rocklin, Lincoln, Loomis, Granite Bay, Folsom, El Dorado Hills</span>
+  </div>
+</footer>
+
+</body>
+</html>
