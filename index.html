@@ -135,6 +135,16 @@
     .hero>*:nth-child(2){animation-delay:.1s}
     @keyframes rise{from{opacity:.001;transform:translateY(8px)}to{opacity:1;transform:none}}
   }
+
+  /* about */
+  .about{display:grid;grid-template-columns:minmax(0,4fr) minmax(0,7fr);gap:clamp(24px,5vw,64px);align-items:start}
+  .about .stats{display:grid;gap:14px;margin-top:24px}
+  .about .stat{background:var(--surface);border:1px solid var(--line);border-radius:14px;padding:18px 20px}
+  .about .stat b{display:block;font-family:var(--display);font-weight:800;font-size:clamp(26px,3vw,34px);letter-spacing:-0.02em;line-height:1.05;color:var(--accent)}
+  .about .stat span{display:block;font-size:14px;color:var(--muted);margin-top:4px}
+  .about .bio p{font-size:17.5px;margin:0 0 18px;max-width:38em}
+  .about .ps{border-left:3px solid var(--accent);padding:4px 0 4px 16px;color:var(--muted);font-style:italic}
+  @media (max-width:900px){.about{grid-template-columns:1fr}}
 </style>
 </head>
 <body>
@@ -146,6 +156,7 @@
     <div class="navlinks">
       <a class="txt" href="#how">How it works</a>
       <a class="txt" href="#work">What we work on</a>
+      <a class="txt" href="#about">About</a>
       <a class="btn" href="tel:+17606444559">
         <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M22 16.9v3a2 2 0 0 1-2.2 2 19.8 19.8 0 0 1-8.6-3.1 19.5 19.5 0 0 1-6-6A19.8 19.8 0 0 1 2.1 4.2 2 2 0 0 1 4.1 2h3a2 2 0 0 1 2 1.7c.1.9.4 1.8.7 2.7a2 2 0 0 1-.5 2.1L8 9.8a16 16 0 0 0 6.2 6.2l1.3-1.3a2 2 0 0 1 2.1-.5c.9.3 1.8.6 2.7.7a2 2 0 0 1 1.7 2z"/></svg>
         760-644-4559
@@ -258,6 +269,26 @@
       <div class="svc">
         <h3>Running it by the numbers</h3>
         <p>Cost per lead, close rate, cost per booked job, revenue per crew per week. Four numbers on one page. Once you can see them, you stop guessing about what to do next.</p>
+      </div>
+    </div>
+  </section>
+
+  <section id="about" class="wrap" style="padding-top:0">
+    <div class="about">
+      <div>
+        <p class="eyebrow">About</p>
+        <h2>The engine behind the business.</h2>
+        <div class="stats">
+          <div class="stat"><b>Thousands</b><span>of businesses worked with</span></div>
+          <div class="stat"><b>Hundreds of millions</b><span>in revenue generated for clients</span></div>
+        </div>
+      </div>
+      <div class="bio">
+        <p>I've worked with thousands of businesses, most of them service-based, from coaches and consultants to owner-operators running companies that live and die by their reputation. And if there's one thing all that work has taught me, it's that the engine behind a company matters more than almost anything else. Great products and great services are everywhere. The owners who break through are the ones with the right system running underneath them: the marketing, the lead generation, the sales, the hiring, the whole machine built to grow without leaning on them for every move.</p>
+        <p>Across those companies I've helped generate hundreds of millions of dollars in revenue. I've taken owners starting from scratch and helped them build to tens of thousands of dollars a month, and I've worked with established businesses doing seven and eight figures a year that needed a path through their next ceiling. A handful have scaled past a million dollars a month. I keep names and details private out of respect for my clients, but the numbers are real, and I'm glad to walk you through them on a call.</p>
+        <p>How I do it is pretty straightforward. I put a model in place that's profitable and built to last. I create lead generation that keeps the pipeline full and a team that gets the owner out of being the bottleneck. Sometimes that looks like paid ads, sometimes organic, sometimes high-level strategy, and a lot of the time it's me in the trenches right alongside you. The goal never changes, and that's to grow your revenue as fast as possible while protecting your margins.</p>
+        <p>On a personal note, I live in Roseville, California with my beautiful and loving wife and our son. I played baseball in college, where I was a top-ranked prospect, and that same drive and work ethic is what carries me today. That urge to compete and keep growing never really left me. I just point it at building and scaling businesses now.</p>
+        <p class="ps">P.S. In case you're wondering, yes, I still play every Sunday in a men's league, and I'm every bit as competitive as I used to be. Just with a lot more injuries to show for it.</p>
       </div>
     </div>
   </section>
