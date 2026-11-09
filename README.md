@@ -49,7 +49,7 @@ Mark `lead_form`, `phone_tap`, `text_tap` and `scout_complete` as key events. Ne
 
 Search the HTML for `[Garrison` to find them.
 
-- **Proof section on home.** Hidden. Fill two anonymized results and one quote, then delete `hidden` on the `<section id="proof">` line.
+- **Proof section on home.** Live with three anonymized results from one client. When an owner gives you a quote, add it where the QUOTE comment sits.
 - **About photos.** Hidden. Drop three images in, swap each `slot-box` for an `<img>`, delete `hidden` on the `strip` line. Keep your son's face out.
 - **"Good for a two-crew trade" ranges** on the philosophy page. Hidden until filled.
 - **Your own handwriting (optional).** The marker notes use the Nanum Pen Script font. If you want your real hand: write the six notes on paper ("this is what you get," "start here," "bottom up," and the five sample-listing notes), photograph them, trace to SVG, and swap them in where the `pen-note` and `hand` spans are.

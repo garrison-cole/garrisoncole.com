@@ -144,6 +144,18 @@ const TRADES = {
 const DEFAULT_TRADE = { key: "", chip: "Something else", lead: "paver patio", search: "fence repair", booked: "paver patio estimate" };
 const DEFAULT_TOWN = "Roseville";
 
+/* The sample listing borrows the visitor's trade and town. The company stays made up. */
+const SAMPLE_BIZ = { fence: "Example Fence Co.", concrete: "Example Concrete Co.", tree: "Example Tree Care", landscape: "Example Landscape Co.",
+  epoxy: "Example Floor Coatings", glass: "Example Window Co.", pool: "Example Pool Co.", paint: "Example Painting Co.",
+  garage: "Example Garage Door Co.", haul: "Example Hauling Co.", coach: "Example Coaching Co." };
+
+/** What the sample search box shows. Defaults to the fence company in Rocklin. */
+function samplePhrase(tradeKey, town) {
+  const t = cleanName(town) || "Rocklin";
+  return (TRADES[tradeKey] ? TRADES[tradeKey].search : "fence contractor") + " " + t.toLowerCase();
+}
+/* samplePhrase tests: ("tree", "Granite Bay") -> "tree service granite bay"; ("", "") -> "fence contractor rocklin" */
+
 function tradeFor(key) {
   return Object.prototype.hasOwnProperty.call(TRADES, key) ? Object.assign({ key }, TRADES[key]) : DEFAULT_TRADE;
 }
@@ -291,6 +303,7 @@ function runSelfTests() {
   out.push(["clean max 40", cleanName("a".repeat(60)).length === 40]);
   out.push(["trade fence", tradeFor("fence").search === "fence contractor"]);
   out.push(["trade unknown", tradeFor("roofing") === DEFAULT_TRADE]);
+  out.push(["sample phrase", samplePhrase("tree", "Granite Bay") === "tree service granite bay" && samplePhrase("", "") === "fence contractor rocklin"]);
   out.push(["phone script", phoneScript(tradeFor("fence"), "rocklin").engine.notes[1].body === "Fence estimate, Rocklin"]);
   return out;
 }
@@ -493,6 +506,10 @@ function applyMe() {
     if (ME.trade && !sf.elements.trade.value) sf.elements.trade.value = TRADES[ME.trade].search;
     if (ME.town && !sf.elements.city.value) sf.elements.city.value = titleCase(ME.town);
   }
+  $$("[data-scout-phrase]").forEach((n) => (n.textContent = samplePhrase(ME.trade, ME.town)));
+  $$("[data-scout-biz]").forEach((n) => (n.textContent = SAMPLE_BIZ[ME.trade] || "Example Fence Co."));
+  $$("[data-scout-cat]").forEach((n) => (n.textContent = ME.trade ? cap(TRADES[ME.trade].search) : "Fence contractor"));
+  $$("[data-scout-town]").forEach((n) => (n.textContent = ME.town ? titleCase(ME.town) : "Rocklin"));
   const th = $("[data-thanks-title]");
   if (th) th.textContent = co ? "Got it, " + co + "." : "Got it.";
 }
