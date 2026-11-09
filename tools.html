@@ -1,0 +1,295 @@
+<!doctype html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
+<title>Tools for service business owners | Garrison Cole</title>
+<meta name="description" content="Run your own numbers in under a minute: cost per booked job, the revenue your unfollowed quotes are leaving behind, and which layer of your business is the bottleneck.">
+<link rel="canonical" href="https://garrisoncole.com/tools.html">
+<meta name="theme-color" content="#F4F5F6">
+<meta property="og:type" content="website">
+<meta property="og:url" content="https://garrisoncole.com/tools.html">
+<meta property="og:title" content="Sixty seconds with your own numbers">
+<meta property="og:description" content="Free tools for owners of service businesses: the four numbers, the quote leak, and the bottleneck finder.">
+<meta property="og:image" content="https://garrisoncole.com/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Instrument+Sans:ital,wdth,wght@0,75..100,400..700;1,75..100,400..700&display=swap">
+<link rel="stylesheet" href="styles.css">
+<script>document.documentElement.classList.add("js")</script>
+<script src="app.js" defer></script>
+</head>
+<body data-page="tools">
+<a class="skip" href="#main">Skip to content</a>
+
+<header class="nav" data-loc="nav">
+  <div class="wrap nav-in">
+    <a class="brand" href="index.html"><b>Garrison Cole</b><span class="clock"><span class="ring" aria-hidden="true"><svg viewBox="0 0 16 16"><circle class="track" cx="8" cy="8" r="7" pathLength="1"/><circle class="fill" cx="8" cy="8" r="7" pathLength="1"/></svg><i class="live"></i></span><span data-clock>Roseville, California</span></span></a>
+    <ul class="nav-links">
+      <li><a href="index.html#how">How it works</a></li>
+      <li><a href="tools.html" aria-current="page">Tools</a></li>
+      <li><a href="philosophy.html">Philosophy</a></li>
+      <li><a href="index.html#about">About</a></li>
+    </ul>
+    <a class="nav-phone" href="tel:+17606444559">760-644-4559</a>
+    <a class="btn sm" href="#contact"><span class="lg">Get your free video</span><span class="sm-label">Free video</span></a>
+    <button class="menu-btn" type="button" aria-expanded="false" aria-controls="sheet">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M4 8h16M4 16h16"/></svg>Menu
+    </button>
+  </div>
+  <div class="sheet" id="sheet" hidden>
+    <div class="wrap">
+      <ul>
+        <li><a href="index.html#how">How it works</a></li>
+        <li><a href="tools.html">Tools</a></li>
+        <li><a href="philosophy.html">Philosophy</a></li>
+        <li><a href="index.html#about">About</a></li>
+      </ul>
+      <div class="btn-row"><a class="btn line" href="tel:+17606444559">Call 760-644-4559</a><a class="btn line" href="sms:+17606444559">Text me</a></div>
+    </div>
+  </div>
+</header>
+
+<main id="main">
+
+  <section class="page-hero" data-hero>
+    <div class="wrap">
+      <h1>Sixty seconds with your own numbers.</h1>
+      <p class="lede">Put in your numbers. Text me the result if you want a second opinion.</p>
+      <p class="small muted jump">Jump to the <a href="#scoreboard">Four Numbers Scoreboard</a>, the <a href="#leak">Quote Leak Calculator</a> or the <a href="#finder">Bottleneck Finder</a>.</p>
+    </div>
+  </section>
+
+  <div class="wrap tools-wrap">
+
+    <!-- Tool 1 -->
+    <section class="tool" id="scoreboard" data-tool aria-labelledby="t1-title">
+      <div class="tool-head">
+        <h2 id="t1-title">The Four Numbers Scoreboard</h2>
+        <p>Use last month. Rough numbers work.</p>
+      </div>
+      <div class="panel">
+        <form class="panel-in" aria-label="Your numbers for last month">
+          <div class="fields">
+            <div class="field">
+              <label for="s-spend">Marketing spend for the month</label>
+              <div class="money"><input id="s-spend" name="spend" type="number" inputmode="numeric" min="0" step="50" placeholder="3,000"></div>
+            </div>
+            <div class="field">
+              <label for="s-leads">Leads that month</label>
+              <input id="s-leads" name="leads" type="number" inputmode="numeric" min="1" step="1" placeholder="40">
+              <small>Calls, forms and texts</small>
+            </div>
+            <div class="field">
+              <label for="s-jobs">Booked jobs</label>
+              <input id="s-jobs" name="jobs" type="number" inputmode="numeric" min="0" step="1" placeholder="12">
+            </div>
+            <div class="field">
+              <label for="s-value">Average job value</label>
+              <div class="money"><input id="s-value" name="value" type="number" inputmode="numeric" min="0" step="50" placeholder="4,500"></div>
+            </div>
+            <div class="field">
+              <label for="s-crews">Number of crews</label>
+              <input id="s-crews" name="crews" type="number" inputmode="numeric" min="1" step="1" value="1">
+            </div>
+          </div>
+        </form>
+        <div class="panel-out">
+          <div class="linescore">
+            <div class="ls-team"><b>Your business</b>Last month</div>
+            <div class="ls-cell"><span class="ls-label">Cost per lead</span><span class="ls-value empty" data-out="cpl">?</span></div>
+            <div class="ls-cell"><span class="ls-label">Close rate</span><span class="ls-value empty" data-out="close">?</span></div>
+            <div class="ls-cell"><span class="ls-label">Cost per booked job</span><span class="ls-value empty" data-out="cpbj">?</span></div>
+            <div class="ls-cell"><span class="ls-label">Revenue per crew per week</span><span class="ls-value empty" data-out="rev">?</span></div>
+          </div>
+          <p class="verdict empty">Put in a number and I'll do the math.</p>
+          <div class="handoff" aria-disabled="true" data-loc="tool">
+            <a class="btn sm" data-handoff="sms" href="#">Text this to Garrison</a>
+            <button type="button" class="textlink" data-handoff="form">Send it with the form</button>
+            <button type="button" class="textlink" data-card>Save my scorecard</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tool 2 -->
+    <section class="tool" id="leak" data-tool aria-labelledby="t2-title">
+      <div class="tool-head">
+        <h2 id="t2-title">The Quote Leak Calculator</h2>
+        <p>How much is sitting in quotes nobody called back.</p>
+      </div>
+      <div class="panel">
+        <form class="panel-in" aria-label="Your quotes">
+          <div class="fields">
+            <div class="field">
+              <label for="l-q">Quotes you send a month</label>
+              <input id="l-q" name="q" type="number" inputmode="numeric" min="1" step="1" placeholder="20">
+            </div>
+            <div class="field">
+              <label for="l-v">Average job value</label>
+              <div class="money"><input id="l-v" name="v" type="number" inputmode="numeric" min="1" step="50" placeholder="4,500"></div>
+            </div>
+            <div class="field full">
+              <label for="leak-c">Your close rate today</label>
+              <div class="range-wrap">
+                <input id="leak-c" name="c" type="range" min="5" max="80" step="1" value="30">
+                <output for="leak-c">30%</output>
+              </div>
+            </div>
+            <fieldset class="seg full">
+              <legend>Follow-up today</legend>
+              <div class="seg-opts">
+                <label><input type="radio" name="f" value="none" checked>None</label>
+                <label><input type="radio" name="f" value="one">One call or text</label>
+                <label><input type="radio" name="f" value="sequence">A sequence</label>
+              </div>
+            </fieldset>
+          </div>
+        </form>
+        <div class="panel-out">
+          <div class="linescore">
+            <div class="ls-team"><b>Your quotes</b>With somebody calling back</div>
+            <div class="ls-cell"><span class="ls-label">Left on the table each month</span><span class="ls-value empty" data-out="monthly">?</span></div>
+            <div class="ls-cell"><span class="ls-label">Each year</span><span class="ls-value empty" data-out="yearly">?</span></div>
+          </div>
+          <p class="verdict empty">Put in your quotes and your average job and I'll do the math.</p>
+          <p class="assume" hidden></p>
+          <div class="handoff" aria-disabled="true" data-loc="tool">
+            <a class="btn sm" data-handoff="sms" href="#">Text this to Garrison</a>
+            <button type="button" class="textlink" data-handoff="form">Send it with the form</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Tool 3 -->
+    <section class="tool" id="finder" data-tool aria-labelledby="t3-title">
+      <div class="tool-head">
+        <h2 id="t3-title">The Bottleneck Finder</h2>
+        <p>Eight questions. It lands on the part of the business I'd fix first.</p>
+      </div>
+      <div class="panel">
+        <div class="finder-in">
+          <noscript><p>The Bottleneck Finder needs JavaScript. Text me at <a href="sms:+17606444559">760-644-4559</a> and I'll ask you the questions myself.</p></noscript>
+        </div>
+        <div class="panel-out">
+          <div class="result-layer">
+            <span class="ls-label">Your bottleneck</span>
+            <span class="ls-value empty" data-out="layer" tabindex="-1">?</span>
+          </div>
+          <div class="result-body" aria-live="polite">
+            <p class="muted">Answer the eight questions and your bottleneck shows up here.</p>
+          </div>
+          <div class="handoff" aria-disabled="true" data-loc="tool">
+            <a class="btn sm" data-handoff="sms" href="#">Text this to Garrison</a>
+            <button type="button" class="textlink" data-handoff="form">Send it with the form</button>
+            <button type="button" class="textlink" data-card>Save my scorecard</button>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- Micro-tool -->
+    <section class="tool" id="search" aria-labelledby="t4-title">
+      <div class="tool-head">
+        <h2 id="t4-title">What does your customer actually type?</h2>
+        <p>Search your trade and your town the way a homeowner would.</p>
+      </div>
+      <div class="panel one">
+        <div class="panel-in">
+          <form class="search-row" data-search-check>
+            <div class="field">
+              <label for="sc-trade">Your trade</label>
+              <input id="sc-trade" name="trade" type="text" placeholder="fence contractor" autocomplete="off">
+            </div>
+            <div class="field">
+              <label for="sc-city">Your town</label>
+              <input id="sc-city" name="city" type="text" list="towns" placeholder="Rocklin" autocomplete="off">
+              <datalist id="towns">
+                <option value="Roseville"><option value="Rocklin"><option value="Lincoln"><option value="Loomis">
+                <option value="Granite Bay"><option value="Auburn"><option value="Folsom"><option value="El Dorado Hills">
+              </datalist>
+            </div>
+            <button class="btn" type="submit">See what they see</button>
+          </form>
+          <p class="search-note small" aria-live="polite">Opens a Google search in a new tab.</p>
+        </div>
+      </div>
+    </section>
+
+  </div>
+
+  <section class="section contact" id="contact" aria-labelledby="contact-title" data-loc="contact">
+    <div class="wrap">
+      <div class="head">
+        <h2 id="contact-title">Want the video first?</h2>
+        <p>Tell me your company name. I'll send a two-minute walkthrough within a day or two, with the one thing I'd change this week.</p>
+      </div>
+      <div class="contact-grid">
+        <div class="form-card">
+          <form class="form" data-lead-form method="post">
+            <div class="attached" hidden>
+              <span><b>Attached from the tools:</b> <span class="attached-text"></span></span>
+              <button type="button" class="textlink small">Remove</button>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="f-company">Company name</label><input id="f-company" name="company" type="text" autocomplete="organization" maxlength="80" required></div>
+              <div class="field"><label for="f-name">Your name</label><input id="f-name" name="name" type="text" autocomplete="name" required></div>
+            </div>
+            <div class="form-row">
+              <div class="field"><label for="f-phone">Best number to text</label><input id="f-phone" name="phone" type="tel" autocomplete="tel" inputmode="tel" required></div>
+              <div class="field"><label for="f-site">Website or Google listing <span class="opt">(optional)</span></label><input id="f-site" name="site" type="text" placeholder="Paste a link or just the business name"></div>
+            </div>
+            <div class="field"><label for="f-fix">One thing you'd fix first if you could <span class="opt">(optional)</span></label><textarea id="f-fix" name="fix" rows="2"></textarea></div>
+            <input type="hidden" name="tool_result" value="">
+            <input type="hidden" name="page" value="">
+            <input type="hidden" name="utm_source" value="">
+            <input type="hidden" name="utm_campaign" value="">
+            <input type="hidden" name="_subject" value="New video request from garrisoncole.com">
+            <div class="hp" aria-hidden="true"><label for="f-gotcha">Leave this empty</label><input id="f-gotcha" name="_gotcha" type="text" tabindex="-1" autocomplete="off"></div>
+            <div class="btn-row"><button class="btn" type="submit">Send it, I'll look</button></div>
+            <p class="form-status" role="status" aria-live="polite"></p>
+          </form>
+        </div>
+        <div class="contact-side">
+          <div>
+            <h3>Or just text me</h3>
+            <a class="contact-big" href="sms:+17606444559">760-644-4559</a>
+          </div>
+          <div>
+            <h3>Email</h3>
+            <a href="mailto:garrison@garrisoncole.com">garrison@garrisoncole.com</a>
+          </div>
+          <a class="btn line" data-booking hidden href="#">Book a 15-minute call</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+
+<footer class="foot" data-loc="footer">
+  <svg class="ridge-top" viewBox="0 0 1440 120" preserveAspectRatio="none" aria-hidden="true"><path d="M0 70C80 40 150 52 230 38S380 10 470 30 620 62 720 44 880 6 990 26 1150 58 1250 40 1380 20 1440 30V120H0Z" fill="currentColor" opacity=".35"/><path d="M0 96C90 80 170 88 260 74S420 56 520 70 680 96 790 82 960 58 1070 68 1240 92 1340 80 1420 70 1440 72V120H0Z" fill="currentColor"/></svg>
+  <div class="wrap">
+    <div class="foot-grid">
+      <div>
+        <b>Garrison Cole</b>
+        <p>Advertising, sales and strategy for owner-run companies.</p>
+      </div>
+      <div>
+        <p>Based in Roseville. Working with owners across Placer County and the rest of the country.</p>
+        <p>Call or text <a href="tel:+17606444559">760-644-4559</a><br><a href="mailto:garrison@garrisoncole.com">garrison@garrisoncole.com</a></p>
+      </div>
+      <div>
+        <ul><li><a href="index.html#how">How it works</a></li><li><a href="tools.html">Tools</a></li><li><a href="philosophy.html">Philosophy</a></li></ul>
+      </div>
+    </div>
+  </div>
+</footer>
+</body>
+</html>

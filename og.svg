@@ -1,0 +1,15 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
+  <defs>
+    <linearGradient id="bg" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#F4F5F6"/><stop offset="1" stop-color="#FFF4E0"/></linearGradient>
+    <radialGradient id="sun" cx="85%" cy="15%" r="55%"><stop offset="0" stop-color="#FFD98F" stop-opacity=".75"/><stop offset=".5" stop-color="#FFE6B5" stop-opacity=".3"/><stop offset="1" stop-color="#FFFFFF" stop-opacity="0"/></radialGradient>
+  </defs>
+  <rect width="1200" height="630" fill="url(#bg)"/>
+  <rect width="1200" height="630" fill="url(#sun)"/>
+  <path d="M0 540C100 510 190 522 300 506S510 474 630 492 820 534 940 518 1110 482 1200 498V630H0Z" fill="#EFE3CC" opacity=".7"/>
+  <path d="M0 580C110 560 220 568 350 556S570 536 700 550 920 580 1050 568 1160 552 1200 556V630H0Z" fill="#E8DCC4"/>
+  <circle cx="84" cy="128" r="9" fill="#F2B33D"/>
+  <text x="108" y="138" font-family="Instrument Sans, Arial, sans-serif" font-weight="500" font-size="28" fill="#5E636D">Roseville, CA</text>
+  <text x="72" y="270" font-family="Instrument Sans, Arial, sans-serif" font-weight="600" font-size="104" letter-spacing="-4" fill="#17191E" style="font-stretch:78%">You built a company</text>
+  <text x="72" y="372" font-family="Instrument Sans, Arial, sans-serif" font-weight="600" font-size="104" letter-spacing="-4" fill="#17191E" style="font-stretch:78%">people recommend.</text>
+  <text x="72" y="450" font-family="Instrument Sans, Arial, sans-serif" font-weight="600" font-size="40" letter-spacing="-1" fill="#5E636D" style="font-stretch:85%">Garrison Cole. Advertising, sales and strategy for owner-run companies.</text>
+</svg>
