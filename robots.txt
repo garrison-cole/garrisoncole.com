@@ -1,3 +1,2 @@
 User-agent: *
-Disallow: /thanks.html
-Sitemap: https://garrisoncole.com/sitemap.xml
+Allow: /

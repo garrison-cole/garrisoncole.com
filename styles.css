@@ -672,3 +672,13 @@ input[type="range"] { width: 100%; accent-color: var(--ink); min-height: 44px; }
 .bracket-mobile { color: var(--ink); }
 .pain span { display: block; }
 .card-row { display: contents; }
+
+/* ---------- Proof ---------- */
+.cases { display: grid; gap: 16px; }
+@media (min-width: 900px) { .cases { grid-template-columns: repeat(3, 1fr); gap: 20px; } }
+.case { display: grid; gap: 12px; align-content: start; grid-template-rows: auto 1fr auto; padding: 26px 24px; background: var(--surface); border: 1px solid var(--line); border-radius: var(--r-panel); box-shadow: var(--shadow); }
+.case p { color: var(--muted); font-size: 1rem; margin: 0; }
+.case .case-num { color: var(--ink); font-weight: 700; font-stretch: 78%; font-size: clamp(1.5rem, 1.2rem + 1vw, 2rem); letter-spacing: -0.02em; line-height: 1.05; padding-top: 14px; box-shadow: inset 0 3px 0 var(--sun); }
+.mine { margin-top: clamp(28px, 4vw, 48px); }
+@media (min-width: 900px) { .linescore.wide.three { grid-template-columns: minmax(170px, 0.8fr) repeat(3, 1fr); } }
+@media (max-width: 899px) { .linescore.three .ls-cell:last-child { grid-column: 1 / -1; border-right: 0; } }
