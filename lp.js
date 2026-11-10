@@ -363,7 +363,7 @@ class Component extends DCLogic {
       keyword: kw, hasKw: !!kw,
       web, grow: !web,
       accent: "#A35F00", accentSoft: "#FBF3E6", accentInk: "#7A4600",
-      h1: web ? "Websites that ring your phone." : "More jobs from Google.",
+      h1: web ? "A website that brings you customers." : "More jobs from Google.",
       lede: web ? "I build it first. You pay only if you want it live." : "From a Roseville local who’ll sit down with you and show you the numbers.",
       cta: web ? "Build mine" : "Get my free video",
       ticks: (web ? ["Built before you pay", "Live in 10 days"] : ["Free 2-minute video of what I’d fix first", "Ready in 2 days"]).map((label) => ({ label })),
