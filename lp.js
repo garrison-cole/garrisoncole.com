@@ -207,29 +207,29 @@ function smsHref(co, page) {
   const body = "Hi Garrison, " + (co ? "this is " + co + ". " : "") + what + ".";
   return "sms:" + LP.PHONE + "?&body=" + encodeURIComponent(body);
 }
-const est = (job) => ({ booked: job + " estimate, Thursday 8am", feed: job + " we just finished in {town}", offer: "Free Estimates", btn: "Book an estimate" });
+const est = (job, ask) => ({ booked: job + " estimate, Thursday 8am", feed: job + " we just finished in {town}", offer: "Free Estimates", btn: "Book an estimate", ask });
 const TRADES = [
-  Object.assign({ label: "Fencing", kw: "fence contractor" }, est("Fence")),
-  { label: "Photography", kw: "wedding photographer", booked: "Engagement shoot, Saturday 10am", feed: "A {town} wedding we just shot", offer: "Check Your Date", btn: "Check my date" },
-  Object.assign({ label: "Landscaping", kw: "landscaper" }, est("Backyard")),
-  { label: "Bridal", kw: "bridal shop", booked: "Bridal appointment, Saturday 11am", feed: "New gowns just arrived in {town}", offer: "Book Your Appointment", btn: "Book an appointment" },
-  Object.assign({ label: "Cleaning", kw: "house cleaning" }, est("Deep clean")),
-  { label: "Florist", kw: "wedding florist", booked: "Wedding flowers consult, Thursday 2pm", feed: "Wedding flowers we just delivered in {town}", offer: "Request a Quote", btn: "Request a quote" },
-  Object.assign({ label: "Painting", kw: "house painter" }, est("Exterior paint")),
-  { label: "Med spa", kw: "med spa", booked: "Consultation, Friday 1pm", feed: "Before and after from a {town} client", offer: "Book a Consult", btn: "Book a consult" },
-  Object.assign({ label: "Concrete", kw: "concrete contractor" }, est("Driveway")),
-  { label: "Event planning", kw: "wedding planner", booked: "Planning consult, Thursday 2pm", feed: "A {town} wedding we just planned", offer: "Check Your Date", btn: "Check my date" },
-  Object.assign({ label: "Pools", kw: "pool builder" }, est("Pool")),
-  { label: "Hair and makeup", kw: "bridal hair and makeup", booked: "Bridal trial, Friday 1pm", feed: "Bridal party we just finished in {town}", offer: "Check Your Date", btn: "Check my date" },
-  Object.assign({ label: "Tree service", kw: "tree service" }, est("Tree removal")),
-  { label: "Interior design", kw: "interior designer", booked: "Design consult, Tuesday 10am", feed: "A {town} kitchen we just finished", offer: "Book a Consult", btn: "Book a consult" },
-  Object.assign({ label: "Garage doors", kw: "garage door repair" }, est("Garage door")),
-  Object.assign({ label: "Epoxy", kw: "epoxy garage floor" }, est("Garage floor"))
+  Object.assign({ label: "Fencing", kw: "fence contractor" }, est("Fence", "Can you quote 120 feet of cedar fence this week?")),
+  { ask: "Are you open October 17 for our wedding?", label: "Photography", kw: "wedding photographer", booked: "Engagement shoot, Saturday 10am", feed: "A {town} wedding we just shot", offer: "Check Your Date", btn: "Check my date" },
+  Object.assign({ label: "Landscaping", kw: "landscaper" }, est("Backyard", "We want the backyard done before summer. Can you come look?")),
+  { ask: "Do you have a Saturday appointment this month?", label: "Bridal", kw: "bridal shop", booked: "Bridal appointment, Saturday 11am", feed: "New gowns just arrived in {town}", offer: "Book Your Appointment", btn: "Book an appointment" },
+  Object.assign({ label: "Cleaning", kw: "house cleaning" }, est("Deep clean", "Family lands Friday. Can you fit in a deep clean?")),
+  { ask: "Do you have our date in June? About 120 guests.", label: "Florist", kw: "wedding florist", booked: "Wedding flowers consult, Thursday 2pm", feed: "Wedding flowers we just delivered in {town}", offer: "Request a Quote", btn: "Request a quote" },
+  Object.assign({ label: "Painting", kw: "house painter" }, est("Exterior paint", "Two-story exterior. When could you come quote it?")),
+  { ask: "First time here. Can I book a consult this week?", label: "Med spa", kw: "med spa", booked: "Consultation, Friday 1pm", feed: "Before and after from a {town} client", offer: "Book a Consult", btn: "Book a consult" },
+  Object.assign({ label: "Concrete", kw: "concrete contractor" }, est("Driveway", "Our driveway is cracking. Can you replace it?")),
+  { ask: "We just got engaged. Are you taking September weddings?", label: "Event planning", kw: "wedding planner", booked: "Planning consult, Thursday 2pm", feed: "A {town} wedding we just planned", offer: "Check Your Date", btn: "Check my date" },
+  Object.assign({ label: "Pools", kw: "pool builder" }, est("Pool", "We want a pool by next summer. Where do we start?")),
+  { ask: "Bride plus five. Are you free May 9?", label: "Hair and makeup", kw: "bridal hair and makeup", booked: "Bridal trial, Friday 1pm", feed: "Bridal party we just finished in {town}", offer: "Check Your Date", btn: "Check my date" },
+  Object.assign({ label: "Tree service", kw: "tree service" }, est("Tree removal", "Big oak limb over the roof. How soon can you come?")),
+  { ask: "Kitchen remodel. Do you do consults?", label: "Interior design", kw: "interior designer", booked: "Design consult, Tuesday 10am", feed: "A {town} kitchen we just finished", offer: "Book a Consult", btn: "Book a consult" },
+  Object.assign({ label: "Garage doors", kw: "garage door repair" }, est("Garage door", "The door won’t open and my car is inside.")),
+  Object.assign({ label: "Epoxy", kw: "epoxy garage floor" }, est("Garage floor", "Two-car garage floor. What’s your wait?"))
 ];
 function tradeFor(key, typed) {
   const t = cleanName(typed, 30);
   if (key === "__custom" && t) {
-    return { label: titleCase(t), kw: t.toLowerCase(), booked: "New " + t.toLowerCase() + " client, Thursday 8am", feed: "Our latest work in {town}", offer: "Get a Quote", btn: "Get a quote", custom: true };
+    return { label: titleCase(t), kw: t.toLowerCase(), booked: "New " + t.toLowerCase() + " client, Thursday 8am", feed: "Our latest work in {town}", offer: "Get a Quote", btn: "Get a quote", ask: "Do you have time this week?", custom: true };
   }
   return TRADES.find((x) => x.label === key) || TRADES[0];
 }
@@ -239,6 +239,56 @@ function matchTrade(s) {
   const hit = TRADES.find((x) => x.label.toLowerCase() === q || x.kw === q);
   return hit ? hit.label : "";
 }
+/* ---------- What they searched decides the words they read ---------- */
+const PLACES = ["el dorado hills", "granite bay", "sacramento", "roseville", "rocklin", "folsom", "lincoln", "auburn"];
+/** The town named in a search phrase, or "" when there is none. */
+function kwPlace(kw) {
+  const k = String(kw == null ? "" : kw).toLowerCase();
+  const hit = PLACES.find((p) => k.includes(p));
+  return hit ? titleCase(hit) : "";
+}
+/** The service they searched for, in their words. Leads the hero line under the headline. */
+function kwTopic(kw, web) {
+  const k = String(kw == null ? "" : kw).toLowerCase(), place = kwPlace(k), inPlace = place ? " in " + place : "";
+  if (web) {
+    if (k.includes("contractor")) return "Contractor website design";
+    if (k.includes("small business")) return "Small business website design" + inPlace;
+    return "Website design" + (inPlace || " in Roseville");
+  }
+  if (/google ads|adwords|ppc/.test(k)) return k.includes("contractor") ? "Google Ads for contractors" : "Google Ads management" + inPlace;
+  if (k.includes("coach")) return "Business coaching" + inPlace;
+  if (k.includes("landscap")) return "Landscaping marketing";
+  if (k.includes("tree")) return "Tree service marketing";
+  if (k.includes("home service")) return "Home service marketing";
+  if (k.includes("small business")) return "Small business marketing" + inPlace;
+  if (k.includes("lead")) return "More leads for your business";
+  if (place) return "Marketing for " + place + " businesses";
+  return "Marketing for contractors";
+}
+/** A listed trade named inside a search phrase ("tree service marketing"), or "". */
+function kwTrade(kw) {
+  const k = String(kw == null ? "" : kw).toLowerCase();
+  if (k.includes("landscap")) return "Landscaping";
+  const hit = TRADES.find((x) => k.includes(x.label.toLowerCase()));
+  return hit ? hit.label : "";
+}
+/* What owners say, and what changes. Tapped one rides along with the lead as "said". */
+const PAINS = {
+  websites: [
+    ["Customers Google me, then call the next guy.", "They’ll see your best work and your reviews first, with one button to reach you."],
+    ["My site looks like 2015.", "You’ll see the new one on your phone before you pay a dollar."],
+    ["I paid a web designer and got a template.", "That’s why I build yours first. Pass on it and you owe nothing."],
+    ["I don’t have a website yet.", "Text me a few photos and yours can be live in about 10 days."]
+  ],
+  growth: [
+    ["The phone rings while I’m on a job.", "A missed call gets a text back in a minute, so the job stays yours."],
+    ["I pay Angi for leads three other guys get.", "Show up on Google under your own name and the lead is yours alone."],
+    ["Quotes go out and I never hear back.", "Follow-up keeps going without you until you get a yes or a no."],
+    ["Slammed in spring, dead in winter.", "Winter is when next season gets booked. We fill January first."],
+    ["My last marketing company sent impression reports.", "You’ll see four numbers: cost per lead, close rate, cost per booked job and revenue per crew."]
+  ]
+};
+const WHO = ["Dana", "Mike", "Priya", "Jen", "Sam", "Alicia"];
 function selfTest() {
   const t = [
     ["cleanName strips tags", cleanName("  <b>Acme</b>   Fence ") === "bAcme/b Fence"],
@@ -257,7 +307,18 @@ function selfTest() {
     ["tradeFor custom empty falls back", tradeFor("__custom", "  ").label === "Fencing"],
     ["matchTrade by name", matchTrade("bridal") === "Bridal"],
     ["matchTrade by search", matchTrade("Wedding Florist") === "Florist"],
-    ["matchTrade miss", matchTrade("roofing") === ""]
+    ["matchTrade miss", matchTrade("roofing") === ""],
+    ["kwPlace finds the town", kwPlace("website design el dorado hills") === "El Dorado Hills"],
+    ["kwPlace none", kwPlace("web designer near me") === ""],
+    ["kwTopic web with town", kwTopic("website design sacramento", true) === "Website design in Sacramento"],
+    ["kwTopic web contractor", kwTopic("contractor website design", true) === "Contractor website design"],
+    ["kwTopic web default", kwTopic("", true) === "Website design in Roseville"],
+    ["kwTopic growth ads", kwTopic("google ads for contractors", false) === "Google Ads for contractors"],
+    ["kwTopic growth agency", kwTopic("marketing agency sacramento", false) === "Marketing for Sacramento businesses"],
+    ["kwTopic growth default", kwTopic("", false) === "Marketing for contractors"],
+    ["kwTrade from search", kwTrade("tree service marketing") === "Tree service"],
+    ["kwTrade miss", kwTrade("marketing agency roseville") === ""],
+    ["every trade has an ask", TRADES.every((x) => !!x.ask)]
   ];
   console.table(t.map(([name, pass]) => ({ name, pass })));
   return t.every((r) => r[1]);
@@ -310,13 +371,14 @@ class Component extends DCLogic {
     const saved = store.get("gc-lp5") || {};
     const asked = cleanName(q.get("trade"), 30);
     const listed = matchTrade(asked);
-    this.town = titleCase(cleanName(q.get("town"), 28)) || "Roseville";
+    const term = cleanName((store.get("gc-utm") || {}).utm_term, 60);
+    this.town = titleCase(cleanName(q.get("town"), 28)) || kwPlace(term) || "Roseville";
     this.state = {
       company: cleanName(q.get("co")) || saved.company || "",
       phone: "", step: 1, err: "", sending: false, sendFail: false, trap: "",
-      trade: listed || (asked ? "__custom" : saved.trade || "Fencing"),
+      trade: listed || (asked ? "__custom" : saved.trade || kwTrade(term) || "Fencing"),
       custom: listed ? "" : asked || saved.custom || "",
-      channel: "search"
+      channel: "search", pain: -1
     };
   }
   keep() { const s = this.state; store.set("gc-lp5", { company: s.company, trade: s.trade, custom: s.custom }); }
@@ -333,7 +395,7 @@ class Component extends DCLogic {
       _subject: (web ? "Website draft request: " : "Video request: ") + co,
       company: co, phone: formatPhone(d), field: tr.label,
       wants: web ? "Build-first website draft" : "Free two-minute video",
-      looked_at: s.channel, page: PAGE, form: where
+      looked_at: s.channel, said: (PAINS[PAGE] && PAINS[PAGE][s.pain] || [""])[0], page: PAGE, form: where
     }, store.get("gc-utm") || {});
     try {
       const r = await fetch("https://formspree.io/f/" + LP.FORMSPREE_ID, { method: "POST", headers: { Accept: "application/json", "Content-Type": "application/json" }, body: JSON.stringify(body) });
@@ -362,9 +424,11 @@ class Component extends DCLogic {
     return {
       keyword: kw, hasKw: !!kw,
       web, grow: !web,
-      accent: "#A35F00", accentSoft: "#FBF3E6", accentInk: "#7A4600",
-      h1: web ? "A website that brings you customers." : "More jobs from Google.",
-      lede: web ? "I build it first. You pay only if you want it live." : "From a Roseville local who’ll sit down with you and show you the numbers.",
+      accent: "#2348E0", accentSoft: "#EEF2FF", accentInk: "#1B37B5",
+      h1a: web ? "A website that brings you " : "More jobs ", h1b: web ? "customers." : "from Google.",
+      lede: kwTopic(kw, web) + (web ? " from a local web designer. I build it first. You pay only if you want it live." : ", from a Roseville local who’ll sit down with you and show you the numbers."),
+      pains: (PAINS[PAGE] || []).map((p, i) => ({ q: p[0], on: i === st.pain, off: i !== st.pain, pick: () => { this.setState({ pain: i }); track("pain_pick", { n: i + 1 }); } })),
+      hasPain: !!(PAINS[PAGE] && PAINS[PAGE][st.pain]), painId: "pain-" + st.pain, painA: ((PAINS[PAGE] || [])[st.pain] || ["", ""])[1],
       cta: web ? "Build mine" : "Get my free video",
       ticks: (web ? ["Built before you pay", "Live in 10 days"] : ["Free 2-minute video of what I’d fix first", "Ready in 2 days"]).map((label) => ({ label })),
       company: st.company, phone: st.phone,
@@ -392,6 +456,10 @@ class Component extends DCLogic {
       query: st.channel === "feed" ? "Scrolling after dinner" : tr.kw + " " + town.toLowerCase(),
       chatQ: "Good " + tr.kw + " near " + town + "?",
       coName,
+      demoId: "demo-" + (tr.custom ? "custom" : tr.label.toLowerCase().replace(/[^a-z]+/g, "-")) + "-" + st.channel,
+      who: WHO[Math.max(0, TRADES.findIndex((x) => x.label === tr.label)) % WHO.length] + " in " + town, ask: tr.ask,
+      resultSub: co ? "One more on the calendar for " + co + "." : "Put your company name on it and watch it change.",
+      demoNote: web ? "Website design, Google Ads, follow-up, pricing and sales calls. I tell you which one to fix first, before you spend a dollar." : "Google Ads, your website, follow-up, pricing and sales calls. I tell you which one to fix first, before you spend a dollar.",
       adLine: st.channel === "feed" ? inTown(tr.feed) : titleCase(tr.kw) + " in " + town + " | " + tr.offer,
       pageHead: tr.label + " in " + town + ".",
 
@@ -401,8 +469,8 @@ class Component extends DCLogic {
         : [["Get the video.", "Yours to keep."], ["Short call.", "We find what’s broken."], ["I build and run it.", "You pay Google directly."], ["We check the numbers.", "Day 30 and day 90."]]
       ).map((s, i) => ({ n: i + 1, title: s[0], body: s[1] })),
       faq: web
-        ? [{ q: "What does it cost?", a: "One flat price, texted to you before I build." }, { q: "I already have a site.", a: "Compare them side by side. Nothing changes until you say go." }, { q: "Can you bring customers to it?", a: "Yes. Google ads and follow-up are most of my work." }, { q: "I run the office, not the company. Can I reach out?", a: "Yes. I’ll send it to you, and you bring the owner in whenever you like." }]
-        : [{ q: "What does it cost?", a: "Depends what’s broken. You get the number on the call." }, { q: "Burned by a marketer before?", a: "You pay Google directly and see every dollar." }, { q: "What if ads aren’t the problem?", a: "I’ll tell you what is." }, { q: "I run the office, not the company. Can I reach out?", a: "Yes. I’ll send it to you, and you bring the owner in whenever you like." }],
+        ? [{ q: "What does it cost?", a: "One flat price, texted to you before I build." }, { q: "I already have a site.", a: "Compare them side by side. Nothing changes until you say go." }, { q: "Can you bring customers to it?", a: "Yes. Google ads and follow-up are most of my work." }, { q: "I run the office, not the company. Can I reach out?", a: "Yes. I’ll send it to you, and you bring the owner in whenever you like." }, { q: "Do you only do website design in Roseville?", a: "Roseville, Rocklin, Folsom, El Dorado Hills and the rest of the Sacramento area." }, { q: "Is this for contractors or any small business?", a: "Any owner-run business that does good work. Contractors, home services, photographers, florists and more." }]
+        : [{ q: "What does it cost?", a: "Depends what’s broken. You get the number on the call." }, { q: "Burned by a marketer before?", a: "You pay Google directly and see every dollar." }, { q: "What if ads aren’t the problem?", a: "I’ll tell you what is." }, { q: "I run the office, not the company. Can I reach out?", a: "Yes. I’ll send it to you, and you bring the owner in whenever you like." }, { q: "Do you do Google Ads management?", a: "Yes. Google Ads for contractors and home services is most of my work, with the page and follow-up behind it." }, { q: "Are you a marketing agency?", a: "You get me. One Roseville local who runs it and sits down with you to go through the numbers." }],
       closeH: web ? "See yours before you spend a dollar." : "Find out where your customers are going."
     };
   }

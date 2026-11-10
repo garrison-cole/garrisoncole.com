@@ -23,7 +23,19 @@ img{max-width:100%}
 .vh{position:absolute;width:1px;height:1px;overflow:hidden;clip-path:inset(50%);white-space:nowrap}
 .vh:focus{position:fixed;left:12px;top:12px;width:auto;height:auto;clip-path:none;background:#fff;padding:10px 14px;z-index:9}
 #dc-root{min-height:100vh}
-@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
+.hl{background:linear-gradient(transparent 62%,#FFD84A 62%,#FFD84A 93%,transparent 93%);-webkit-box-decoration-break:clone;box-decoration-break:clone;padding:0 .05em}
+@keyframes rise{from{opacity:0;transform:translateY(10px)}to{opacity:1;transform:none}}
+@keyframes pop{0%{opacity:0;transform:translateY(-14px) scale(.92)}70%{opacity:1;transform:translateY(2px) scale(1.03)}100%{opacity:1;transform:none}}
+@keyframes type{from{clip-path:inset(0 100% 0 0)}to{clip-path:inset(0 0 0 0)}}
+@keyframes ping{0%{box-shadow:0 0 0 0 currentColor}100%{box-shadow:0 0 0 10px transparent}}
+.d1{animation:rise .4s .05s both}.d2{animation:rise .4s .6s both}.d3{animation:rise .4s 1.15s both}
+.ty{display:inline-block;animation:type .7s steps(22) .15s both}
+.pop{animation:pop .5s 1.7s both}.pop2{animation:pop .5s 2.3s both}.pop0{animation:pop .4s both}
+.ping{animation:ping 1.4s 2.2s 3}
+.chips{display:flex;flex-wrap:wrap;gap:8px}.chips>*{flex:none;white-space:nowrap}
+.tapme{transition:transform .12s ease,box-shadow .12s ease}.tapme:hover{transform:translateY(-1px);box-shadow:0 6px 16px -10px rgba(17,20,24,.5)}.tapme:active{transform:scale(.98)}
+@media (max-width:640px){.chips.scroll{flex-wrap:nowrap;overflow-x:auto;margin:0 -18px;padding:2px 18px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.chips.scroll::-webkit-scrollbar{display:none}}
+@media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.d1,.d2,.d3,.ty,.pop,.pop2,.pop0,.ping{animation:none}.tapme{transition:none}}
 </style>
 <script src="lp.js" defer></script>
 </head>
@@ -53,7 +65,7 @@ img{max-width:100%}
 <svg aria-hidden="true" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="#5E636D" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
 <span>{{keyword}}</span>
 </div></sc-if>
-<h1 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(46px, 26px + 5vw, 84px); font-weight: 600; line-height: 0.98; letter-spacing: -0.035em; text-wrap: balance">{{h1}}</h1>
+<h1 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(46px, 26px + 5vw, 84px); font-weight: 600; line-height: 0.98; letter-spacing: -0.035em; text-wrap: balance">{{h1a}}<span class="hl">{{h1b}}</span></h1>
 <p style="margin: 0; font-size: clamp(19px, 17px + 0.4vw, 22px); line-height: 1.4; color: #4A4F58">{{lede}}</p>
 
 <div style="max-width: 480px; display: flex; flex-direction: column; gap: 10px">
@@ -61,7 +73,7 @@ img{max-width:100%}
 <form onSubmit="{{nextHero}}" style="display: flex; flex-wrap: wrap; gap: 8px; margin: 0">
 <label for="co1" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">Company name</label>
 <input id="co1" type="text" autocomplete="organization" placeholder="Your company name" value="{{company}}" onChange="{{setCompany}}" style="flex: 1 1 220px; min-width: 0; min-height: 56px; padding: 0 16px; font-size: 17px; border: 1.5px solid #111418; border-radius: 10px; background: #FFFFFF; color: #111418">
-<button type="submit" style="flex: 0 0 auto; min-height: 56px; padding: 0 22px; border: 0; border-radius: 10px; background: #111418; color: #FFFFFF; font-size: 17px; font-weight: 600">{{cta}}</button>
+<button type="submit" style="flex: 0 0 auto; min-height: 56px; padding: 0 22px; border: 0; border-radius: 10px; background: {{accent}}; color: #FFFFFF; font-size: 17px; font-weight: 600">{{cta}}</button>
 </form>
 </sc-if>
 <sc-if value="{{step2}}" hint-placeholder-val="{{ false }}">
@@ -69,7 +81,7 @@ img{max-width:100%}
 <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-label="Leave this empty" value="{{trap}}" onChange="{{setTrap}}" style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0">
 <label for="ph1" style="flex: 1 0 100%; font-weight: 600">{{askPhone}}</label>
 <input id="ph1" type="tel" inputmode="tel" autocomplete="tel" placeholder="Cell number" value="{{phone}}" onChange="{{setPhone}}" style="flex: 1 1 220px; min-width: 0; min-height: 56px; padding: 0 16px; font-size: 17px; border: 1.5px solid #111418; border-radius: 10px; background: #FFFFFF; color: #111418">
-<button type="submit" style="flex: 0 0 auto; min-height: 56px; padding: 0 22px; border: 0; border-radius: 10px; background: #111418; color: #FFFFFF; font-size: 17px; font-weight: 600">{{sendLabel}}</button>
+<button type="submit" style="flex: 0 0 auto; min-height: 56px; padding: 0 22px; border: 0; border-radius: 10px; background: {{accent}}; color: #FFFFFF; font-size: 17px; font-weight: 600">{{sendLabel}}</button>
 </form>
 <sc-if value="{{err}}" hint-placeholder-val="{{ false }}"><div role="alert" style="font-size: 15px; color: #A33A2B; font-weight: 600">{{errMsg}}</div></sc-if>
 <sc-if value="{{sendFail}}"><div role="alert" style="font-size: 15px; color: #A33A2B; font-weight: 600">That didn't go through. <a href="{{smsHref}}" style="color: inherit">Text me at 760-644-4559</a> and I'll take it from there.</div></sc-if>
@@ -96,17 +108,21 @@ img{max-width:100%}
 <!-- Phone: the result -->
 <div style="flex: 0 1 340px; min-width: 0; margin: 0 auto">
 <sc-if value="{{web}}" hint-placeholder-val="{{ true }}">
-<div style="background: #FFFFFF; border: 2px solid #111418; border-radius: 36px; padding: 18px 16px 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 30px 60px -30px rgba(17,20,24,.45)">
+<div style="position: relative; background: #FFFFFF; border: 2px solid #111418; border-radius: 36px; padding: 18px 16px 22px; display: flex; flex-direction: column; gap: 12px; box-shadow: 0 30px 60px -30px rgba(17,20,24,.45)">
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 10px">
 <span style="min-width: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 18px; font-weight: 700; line-height: 1.15; letter-spacing: -0.01em; overflow-wrap: anywhere">{{coName}}</span>
 <span style="flex: none; padding: 8px 14px; background: {{accent}}; color: #FFFFFF; border-radius: 999px; font-size: 13px; font-weight: 700">Call now</span>
 </div>
 <div style="height: 150px; background: #ECECE8; border-radius: 12px; display: flex; align-items: center; justify-content: center; font-size: 13px; color: #5E636D">your best work</div>
 <div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 28px; font-weight: 600; line-height: 1.05; letter-spacing: -0.025em">{{siteHead}}</div>
-<div style="font-size: 14px; color: #5E636D"><span aria-hidden="true" style="color: {{accent}}; letter-spacing: 2px">★★★★★</span> Your Google reviews</div>
+<div style="font-size: 14px; color: #5E636D"><span aria-hidden="true" style="color: #F2A900; letter-spacing: 2px">★★★★★</span> Your Google reviews</div>
 <div style="display: flex; gap: 8px">
 <span style="flex: 1; padding: 12px 6px; background: #111418; color: #FFFFFF; border-radius: 10px; font-size: 14px; font-weight: 600; text-align: center">Tap to call</span>
 <span style="flex: 1; padding: 12px 6px; border: 1.5px solid #111418; border-radius: 10px; font-size: 14px; font-weight: 600; text-align: center">Get a quote</span>
+</div>
+<div class="pop" style="position: absolute; left: 8px; right: 8px; top: 74px; padding: 12px 14px; background: #111418; color: #FFFFFF; border-radius: 16px; box-shadow: 0 18px 34px -14px rgba(17,20,24,.65); display: flex; flex-direction: column; gap: 3px">
+<div style="display: flex; align-items: center; gap: 7px; font-size: 12px; color: #C8CCD4"><span class="ping" aria-hidden="true" style="flex: none; width: 8px; height: 8px; border-radius: 50%; color: #FFD84A; background: currentColor"></span>Quote request · just now</div>
+<div style="font-size: 15px; font-weight: 600; line-height: 1.3">“Saw your reviews. Can you come out Thursday?”</div>
 </div>
 </div>
 <div style="margin-top: 14px; text-align: center; font-size: 14px; color: #5E636D">Type your company name. That's your site.</div>
@@ -115,40 +131,56 @@ img{max-width:100%}
 <div style="background: #111418; color: #FFFFFF; border-radius: 36px; padding: 26px 18px 30px; display: flex; flex-direction: column; gap: 10px; box-shadow: 0 30px 60px -30px rgba(17,20,24,.45)">
 <div style="text-align: center; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 52px; font-weight: 500; letter-spacing: -0.02em; line-height: 1">4:21</div>
 <div style="text-align: center; font-size: 14px; color: #C8CCD4; margin-bottom: 8px">Tuesday</div>
-<div style="padding: 12px 14px; background: #262A31; border-radius: 14px"><div style="font-size: 12px; color: #C8CCD4">Missed call · 4:15</div><div style="font-size: 15px; font-weight: 500">New customer, {{town}}</div></div>
-<div style="padding: 12px 14px; background: #262A31; border-radius: 14px"><div style="font-size: 12px; color: #C8CCD4">Auto-text sent · 4:16</div><div style="font-size: 15px; font-weight: 500">Here's a link to book your estimate.</div></div>
-<div style="padding: 12px 14px; background: #FFFFFF; color: #111418; border-radius: 14px"><div style="font-size: 12px; font-weight: 600; color: {{accentInk}}">New job booked · 4:21</div><div style="font-size: 15px; font-weight: 600">{{bookedLine}}</div></div>
+<div class="d1" style="padding: 12px 14px; background: #262A31; border-radius: 14px"><div style="font-size: 12px; color: #C8CCD4">Missed call · 4:15</div><div style="font-size: 15px; font-weight: 500">New customer, {{town}}</div></div>
+<div class="d2" style="padding: 12px 14px; background: #262A31; border-radius: 14px"><div style="font-size: 12px; color: #C8CCD4">Auto-text sent · 4:16</div><div style="font-size: 15px; font-weight: 500">Here's a link to book your estimate.</div></div>
+<div class="pop" style="padding: 12px 14px; background: #FFD84A; color: #111418; border-radius: 14px"><div style="font-size: 12px; font-weight: 700; color: #111418">New job booked · 4:21</div><div style="font-size: 15px; font-weight: 600">{{bookedLine}}</div></div>
 </div>
 <div style="margin-top: 14px; text-align: center; font-size: 14px; color: #5E636D">You were with another customer the whole time.</div>
 </sc-if>
 </div>
 </section>
 
+<!-- Pains -->
+<section style="max-width: 1160px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px) clamp(44px, 6vw, 80px); display: flex; flex-direction: column; gap: 18px">
+<h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 46px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em">Tap the one that sounds like you.</h2>
+<div role="group" aria-label="What is going on" style="display: flex; flex-wrap: wrap; gap: 10px">
+<sc-for list="{{pains}}" as="p" hint-placeholder-count="4">
+<sc-if value="{{p.on}}" hint-placeholder-val="{{ false }}"><button type="button" class="tapme" aria-pressed="true" onClick="{{p.pick}}" style="flex: 1 1 250px; min-height: 64px; padding: 14px 16px; text-align: left; border: 2px solid {{accent}}; border-radius: 14px; background: {{accentSoft}}; color: #111418; font-size: 17px; font-weight: 600; line-height: 1.3">“{{p.q}}”</button></sc-if>
+<sc-if value="{{p.off}}" hint-placeholder-val="{{ true }}"><button type="button" class="tapme" aria-pressed="false" onClick="{{p.pick}}" style="flex: 1 1 250px; min-height: 64px; padding: 14px 16px; text-align: left; border: 2px solid #E0E0DC; border-radius: 14px; background: #FFFFFF; color: #111418; font-size: 17px; font-weight: 500; line-height: 1.3">“{{p.q}}”</button></sc-if>
+</sc-for>
+</div>
+<sc-if value="{{hasPain}}" hint-placeholder-val="{{ false }}"><div id="{{painId}}" class="pop0" role="status" style="display: flex; align-items: flex-start; gap: 12px; padding: 16px 18px; background: #111418; color: #FFFFFF; border-radius: 14px; font-size: clamp(17px, 16px + 0.3vw, 19px); line-height: 1.4"><span aria-hidden="true" style="flex: none; width: 10px; height: 10px; margin-top: 8px; border-radius: 50%; background: #FFD84A"></span><span>{{painA}}</span></div></sc-if>
+</section>
+
 <!-- Live demo -->
 <section style="background: #FFFFFF; border-top: 1px solid #E6E6E3; border-bottom: 1px solid #E6E6E3">
-<div style="max-width: 1160px; margin: 0 auto; padding: clamp(52px, 6vw, 88px) clamp(18px, 4vw, 40px); display: flex; flex-direction: column; gap: 24px">
+<div style="max-width: 1160px; margin: 0 auto; padding: clamp(52px, 6vw, 88px) clamp(18px, 4vw, 40px); display: flex; flex-direction: column; gap: 22px">
 <h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 46px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em">Tap your business. Watch it work.</h2>
 
 <div style="display: flex; flex-direction: column; gap: 10px">
-<div role="group" aria-label="Kind of work" style="display: flex; flex-wrap: wrap; gap: 8px">
+<div class="chips scroll" role="group" aria-label="Kind of work">
 <sc-for list="{{trades}}" as="t" hint-placeholder-count="8">
-<sc-if value="{{t.on}}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" onClick="{{t.pick}}" style="min-height: 44px; padding: 0 16px; border: 1.5px solid #111418; border-radius: 999px; background: #111418; color: #FFFFFF; font-size: 15px; font-weight: 600">{{t.label}}</button></sc-if>
-<sc-if value="{{t.off}}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" onClick="{{t.pick}}" style="min-height: 44px; padding: 0 16px; border: 1.5px solid #D3D3CF; border-radius: 999px; background: #FFFFFF; color: #111418; font-size: 15px; font-weight: 500">{{t.label}}</button></sc-if>
+<sc-if value="{{t.on}}" hint-placeholder-val="{{ false }}"><button type="button" class="tapme" aria-pressed="true" onClick="{{t.pick}}" style="min-height: 44px; padding: 0 16px; border: 1.5px solid #111418; border-radius: 999px; background: #111418; color: #FFFFFF; font-size: 15px; font-weight: 600">{{t.label}}</button></sc-if>
+<sc-if value="{{t.off}}" hint-placeholder-val="{{ true }}"><button type="button" class="tapme" aria-pressed="false" onClick="{{t.pick}}" style="min-height: 44px; padding: 0 16px; border: 1.5px solid #D3D3CF; border-radius: 999px; background: #FFFFFF; color: #111418; font-size: 15px; font-weight: 500">{{t.label}}</button></sc-if>
 </sc-for>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px">
 <label for="fld" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">Type your field</label>
-<input id="fld" type="text" placeholder="Or type yours" value="{{custom}}" onChange="{{setCustom}}" style="flex: 0 1 180px; min-width: 140px; min-height: 44px; box-sizing: border-box; padding: 0 16px; font-size: 15px; border: 1.5px dashed #9AA0A8; border-radius: 999px; background: #FFFFFF; color: #111418">
+<input id="fld" type="text" placeholder="Or type your field" value="{{custom}}" onChange="{{setCustom}}" style="flex: 1 1 150px; max-width: 220px; min-width: 0; min-height: 44px; box-sizing: border-box; padding: 0 16px; font-size: 16px; border: 1.5px dashed #9AA0A8; border-radius: 999px; background: #FFFFFF; color: #111418">
+<label for="co3" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">Company name</label>
+<input id="co3" type="text" autocomplete="organization" placeholder="Put your company name on it" value="{{company}}" onChange="{{setCompany}}" style="flex: 1 1 220px; max-width: 320px; min-width: 0; min-height: 44px; box-sizing: border-box; padding: 0 16px; font-size: 16px; border: 1.5px solid {{accent}}; border-radius: 999px; background: {{accentSoft}}; color: #111418">
 </div>
-<div role="group" aria-label="Where she finds you" style="display: flex; flex-wrap: wrap; gap: 8px">
+<div class="chips" role="group" aria-label="Where she finds you">
 <sc-for list="{{channels}}" as="c" hint-placeholder-count="3">
-<sc-if value="{{c.on}}" hint-placeholder-val="{{ false }}"><button type="button" aria-pressed="true" onClick="{{c.pick}}" style="min-height: 44px; padding: 0 16px; border: 1.5px solid {{accent}}; border-radius: 10px; background: {{accentSoft}}; color: #111418; font-size: 15px; font-weight: 600">{{c.label}}</button></sc-if>
-<sc-if value="{{c.off}}" hint-placeholder-val="{{ true }}"><button type="button" aria-pressed="false" onClick="{{c.pick}}" style="min-height: 44px; padding: 0 16px; border: 1.5px solid #D3D3CF; border-radius: 10px; background: #FFFFFF; color: #111418; font-size: 15px; font-weight: 500">{{c.label}}</button></sc-if>
+<sc-if value="{{c.on}}" hint-placeholder-val="{{ false }}"><button type="button" class="tapme" aria-pressed="true" onClick="{{c.pick}}" style="min-height: 44px; padding: 0 16px; border: 1.5px solid {{accent}}; border-radius: 10px; background: {{accentSoft}}; color: {{accentInk}}; font-size: 15px; font-weight: 600">{{c.label}}</button></sc-if>
+<sc-if value="{{c.off}}" hint-placeholder-val="{{ true }}"><button type="button" class="tapme" aria-pressed="false" onClick="{{c.pick}}" style="min-height: 44px; padding: 0 16px; border: 1.5px solid #D3D3CF; border-radius: 10px; background: #FFFFFF; color: #111418; font-size: 15px; font-weight: 500">{{c.label}}</button></sc-if>
 </sc-for>
 </div>
 </div>
 
-<div style="display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch">
+<div id="{{demoId}}" style="display: flex; flex-wrap: wrap; gap: 14px; align-items: stretch">
 
-<div style="flex: 1 1 260px; min-width: 0; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<div class="d1" style="flex: 1 1 260px; min-width: 0; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
 <div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{accentInk}}">{{p1Title}}</div>
 <sc-if value="{{isChat}}" hint-placeholder-val="{{ false }}">
 <div style="align-self: flex-end; max-width: 92%; padding: 12px 14px; background: #111418; color: #FFFFFF; border-radius: 16px 16px 4px 16px; font-size: 15px; line-height: 1.35">{{chatQ}}</div>
@@ -156,12 +188,13 @@ img{max-width:100%}
 <sc-if value="{{notChat}}" hint-placeholder-val="{{ true }}">
 <div style="display: flex; align-items: center; gap: 10px; min-height: 46px; padding: 0 14px; background: #FFFFFF; border: 1px solid #D3D3CF; border-radius: 999px; font-size: 15px">
 <svg aria-hidden="true" width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="#5E636D" stroke-width="2.2" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg>
-<span style="min-width: 0; overflow-wrap: anywhere; line-height: 1.25">{{query}}</span>
+<span class="ty" style="min-width: 0; overflow-wrap: anywhere; line-height: 1.25">{{query}}</span>
 </div>
 </sc-if>
+<div style="margin-top: auto; font-size: 14px; line-height: 1.4; color: #5E636D">{{who}}, phone in hand.</div>
 </div>
 
-<div style="flex: 1 1 260px; min-width: 0; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<div class="d2" style="flex: 1 1 260px; min-width: 0; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
 <div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{accentInk}}">You show up first</div>
 <div style="padding: 14px; background: #FFFFFF; border: 1px solid #E6E6E3; border-radius: 10px; display: flex; flex-direction: column; gap: 6px">
 <div style="font-size: 13px; color: #5E636D"><span style="font-weight: 700; color: #111418">Sponsored</span> · {{coName}}</div>
@@ -173,23 +206,35 @@ img{max-width:100%}
 </div>
 </sc-if>
 </div>
+<div style="margin-top: auto; font-size: 14px; line-height: 1.4; color: #5E636D">Above the other bids.</div>
 </div>
 
-<div style="flex: 1 1 260px; min-width: 0; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
+<div class="d3" style="flex: 1 1 260px; min-width: 0; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px; padding: 18px; display: flex; flex-direction: column; gap: 12px">
 <div style="font-size: 13px; font-weight: 600; letter-spacing: 0.08em; text-transform: uppercase; color: {{accentInk}}">Your page closes it</div>
-<div style="align-self: center; width: 100%; max-width: 220px; background: #FFFFFF; border: 2px solid #111418; border-radius: 22px; padding: 12px; display: flex; flex-direction: column; gap: 10px">
+<div style="position: relative; align-self: center; width: 100%; max-width: 220px; margin-bottom: 6px; background: #FFFFFF; border: 2px solid #111418; border-radius: 22px; padding: 12px; display: flex; flex-direction: column; gap: 10px">
 <div style="display: flex; align-items: center; justify-content: space-between; gap: 8px">
 <span style="min-width: 0; font-size: 13px; font-weight: 700; line-height: 1.15; overflow-wrap: anywhere">{{coName}}</span>
 <span style="flex: none; padding: 5px 10px; background: {{accent}}; color: #FFFFFF; border-radius: 999px; font-size: 11px; font-weight: 700">Call</span>
 </div>
-<div style="height: 64px; background: #ECECE8; border-radius: 8px"></div>
+<div style="height: 104px; background: #ECECE8; border-radius: 8px"></div>
 <div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 18px; font-weight: 600; line-height: 1.1; letter-spacing: -0.02em">{{pageHead}}</div>
 <span style="padding: 8px; background: #111418; color: #FFFFFF; border-radius: 8px; font-size: 12px; font-weight: 600; text-align: center">{{pageBtn}}</span>
+<div class="pop" style="position: absolute; left: -12px; right: -12px; top: 40px; padding: 10px 12px; background: #111418; color: #FFFFFF; border-radius: 14px; box-shadow: 0 16px 30px -12px rgba(17,20,24,.65); display: flex; flex-direction: column; gap: 3px">
+<div style="display: flex; align-items: center; gap: 7px; font-size: 11px; color: #C8CCD4"><span class="ping" aria-hidden="true" style="flex: none; width: 8px; height: 8px; border-radius: 50%; color: #FFD84A; background: currentColor"></span>New lead · just now</div>
+<div style="font-size: 13px; font-weight: 700; line-height: 1.3">{{who}}</div>
+<div style="font-size: 13px; line-height: 1.3; color: #E6E6E3">“{{ask}}”</div>
+</div>
 </div>
 </div>
 </div>
 
-<div style="font-size: 15px; color: #5E636D">Website, ads, follow-up, pricing and sales calls. I tell you which one to fix first, before you spend a dollar.</div>
+<div id="{{demoId}}-r" class="pop2" role="status" style="display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; padding: 14px 18px; background: {{accentSoft}}; border: 1.5px solid {{accent}}; border-radius: 14px">
+<span class="ping" aria-hidden="true" style="flex: none; width: 12px; height: 12px; border-radius: 50%; color: {{accent}}; background: currentColor"></span>
+<span style="font-size: 17px; font-weight: 700; color: {{accentInk}}">Booked: {{bookedLine}}.</span>
+<span style="font-size: 16px; color: #4A4F58">{{resultSub}}</span>
+</div>
+
+<div style="font-size: 15px; color: #5E636D">{{demoNote}}</div>
 </div>
 </section>
 
@@ -198,11 +243,11 @@ img{max-width:100%}
 <h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 46px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em">The numbers.</h2>
 <div style="display: flex; flex-wrap: wrap; gap: 14px">
 <div style="flex: 1 1 240px; min-width: 0; padding: 24px; background: #FFFFFF; border: 1px solid #E6E6E3; border-radius: 14px; display: flex; flex-direction: column; justify-content: center">
-<div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 52px; font-weight: 600; line-height: 1; letter-spacing: -0.03em">$4.08</div>
+<div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 52px; font-weight: 600; line-height: 1; letter-spacing: -0.03em; color: {{accent}}">$4.08</div>
 <div style="margin-top: 8px; font-size: 16px; color: #4A4F58">back per $1. One spring, $12,149 in ads returned $49,616.</div>
 </div>
 <div style="flex: 1 1 240px; min-width: 0; padding: 24px; background: #FFFFFF; border: 1px solid #E6E6E3; border-radius: 14px; display: flex; flex-direction: column; justify-content: center">
-<div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 52px; font-weight: 600; line-height: 1; letter-spacing: -0.03em">0 → 12</div>
+<div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 52px; font-weight: 600; line-height: 1; letter-spacing: -0.03em; color: {{accent}}">0 → 12</div>
 <div style="margin-top: 8px; font-size: 16px; color: #4A4F58">applications a day, after I fixed a page that quit loading</div>
 </div>
 <div style="flex: 2 1 380px; min-width: 0; padding: 14px; background: #FFFFFF; border: 1px solid #E6E6E3; border-radius: 14px">
@@ -231,7 +276,7 @@ img{max-width:100%}
 <img src="garrison.webp" width="120" height="120" loading="lazy" alt="Garrison Cole" style="flex: none; width: 120px; height: 120px; border-radius: 14px; object-fit: cover">
 <div style="display: flex; flex-direction: column; gap: 6px">
 <div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.02em">Garrison Cole</div>
-<div style="font-size: 16px; color: #4A4F58">I live in Roseville with my wife and son. You work with me, start to finish.</div>
+<div style="font-size: 16px; color: #4A4F58">I live in Roseville with my wife and son. I work with owners here and in Rocklin, Folsom, El Dorado Hills and across Sacramento. You work with me, start to finish.</div>
 </div>
 </div>
 </div>
@@ -256,7 +301,7 @@ img{max-width:100%}
 <form onSubmit="{{nextClose}}" style="display: flex; flex-wrap: wrap; gap: 8px; margin: 0">
 <label for="co2" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">Company name</label>
 <input id="co2" type="text" autocomplete="organization" placeholder="Your company name" value="{{company}}" onChange="{{setCompany}}" style="flex: 1 1 200px; min-width: 0; min-height: 56px; padding: 0 16px; font-size: 17px; border: 0; border-radius: 10px; background: #FFFFFF; color: #111418">
-<button type="submit" style="flex: 0 0 auto; min-height: 56px; padding: 0 22px; border: 1.5px solid #FFFFFF; border-radius: 10px; background: #111418; color: #FFFFFF; font-size: 17px; font-weight: 600">{{cta}}</button>
+<button type="submit" style="flex: 0 0 auto; min-height: 56px; padding: 0 22px; border: 0; border-radius: 10px; background: #FFD84A; color: #111418; font-size: 17px; font-weight: 700">{{cta}}</button>
 </form>
 </sc-if>
 <sc-if value="{{step2}}" hint-placeholder-val="{{ false }}">
@@ -264,7 +309,7 @@ img{max-width:100%}
 <input type="text" name="_gotcha" tabindex="-1" autocomplete="off" aria-label="Leave this one empty" value="{{trap}}" onChange="{{setTrap}}" style="position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0">
 <label for="ph2" style="flex: 1 0 100%; font-weight: 600">{{askPhone}}</label>
 <input id="ph2" type="tel" inputmode="tel" autocomplete="tel" placeholder="Cell number" value="{{phone}}" onChange="{{setPhone}}" style="flex: 1 1 200px; min-width: 0; min-height: 56px; padding: 0 16px; font-size: 17px; border: 0; border-radius: 10px; background: #FFFFFF; color: #111418">
-<button type="submit" style="flex: 0 0 auto; min-height: 56px; padding: 0 22px; border: 1.5px solid #FFFFFF; border-radius: 10px; background: #111418; color: #FFFFFF; font-size: 17px; font-weight: 600">{{sendLabel}}</button>
+<button type="submit" style="flex: 0 0 auto; min-height: 56px; padding: 0 22px; border: 0; border-radius: 10px; background: #FFD84A; color: #111418; font-size: 17px; font-weight: 700">{{sendLabel}}</button>
 </form>
 <sc-if value="{{err}}" hint-placeholder-val="{{ false }}"><div role="alert" style="margin-top: 8px; font-size: 15px; color: #FFB4A8; font-weight: 600">{{errMsg}}</div></sc-if>
 <sc-if value="{{sendFail}}"><div role="alert" style="margin-top: 8px; font-size: 15px; color: #FFB4A8; font-weight: 600">That didn't go through. <a href="{{smsHref}}" style="color: inherit">Text me at 760-644-4559</a> and I'll take it from there.</div></sc-if>
