@@ -174,7 +174,7 @@ const LP = {
   GOOGLE_ADS_LEAD_LABEL: "wUHYCJO2rLUdEJKO1fRE",  // label of the lead conversion
   GOOGLE_ADS_CALL_LABEL: "",  // optional: label of "Calls from website"
   CLARITY_ID: "",
-  BOOKING_URL: "",            // Google Calendar booking page or Calendly link. Empty hides every booking link.
+  BOOKING_URL: "https://cal.com/garrison-cole/call",  // Cal.com booking page. Empty hides every booking link.
   PHONE: "+17606444559",
   PHONE_SHOWN: "760-644-4559"
 };
