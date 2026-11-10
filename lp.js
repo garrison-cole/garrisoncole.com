@@ -356,7 +356,7 @@ class Component extends DCLogic {
     const next = (where) => (e) => {
       e.preventDefault();
       if (cleanName(this.state.company).length < 2) return;
-      this.setState({ step: 2 }); this.keep();
+      this.setState({ step: 2 }, () => { const el = document.getElementById(where === "hero" ? "ph1" : "ph2"); if (el) el.focus(); }); this.keep();
       track("lp_step1", { where, trade: tr.custom ? "custom" : tr.label });
     };
     return {
