@@ -4,7 +4,7 @@
 const CONFIG = {
   FORMSPREE_ID: "mrppnbab", // the part after formspree.io/f/ , for example "xyzabcd"
   GA4_ID: "",              // "G-XXXXXXXXXX"
-  CLARITY_ID: "",          // the Clarity project ID
+  CLARITY_ID: "zbt543g7fb", // Microsoft Clarity project "Garrison Cole"
   META_PIXEL_ID: "",       // optional, numbers only
   BOOKING_URL: "",         // Google Calendar appointment page or Calendly link. Empty hides every booking link.
   SAMPLE_VIDEO_URL: "",    // a Loom or YouTube embed URL. Empty hides "Watch a real one".

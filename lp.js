@@ -175,7 +175,7 @@ const LP = {
   GOOGLE_ADS_ID: "AW-18498275090",          // "AW-XXXXXXXXXX"
   GOOGLE_ADS_LEAD_LABEL: "wUHYCJO2rLUdEJKO1fRE",  // label of the lead conversion. A sent form and a booked call both count as one lead.
   GOOGLE_ADS_CALL_LABEL: "",  // optional: label of "Calls from website"
-  CLARITY_ID: "",
+  CLARITY_ID: "zbt543g7fb",  // Microsoft Clarity project "Garrison Cole"
   BOOKING_URL: "https://cal.com/garrison-cole/call",  // Cal.com booking page, used by the fallback link and the sent page.
   CAL_LINK: "garrison-cole/call",  // the same event, for the calendar that sits on the page. Empty leaves only the link.
   PHONE: "+17606444559",
@@ -292,7 +292,10 @@ const store = {
 };
 /* Events carry the page and true/false flags. Never the company name or the number. */
 function track(name, params) {
-  if (typeof window.gtag === "function") window.gtag("event", name, Object.assign({ lp: PAGE }, params || {}));
+  try {
+    if (typeof window.gtag === "function") window.gtag("event", name, Object.assign({ lp: PAGE }, params || {}));
+    if (typeof window.clarity === "function") window.clarity("event", name);
+  } catch (e) { /* tracking never breaks the page */ }
 }
 function leadConversion() {
   if (LP.GOOGLE_ADS_ID && LP.GOOGLE_ADS_LEAD_LABEL && typeof window.gtag === "function") {
@@ -315,6 +318,11 @@ function initTracking() {
   }
   if (LP.CLARITY_ID) {
     (function (c, l, a, r, i, t, y) { c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); }; t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i; y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y); })(window, document, "clarity", "script", LP.CLARITY_ID);
+    /* Tags so recordings can be filtered by page and by the search that brought them. */
+    const utm = store.get("gc-utm") || {};
+    window.clarity("set", "lp", PAGE || "other");
+    if (utm.utm_term) window.clarity("set", "search_term", String(utm.utm_term).slice(0, 80));
+    if (utm.utm_source) window.clarity("set", "source", String(utm.utm_source).slice(0, 40));
   }
 }
 /* Click IDs and campaign tags ride along with the lead. Same storage key as the main site. */
@@ -539,7 +547,7 @@ function initSent() {
 }
 
 (function start() {
-  initTracking(); captureAd();
+  captureAd(); initTracking();
   if (document.getElementById("dc-tpl")) DCLite.mount(Component, {});
   initSent();
   document.addEventListener("click", (e) => {
