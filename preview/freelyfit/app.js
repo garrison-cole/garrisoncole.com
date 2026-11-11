@@ -21,7 +21,7 @@
     if (extra) list.push(extra);
     var n = list.length;
     var hasTemplate = list.indexOf('a coach who sent a template') !== -1;
-    var out = { state: 'empty', count: n, lead: 'tap a few.', rest: 'we won\'t judge, we\'ve tried most of them ourselves at some point.' };
+    var out = { state: 'empty', count: n, lead: 'tap a few.', rest: 'then see what we\'d tell you.' };
     if (n === 0) return out;
     if (n <= 2) {
       out.state = 'few';
@@ -129,25 +129,26 @@
       source: 'freelyfitcoaching.com/transformations'
     },
     mama: {
-      id: 'mama', name: 'a FreelyFit mama', coach: 'Ave', title: 'From "You can\'t have kids" to muscle mommy',
-      meta: 'shared in her own words',
+      id: 'mama', name: 'Ashley', coach: 'Ave', title: 'From "You can\'t have kids" to muscle mommy',
+      meta: 'postpartum mom, 25 lbs down',
       quote: 'Before I joined FreelyFit, my hormones were all messed up and so was my fertility.', quoteNote: 'in her words',
       imgs: ['client-mama-01', 'client-mama-02'],
       stops: [
         { when: 'before', text: '"my hormones were all messed up and so was my fertility."', kind: 'life', img: 0 },
         { when: 'with FreelyFit', text: '"Freely Fit is what helped my body get to where I am today."', kind: 'mind', img: 1 },
-        { when: 'now', text: '"...the business she built helped bless me with Riley. And that\'s pretty dang special."', kind: 'life', img: 1 }
+        { when: 'Riley', text: '"...the business she built helped bless me with Riley. And that\'s pretty dang special."', kind: 'life', img: 1 },
+        { when: 'now', text: 'a postpartum mom who has lost 25 lbs since.', kind: 'scale', img: 1 }
       ],
       source: 'freelyfitcoaching.com/transformations'
     },
     madi: {
       id: 'madi', name: 'Madi', coach: '', title: 'Food fear to food freedom',
-      meta: '"a hard and long road"',
+      meta: '"a hard and long road", 20 lbs gained',
       imgs: ['client-madi-01', 'client-madi-02'],
       stops: [
         { when: 'when she came in', text: 'she was afraid of food and afraid of getting bigger, and her social life had been traded for physical results.', kind: 'mind', img: 0 },
         { when: 'the approach', text: 'we put the "less is more" approach to the test with her.', kind: 'training' },
-        { when: 'the food', text: 'she\'s eating 700+ more calories a day.', kind: 'food', img: 1 },
+        { when: 'the food', text: 'she\'s eating 700+ more calories a day and has gained 20 lbs.', kind: 'food', img: 1 },
         { when: 'now', text: 'she goes out to eat with friends, tries a new food every week and eats meals she doesn\'t track at all.', kind: 'life', img: 1 }
       ],
       source: 'freelyfitcoaching.com/transformations'
@@ -548,7 +549,7 @@
     deck.addEventListener('scroll', function () { window.requestAnimationFrame(mark); }, { passive: true }); mark();
   }
 
-  /* Stories: "show the other five" on phones, and tap-to-enlarge DMs */
+  /* Stories: "show six more" on phones, and tap-to-enlarge DMs */
   function initMore() {
     var box = $('[data-receipts]'), btn = $('[data-more-btn]');
     if (box && btn) btn.addEventListener('click', function () {
