@@ -440,7 +440,7 @@ class Component extends DCLogic {
       h1a: web ? "A website that brings you " : "More jobs ", h1b: web ? "customers." : (kwMeta(kw) ? "from Facebook." : "from Google."),
       lede: web
         ? "I’m a Roseville local. I build yours first, and you pay only if you want it live."
-        : "I’m a Roseville local. I run your ads and build the page behind them. I know sales too, so I’ll show you where jobs slip away after the lead comes in.",
+        : "I’m a Roseville local. I run your ads and build the page behind them, then help you turn more of those leads into booked jobs.",
       altBtn: web ? "Build mine first" : "Get a free video",
 
       today: !st.engine, engine: st.engine,
