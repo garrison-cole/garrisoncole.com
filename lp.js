@@ -458,7 +458,7 @@ class Component extends DCLogic {
       coName,
       demoId: "demo-" + (tr.custom ? "custom" : tr.label.toLowerCase().replace(/[^a-z]+/g, "-")) + "-" + st.channel,
       who: WHO[Math.max(0, TRADES.findIndex((x) => x.label === tr.label)) % WHO.length] + " in " + town, ask: tr.ask,
-      resultSub: co ? "One more on the calendar for " + co + "." : "Put your company name on it and watch it change.",
+      resultSub: co ? "One more on the calendar for " + co + "." : "Type your company name above and watch it change.",
       demoNote: web ? "Website design, Google Ads, follow-up, pricing and sales calls. I tell you which one to fix first, before you spend a dollar." : "Google Ads, your website, follow-up, pricing and sales calls. I tell you which one to fix first, before you spend a dollar.",
       adLine: st.channel === "feed" ? inTown(tr.feed) : titleCase(tr.kw) + " in " + town + " | " + tr.offer,
       pageHead: tr.label + " in " + town + ".",

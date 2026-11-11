@@ -31,13 +31,13 @@ img{max-width:100%}
 .d1{animation:rise .4s .05s both}.d2{animation:rise .4s .6s both}.d3{animation:rise .4s 1.15s both}
 .ty{display:inline-block;animation:type .7s steps(22) .15s both}
 .pop{animation:pop .5s 1.7s both}.pop2{animation:pop .5s 2.3s both}.pop0{animation:pop .4s both}
-.ping{animation:ping 1.4s 2.2s 3}
+.ping{animation:ping 1.4s 2.2s 3}.ping.nudge{animation:ping 1.6s .8s infinite}
 .chips{display:flex;flex-wrap:wrap;gap:8px}.chips>*{flex:none;white-space:nowrap}
 .tapme{transition:transform .12s ease,box-shadow .12s ease}.tapme:hover{transform:translateY(-1px);box-shadow:0 6px 16px -10px rgba(17,20,24,.5)}.tapme:active{transform:scale(.98)}
 @media (max-width:640px){.chips.scroll{flex-wrap:nowrap;overflow-x:auto;margin:0 -18px;padding:2px 18px 8px;scrollbar-width:none;-webkit-overflow-scrolling:touch}.chips.scroll::-webkit-scrollbar{display:none}}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}.d1,.d2,.d3,.ty,.pop,.pop2,.pop0,.ping{animation:none}.tapme{transition:none}}
 </style>
-<script src="lp.js?v=20261110b" defer></script>
+<script src="lp.js?v=20261110c" defer></script>
 </head>
 <body>
 <a class="vh" href="#start">Skip to the page</a>
@@ -157,6 +157,11 @@ img{max-width:100%}
 <div style="max-width: 1160px; margin: 0 auto; padding: clamp(52px, 6vw, 88px) clamp(18px, 4vw, 40px); display: flex; flex-direction: column; gap: 22px">
 <h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 46px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em">Tap your business. Watch it work.</h2>
 
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 10px 14px; padding: 16px 18px; background: {{accentSoft}}; border: 2px solid {{accent}}; border-radius: 16px">
+<label for="co3" style="flex: 0 1 auto; min-width: 0; display: inline-flex; align-items: center; gap: 10px; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(17px, 14px + 0.8vw, 20px); line-height: 1.2; font-weight: 700; letter-spacing: -0.01em; color: {{accentInk}}"><span class="ping nudge" aria-hidden="true" style="flex: none; width: 12px; height: 12px; border-radius: 50%; color: {{accent}}; background: currentColor"></span>Start here. Type your company name.</label>
+<input id="co3" type="text" autocomplete="organization" placeholder="Your company name" value="{{company}}" onChange="{{setCompany}}" style="flex: 1 1 260px; min-width: 0; min-height: 56px; box-sizing: border-box; padding: 0 18px; font-size: 18px; font-weight: 600; border: 2px solid #111418; border-radius: 12px; background: #FFFFFF; color: #111418">
+</div>
+
 <div style="display: flex; flex-direction: column; gap: 10px">
 <div class="chips scroll" role="group" aria-label="Kind of work">
 <sc-for list="{{trades}}" as="t" hint-placeholder-count="8">
@@ -166,9 +171,7 @@ img{max-width:100%}
 </div>
 <div style="display: flex; flex-wrap: wrap; gap: 8px">
 <label for="fld" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">Type your field</label>
-<input id="fld" type="text" placeholder="Or type your field" value="{{custom}}" onChange="{{setCustom}}" style="flex: 1 1 150px; max-width: 220px; min-width: 0; min-height: 44px; box-sizing: border-box; padding: 0 16px; font-size: 16px; border: 1.5px dashed #9AA0A8; border-radius: 999px; background: #FFFFFF; color: #111418">
-<label for="co3" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">Company name</label>
-<input id="co3" type="text" autocomplete="organization" placeholder="Put your company name on it" value="{{company}}" onChange="{{setCompany}}" style="flex: 1 1 220px; max-width: 320px; min-width: 0; min-height: 44px; box-sizing: border-box; padding: 0 16px; font-size: 16px; border: 1.5px solid {{accent}}; border-radius: 999px; background: {{accentSoft}}; color: #111418">
+<input id="fld" type="text" placeholder="Or type your field" value="{{custom}}" onChange="{{setCustom}}" style="flex: 1 1 150px; max-width: 260px; min-width: 0; min-height: 44px; box-sizing: border-box; padding: 0 16px; font-size: 16px; border: 1.5px dashed #9AA0A8; border-radius: 999px; background: #FFFFFF; color: #111418">
 </div>
 <div class="chips" role="group" aria-label="Where she finds you">
 <sc-for list="{{channels}}" as="c" hint-placeholder-count="3">
