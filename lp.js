@@ -371,7 +371,10 @@ class Component extends DCLogic {
   }
   /* A booked call counts as a lead once, and Garrison gets what they tapped alongside Cal.com's own booking email. */
   onBooked(data) {
-    const key = String(data.uid || data.startTime || "booked");
+    /* Cal.com sends the booking twice: an older message that wraps it in "booking", and the current one. Same id on both. */
+    const bk = data.booking || {}, when = data.startTime || bk.startTime || "";
+    const key = String(data.uid || bk.uid || when || "booked");
+    const whenShown = when ? new Date(when).toLocaleString("en-US", { timeZone: "America/Los_Angeles", weekday: "short", month: "short", day: "numeric", hour: "numeric", minute: "2-digit" }) + " Pacific" : "";
     const seen = store.get("gc-booked") || [];
     if (seen.indexOf(key) > -1) return;
     store.set("gc-booked", seen.concat([key]));
@@ -380,7 +383,7 @@ class Component extends DCLogic {
     const co = cleanName(this.state.company);
     postLead(Object.assign({
       _subject: "Call booked" + (co ? ": " + co : "") + " (from the " + PAGE + " page)",
-      company: co, booked_for: data.startTime || "", wants: "Booked a call on the page"
+      company: co, booked_for: whenShown, wants: "Booked a call on the page"
     }, this.context())).catch(() => {});
   }
   async send(e) {
