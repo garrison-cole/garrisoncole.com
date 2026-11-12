@@ -258,6 +258,7 @@ button:disabled{opacity:.6;cursor:default}
 </div>
 <p style="margin: 0; max-width: 760px; font-size: 18px; color: #4A4F58">I’ve worked with thousands of businesses, most of them service-based, and helped bring in hundreds of millions in revenue for them. Some started from scratch. Others were doing seven and eight figures.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 14px">
+<sc-if value="{{grow}}" hint-placeholder-val="{{ true }}">
 <div style="flex: 1 1 220px; min-width: 0; padding: 22px; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px; display: flex; flex-direction: column; justify-content: center">
 <div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 44px; font-weight: 600; line-height: 1; letter-spacing: -0.03em">$4.08</div>
 <div style="margin-top: 8px; font-size: 16px; color: #4A4F58">back per $1. One spring, $12,149 in ads returned $49,616.</div>
@@ -266,12 +267,25 @@ button:disabled{opacity:.6;cursor:default}
 <div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 44px; font-weight: 600; line-height: 1; letter-spacing: -0.03em">0 → 12</div>
 <div style="margin-top: 8px; font-size: 16px; color: #4A4F58">applications a day, after I fixed a page that quit loading</div>
 </div>
+</sc-if>
 <div style="flex: 2 1 360px; min-width: 0; padding: 14px; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px">
 <img src="work-florist.jpg" width="1280" height="800" loading="lazy" alt="Home page of a wedding florist website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3">
 <div style="margin: 12px 8px 4px; font-size: 16px; color: #4A4F58"><strong style="font-weight: 600; color: #111418">A site I built.</strong> Wedding florist, Auburn.</div>
 </div>
+<sc-if value="{{web}}" hint-placeholder-val="{{ false }}">
+<div style="flex: 2 1 360px; min-width: 0; padding: 14px; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px">
+<img src="work-coaching.jpg" width="1280" height="800" loading="lazy" alt="Home page of a coaching company website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3">
+<div style="margin: 12px 8px 4px; font-size: 16px; color: #4A4F58"><strong style="font-weight: 600; color: #111418">A site I built.</strong> Online coaching company.</div>
 </div>
+<div style="flex: 1 1 220px; min-width: 0; padding: 22px; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px; display: flex; flex-direction: column; justify-content: center">
+<div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 44px; font-weight: 600; line-height: 1; letter-spacing: -0.03em">Built first</div>
+<div style="margin-top: 8px; font-size: 16px; color: #4A4F58">You see your finished site before you pay a dollar, and you only pay if you want it live.</div>
+</div>
+</sc-if>
+</div>
+<sc-if value="{{grow}}" hint-placeholder-val="{{ true }}">
 <div style="font-size: 14px; color: #5E636D">The two results are from one client, an online service business. Names stay private, and I'll walk you through the numbers on a call.</div>
+</sc-if>
 </div>
 </section>
 
