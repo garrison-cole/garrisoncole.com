@@ -9,8 +9,8 @@
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&amp;family=Figtree:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#FAF6F0}
-.scal{-webkit-mask:radial-gradient(circle 14px at 14px 14px,#000 95%,#0000) 0 0/28px 28px round,linear-gradient(#000 0 0) center/calc(100% - 28px) calc(100% - 28px) no-repeat;mask:radial-gradient(circle 14px at 14px 14px,#000 95%,#0000) 0 0/28px 28px round,linear-gradient(#000 0 0) center/calc(100% - 28px) calc(100% - 28px) no-repeat}
-.scring{position:absolute;inset:26px;pointer-events:none;background:#FFFFFF;opacity:.92;-webkit-mask:radial-gradient(circle 9px at 9px 9px,#000 95%,#0000) 0 0/18px 18px round,linear-gradient(#000 0 0) center/calc(100% - 18px) calc(100% - 18px) no-repeat;-webkit-mask-composite:source-out;mask:radial-gradient(circle 9px at 9px 9px,#000 95%,#0000) 0 0/18px 18px round,linear-gradient(#000 0 0) center/calc(100% - 18px) calc(100% - 18px) no-repeat;mask-composite:subtract}
+.scal{-webkit-mask:radial-gradient(circle 6px at 6px 6px,#000 95%,#0000) 0 0/12px 12px round,linear-gradient(#000 0 0) center/calc(100% - 12px) calc(100% - 12px) no-repeat;mask:radial-gradient(circle 6px at 6px 6px,#000 95%,#0000) 0 0/12px 12px round,linear-gradient(#000 0 0) center/calc(100% - 12px) calc(100% - 12px) no-repeat}
+.scring{position:absolute;inset:26px;pointer-events:none;background:#FFFFFF;opacity:.92;-webkit-mask:radial-gradient(circle 6px at 6px 6px,#000 95%,#0000) 0 0/12px 12px round,linear-gradient(#000 0 0) center/calc(100% - 12px) calc(100% - 12px) no-repeat;-webkit-mask-composite:source-out;mask:radial-gradient(circle 6px at 6px 6px,#000 95%,#0000) 0 0/12px 12px round,linear-gradient(#000 0 0) center/calc(100% - 12px) calc(100% - 12px) no-repeat;mask-composite:subtract}
 .bu{position:relative;z-index:2;height:18px;margin-top:-18px;background:radial-gradient(circle 9px at 9px 18px,var(--c) 95%,#0000) 0 0/18px 18px repeat-x}
 .bd{position:relative;z-index:2;height:18px;margin-bottom:-18px;background:radial-gradient(circle 9px at 9px 0,var(--c) 95%,#0000) 0 0/18px 18px repeat-x}
 .shd{filter:drop-shadow(0 18px 38px rgba(70,45,35,.14))}
@@ -18,15 +18,16 @@ body{margin:0;background:#FAF6F0}
 .wv-t{top:-1px}.wv-b{bottom:-1px;transform:scaleY(-1)}
 .wv-iv{background-image:url(assets/wave-ivory.svg)}
 .wv-ink{background-image:url(assets/wave-ink.svg)}
+.wv-butter{background-image:url(assets/wave-butter.svg)}
 .fr{background-color:#F8EFE4;background-image:url(assets/stripe-rose.svg);background-repeat:repeat;background-size:120px 480px;background-position:center top}
 .fr-petal{background-image:url(assets/stripe-petal.svg)}.fr-blush{background-image:url(assets/stripe-blush.svg)}.fr-raspberry{background-image:url(assets/stripe-raspberry.svg)}
 a{color:#A3134F}a:hover{color:#7A0E3B}
 .nv{color:#1F1B19;text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:12px 0}
 .nv:hover{color:#A3134F}
 .btn{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
-.btn:hover{background-color:#1F1B19 !important;color:#FFFFFF !important;border-color:#1F1B19 !important}
+.btn:hover{background-color:#7A0E3B !important;color:#FFFFFF !important;border-color:#7A0E3B !important}
 .btnl:hover{background-color:#FFFFFF !important;color:#1F1B19 !important}
-.ft a{color:#EFE6DB;text-decoration:none}.ft a:hover{color:#F29BC0}
+.ft a{color:#1F1B19;text-decoration:none}.ft a:hover{color:#A3134F}
 .pr a{color:#4A413C;text-decoration:none;transition:color .3s}.pr a:hover{color:#A3134F}
 .zm{overflow:hidden}.zm img{transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}.zm:hover img{transform:scale(1.045)}
 .f input{font:inherit;font-size:16px;color:#1F1B19;background:transparent;border:0;border-bottom:1px solid #C9A97A;border-radius:0;padding:12px 2px;min-height:48px;box-sizing:border-box;width:100%}
@@ -50,54 +51,54 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 <div id="dc-root"></div>
 <template id="dc-tpl">
 
-<div style="font-family: 'Figtree', system-ui, sans-serif; font-weight: 400; color: #1F1B19; background: #FAF6F0; min-height: 100vh;">
+<div style="font-family: 'Figtree', system-ui, sans-serif; font-weight: 400; color: #1F1B19; background: #FAF6F0; min-height: 85vh;">
 
-<a href="quote.html" style="display: block; background: #1F1B19; color: #EFE6DB; text-align: center; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; padding: 12px 16px; text-decoration: none; font-weight: 500;">Now reserving 2027 dates · A limited number of weddings each month</a>
+<a href="quote.html" style="display: block; background: #FFF2C6; color: #1F1B19; text-align: center; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; padding: 12px 16px; text-decoration: none; font-weight: 500;">Now reserving 2027 dates · A limited number of weddings each month</a>
 
 <header style="background: #FAF6F0; border-bottom: 1px solid #E3D6C3;">
-<div style="max-width: 1320px; margin: 0 auto; padding: 18px 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 32px;">
-<a href="index.html" aria-label="The Blonde Bouquet home" style="display: block; max-width: 100%;"><img src="assets/tbb2-logo-horizontal.svg" alt="The Blonde Bouquet Floral Design" style="height: 66px; width: auto; max-width: 100%; object-fit: contain; object-position: left center; display: block;"></a>
-<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 36px;">
-<a class="nv" href="weddings.html">Weddings</a>
-<a class="nv" href="investment.html">Investment</a>
-<a class="nv" href="portfolio.html">Portfolio</a>
-<a class="nv" href="about.html" aria-current="page" style="color: {{accent}}; border-bottom: 1px solid {{accent}};">About</a>
+<div style="max-width: 1320px; margin: 0 auto; padding: 18px 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 26px;">
+<a href="index.html" aria-label="The Blonde Bouquet home" style="display: block; max-width: 100%;"><img src="assets/tbb-logo-horizontal.svg" alt="The Blonde Bouquet Floral Design" style="height: 53px; width: auto; max-width: 100%; object-fit: contain; object-position: left center; display: block;"></a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 29px;">
+<a class="nv" href="index.html">Home</a>
+<a class="nv" href="portfolio.html">Gallery</a>
+<a class="nv" href="workshop.html">Workshop</a>
+<a class="nv" href="services.html">Services &amp; Pricing</a>
 <a class="btn" href="quote.html" style="border: 1px solid {{accent}}; background: {{accent}}; color: #FFFFFF; text-decoration: none; padding: 15px 26px; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center;">Request a Quote</a>
 </nav>
 </div>
 </header>
 
-<section style="max-width: 1240px; margin: 0 auto; padding: 110px 28px 130px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 88px; align-items: center;">
+<section style="max-width: 1240px; margin: 0 auto; padding: 88px 28px 104px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 70px; align-items: center;">
 <div style="display: flex; flex-direction: column; gap: 28px;">
 <p class="in1" style="margin: 0; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #6A605A; font-weight: 500;">The Designer</p>
-<h1 class="in2" style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(56px, 7.4vw, 112px); line-height: 0.96; letter-spacing: 0.04em; text-transform: uppercase;">Hello, <em style="display: block; text-transform: none; letter-spacing: 0; color: {{accent}};">I'm La Raye</em></h1>
+<h1 class="in2" style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(45px, 5.92vw, 90px); line-height: 0.96; letter-spacing: 0.04em; text-transform: uppercase;">Hello, <em style="display: block; text-transform: none; letter-spacing: 0; color: {{accent}};">I'm La Raye</em></h1>
 <p class="in3" style="margin: 0; font-size: 17px; line-height: 1.9; color: #4A413C; font-weight: 300;">Before flowers, there was fashion. I spent fourteen years in visual merchandising for Anthropologie and Nordstrom, building windows and displays up and down California from L.A. to San Francisco. I was always the one sneaking flowers into the windows. In 2014 I made the flowers the job.</p>
 </div>
 <div class="in3" style="border: 1px solid #B8955A; border-radius: 50%; padding: 14px;">
-<div class="zm" style="border-radius: 50%;"><img src="assets/a03.jpg" alt="La Raye arranging a colorful centerpiece at her studio table" style="width: 100%; height: 600px; object-fit: cover; display: block;"></div>
+<div class="zm" style="border-radius: 50%;"><img src="assets/al-p182.jpg" alt="La Raye smiling in her kitchen studio with pink peonies and anemones" style="width: 100%; height: 480px; object-fit: cover; display: block;"></div>
 </div>
 </section>
 
 <div class="rv" aria-hidden="true" style="display: flex; align-items: center; gap: 22px; max-width: 520px; margin: 0 auto; padding: 0 28px;">
 <span class="rvl" style="flex: 1; height: 1px; background: #B8955A; transform-origin: right;"></span>
-<img src="assets/tbb2-mark.svg" alt="" style="width: 64px; height: 64px; display: block;">
+<img src="assets/tbb-logo-mark.svg" alt="" style="width: auto; height: 66px; display: block;">
 <span class="rvl" style="flex: 1; height: 1px; background: #B8955A; transform-origin: left;"></span>
 </div>
 
-<section style="max-width: 900px; margin: 0 auto; padding: 110px 28px; text-align: center;">
-<p class="rv" style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: clamp(28px, 3.4vw, 44px); line-height: 1.4;">“I treat every wedding like a collection: a point of view, a palette, and tailoring all the way down to the last <span style="color: {{accent}};">boutonniere.</span>”</p>
+<section style="max-width: 900px; margin: 0 auto; padding: 88px 28px; text-align: center;">
+<p class="rv" style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: clamp(22px, 2.72vw, 35px); line-height: 1.4;">“I treat every wedding like a collection: a point of view, a palette, and tailoring all the way down to the last <span style="color: {{accent}};">boutonniere.</span>”</p>
 </section>
 
-<section class="fr fr-{{stripe}}" style="padding: 72px 28px;">
+<section class="fr fr-{{stripe}}" style="padding: 58px 28px;">
 <div class="shd" style="max-width: 1280px; margin: 0 auto;">
 <div style="background: #FFFFFF; padding: 100px clamp(28px, 5vw, 72px); outline: 1px solid #E2CFB0; outline-offset: -18px;">
-<div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 80px; align-items: center;">
+<div style="max-width: 1100px; margin: 0 auto; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 400px), 1fr)); gap: 64px; align-items: center;">
 <div class="rvi" style="border: 1px solid #B8955A; border-radius: 400px 400px 0 0; padding: 12px;">
-<div class="zm" style="border-radius: 400px 400px 0 0;"><img src="assets/s01.jpg" alt="La Raye in a sun hat holding a bright bouquet in a flower field" style="width: 100%; height: 660px; object-fit: cover; display: block;"></div>
+<div class="zm" style="border-radius: 400px 400px 0 0;"><img src="assets/al-p025.jpg" alt="La Raye in a sun hat holding a bright bouquet" style="width: 100%; height: 528px; object-fit: cover; display: block;"></div>
 </div>
 <div class="rv" style="display: flex; flex-direction: column; gap: 24px;">
 <p style="margin: 0; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #6A605A; font-weight: 500;">I &nbsp;·&nbsp; The Story</p>
-<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(34px, 4vw, 54px); line-height: 1.06;">Self-taught, <em style="color: {{accent}};">one wedding at a time.</em></h2>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(27px, 3.2vw, 43px); line-height: 1.06;">Self-taught, <em style="color: {{accent}};">one wedding at a time.</em></h2>
 <p style="margin: 0; font-size: 16px; line-height: 1.9; color: #4A413C; font-weight: 300;">I learned by designing hundreds of weddings, by 4am trips to the flower market, and by watching a couple's face the first time they see their flowers. That moment is the whole reason I do this.</p>
 <p style="margin: 0; font-size: 16px; line-height: 1.9; color: #4A413C; font-weight: 300;">Today I work from my studio in Auburn, with my husband Andy keeping me caffeinated and our dog Mr. Bennett supervising.</p>
 <h3 style="margin: 12px 0 0; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #6A605A; font-weight: 500;">What you can expect</h3>
@@ -112,27 +113,27 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 </div>
 </div>
 </section>
-<section style="max-width: 1240px; margin: 0 auto; padding: 130px 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 40px;">
+<section style="max-width: 1240px; margin: 0 auto; padding: 104px 28px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 32px;">
 <div class="rv" style="background: #F4E6E1; outline: 1px solid #D9B9A0; outline-offset: -14px; padding: 60px 52px; display: flex; flex-direction: column; gap: 18px;">
 <p style="margin: 0; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #5E534D; font-weight: 500;">II &nbsp;·&nbsp; Giving Back</p>
-<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 38px; line-height: 1.12;">Every wedding <em style="color: {{accent}};">gives a little back.</em></h2>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 30px; line-height: 1.12;">Every wedding <em style="color: {{accent}};">gives a little back.</em></h2>
 <p style="margin: 0; font-size: 15px; line-height: 1.85; color: #4A413C; font-weight: 300;">A portion of every wedding we design supports organizations that empower women in need. [Name the organizations here if La Raye wants them public.]</p>
 </div>
-<div id="workshops" class="rv" style="background: #1F1B19; color: #EFE6DB; outline: 1px solid rgba(201, 169, 122, 0.6); outline-offset: -14px; padding: 60px 52px; display: flex; flex-direction: column; gap: 18px;">
-<p style="margin: 0; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #C9A97A; font-weight: 500;">III &nbsp;·&nbsp; Workshops</p>
-<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 38px; line-height: 1.12;">Come create <em style="color: #F29BC0;">with us.</em></h2>
-<p style="margin: 0; font-size: 15px; line-height: 1.85; color: #D8CCBF; font-weight: 300;">A few times a year we host intimate, hands-on floral workshops in the studio. Join the list to hear about the next one first.</p>
+<div id="workshops" class="rv" style="background: #FFF2C6; color: #1F1B19; outline: 1px solid rgba(184, 149, 90, 0.6); outline-offset: -14px; padding: 60px 52px; display: flex; flex-direction: column; gap: 18px;">
+<p style="margin: 0; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #8A6A3A; font-weight: 500;">III &nbsp;·&nbsp; Workshops</p>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 30px; line-height: 1.12;">Come create <em style="color: {{accent}};">with us.</em></h2>
+<p style="margin: 0; font-size: 15px; line-height: 1.85; color: #4A413C; font-weight: 300;">A few times a year we host intimate, hands-on floral workshops in the studio. Join the list to hear about the next one first.</p>
 <form class="f" aria-label="Workshop announcements" style="display: flex; flex-wrap: wrap; gap: 14px; align-items: flex-end;">
-<label style="flex: 1 1 220px; display: flex;"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Email address</span><input type="email" placeholder="Your email" autocomplete="email" style="color: #EFE6DB;"></label>
-<button type="button" class="btn btnl" style="border: 1px solid #EFE6DB; background: transparent; color: #EFE6DB; padding: 15px 24px; border-radius: 0; font: inherit; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; cursor: pointer; min-height: 48px;">Keep me posted</button>
+<label style="flex: 1 1 220px; display: flex;"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Email address</span><input type="email" placeholder="Your email" autocomplete="email" style="color: #1F1B19;"></label>
+<button type="button" class="btn btnl" style="border: 1px solid #1F1B19; background: transparent; color: #1F1B19; padding: 15px 24px; border-radius: 0; font: inherit; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; cursor: pointer; min-height: 48px;">Keep me posted</button>
 </form>
 </div>
 </section>
 
-<section class="pr" style="border-top: 1px solid #E3D6C3; padding: 80px 28px;">
+<section class="pr" style="border-top: 1px solid #E3D6C3; padding: 64px 28px;">
 <div class="rv" style="max-width: 1100px; margin: 0 auto; display: flex; flex-direction: column; gap: 22px; align-items: center; text-align: center;">
 <p style="margin: 0; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #6A605A;">As featured in</p>
-<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 52px; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 23px; letter-spacing: 0.04em;">
+<div style="display: flex; flex-wrap: wrap; justify-content: center; gap: 14px 42px; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 18px; letter-spacing: 0.04em;">
 <a href="https://www.theblondebouquet.com/wedding-chicks">Wedding Chicks</a>
 <a href="https://ruffledblog.com/an-epic-dance-party-in-napa-california/" style="font-style: italic;">Ruffled</a>
 <a href="https://junebugweddings.com/wedding-blog/60s-inspired-christmas-sequoyah-country-club-wedding/">Junebug Weddings</a>
@@ -143,35 +144,35 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 </section>
 
 <section style="position: relative; overflow: hidden;">
-<img src="assets/ig_oak.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
+<img src="assets/al-p012.jpg" alt="" style="position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; display: block;">
 <div style="position: absolute; inset: 0; background: rgba(24, 18, 16, 0.48);"></div>
 <div class="wv wv-t wv-iv" aria-hidden="true"></div>
-<div class="wv wv-b wv-ink" aria-hidden="true"></div>
-<div class="rv" style="position: relative; padding: 170px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; color: #FFFFFF;">
-<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(40px, 5.4vw, 80px); line-height: 1; letter-spacing: 0.04em; text-transform: uppercase;">Let's talk about <em style="text-transform: none; letter-spacing: 0;">your wedding</em></h2>
-<a class="btn btnl" href="quote.html" style="border: 1px solid #FFFFFF; background: #FFFFFF; color: #1F1B19; text-decoration: none; padding: 18px 36px; font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase;">Request a Quote</a>
+<div class="wv wv-b wv-butter" aria-hidden="true"></div>
+<div class="rv" style="position: relative; padding: 136px 28px; display: flex; flex-direction: column; align-items: center; text-align: center; gap: 28px; color: #FFFFFF;">
+<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(32px, 4.32vw, 64px); line-height: 1; letter-spacing: 0.04em; text-transform: uppercase;">Let's talk about <em style="text-transform: none; letter-spacing: 0;">your wedding</em></h2>
+<a class="btn btnl" href="quote.html" style="border: 1px solid #FFFFFF; background: #FFFFFF; color: #1F1B19; text-decoration: none; padding: 18px 29px; font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase;">Request a Quote</a>
 </div>
 </section>
 
-<footer class="ft" style="background: #1F1B19; color: #EFE6DB; padding: 96px 28px 40px;">
-<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px;">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 56px; align-items: flex-start;">
+<footer class="ft" style="background: #FFF2C6; color: #1F1B19; padding: 77px 28px 32px;">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 51px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 45px; align-items: flex-start;">
 <div style="flex: 1 1 320px; max-width: 420px; display: flex; flex-direction: column; gap: 22px;">
-<img src="assets/tbb2-logo-stacked-light.svg" alt="The Blonde Bouquet Floral Design, Auburn, California" style="width: 300px; height: auto; display: block;">
-<p style="margin: 0; font-size: 14px; line-height: 1.8; color: #CFC3B6; font-weight: 300;">Luxury wedding florals designed in Auburn, California. Love is for all. A portion of every wedding supports organizations that empower women.</p>
+<img src="assets/tbb-logo-stacked.svg" alt="The Blonde Bouquet Floral Design Co., Auburn, California" style="width: 224px; height: auto; display: block;">
+<p style="margin: 0; font-size: 14px; line-height: 1.8; color: #4A413C; font-weight: 300;">Luxury wedding florals designed in Auburn, California. Love is for all. A portion of every wedding supports organizations that empower women.</p>
 </div>
-<nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 48px 80px;">
+<nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 38px 64px;">
 <div style="display: flex; flex-direction: column; gap: 14px; font-size: 14px;">
-<span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #C9A97A;">Explore</span>
-<a href="weddings.html">Weddings</a><a href="investment.html">Investment</a><a href="a-la-carte.html">A La Carte</a><a href="portfolio.html">Portfolio</a><a href="about.html">About</a><a href="faq.html">FAQ</a>
+<span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #8A6A3A;">Explore</span>
+<a href="index.html">Home</a><a href="portfolio.html">Gallery</a><a href="workshop.html">Workshop</a><a href="services.html">Services &amp; Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px; font-size: 14px;">
-<span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #C9A97A;">Say hello</span>
+<span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #8A6A3A;">Say hello</span>
 <a href="quote.html">Request a Quote</a><a href="mailto:theblondebouquet@gmail.com">theblondebouquet@gmail.com</a><a href="https://www.instagram.com/the_blonde_bouquet">Instagram</a><a href="https://www.yelp.com/biz/the-blonde-bouquet-roseville-2">Yelp</a>
 </div>
 </nav>
 </div>
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid rgba(201, 169, 122, 0.4); padding-top: 26px; font-size: 12px; letter-spacing: 0.08em; color: #A89C90;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid rgba(201, 169, 122, 0.4); padding-top: 26px; font-size: 12px; letter-spacing: 0.08em; color: #6A605A;">
 <span>© 2026 The Blonde Bouquet Floral Design · Auburn, California</span>
 <span style="display: flex; gap: 28px;"><a href="portfolio.html">Photo Credits</a><a href="#workshops">Workshops</a></span>
 </div>

@@ -9,9 +9,9 @@
 <link href="https://fonts.googleapis.com/css2?family=Bodoni+Moda:ital,opsz,wght@0,6..96,400..600;1,6..96,400..600&amp;family=Figtree:wght@300;400;500;600&amp;display=swap" rel="stylesheet">
 <style>
 body{margin:0;background:#FAF6F0}
-.scal{-webkit-mask:radial-gradient(circle 20px at 20px 20px,#000 95%,#0000) 0 0/40px 40px round,linear-gradient(#000 0 0) center/calc(100% - 40px) calc(100% - 40px) no-repeat;mask:radial-gradient(circle 20px at 20px 20px,#000 95%,#0000) 0 0/40px 40px round,linear-gradient(#000 0 0) center/calc(100% - 40px) calc(100% - 40px) no-repeat}
-.bu{position:relative;z-index:2;height:20px;margin-top:-20px;background:radial-gradient(circle 20px at 20px 20px,var(--c) 95%,#0000) 0 0/40px 20px repeat-x}
-.bd{position:relative;z-index:2;height:20px;margin-bottom:-20px;background:radial-gradient(circle 20px at 20px 0,var(--c) 95%,#0000) 0 0/40px 20px repeat-x}
+.scal{-webkit-mask:radial-gradient(circle 8px at 8px 8px,#000 95%,#0000) 0 0/16px 16px round,linear-gradient(#000 0 0) center/calc(100% - 16px) calc(100% - 16px) no-repeat;mask:radial-gradient(circle 8px at 8px 8px,#000 95%,#0000) 0 0/16px 16px round,linear-gradient(#000 0 0) center/calc(100% - 16px) calc(100% - 16px) no-repeat}
+.bu{position:relative;z-index:2;height:9px;margin-top:-9px;background:radial-gradient(circle 9px at 9px 9px,var(--c) 95%,#0000) 0 0/18px 9px repeat-x}
+.bd{position:relative;z-index:2;height:9px;margin-bottom:-9px;background:radial-gradient(circle 9px at 9px 0,var(--c) 95%,#0000) 0 0/18px 9px repeat-x}
 .shd{filter:drop-shadow(0 18px 38px rgba(70,45,35,.14))}
 .wv{position:absolute;left:0;right:0;height:26px;pointer-events:none;z-index:3;background-repeat:repeat-x;background-size:220px 26px}
 .wv-t{top:-1px}.wv-b{bottom:-1px;transform:scaleY(-1)}
@@ -20,10 +20,10 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 .nv{color:#1F1B19;text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:12px 0}
 .nv:hover{color:#A3134F}
 .btn{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
-.btn:hover{background-color:#1F1B19 !important;color:#FFFFFF !important;border-color:#1F1B19 !important}
+.btn:hover{background-color:#7A0E3B !important;color:#FFFFFF !important;border-color:#7A0E3B !important}
 .tl{color:#1F1B19;text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid #B8955A;padding-bottom:6px;transition:color .3s,border-color .3s}
 .tl:hover{color:#A3134F;border-color:#A3134F}
-.ft a{color:#EFE6DB;text-decoration:none}.ft a:hover{color:#F29BC0}
+.ft a{color:#1F1B19;text-decoration:none}.ft a:hover{color:#A3134F}
 .zm{overflow:hidden}.zm img{transition:transform 1.4s cubic-bezier(.2,.7,.2,1)}.zm:hover img{transform:scale(1.045)}
 .f label{font-size:11px;letter-spacing:.2em;text-transform:uppercase;font-weight:500;color:#4A413C}
 .f input,.f select,.f textarea{font:inherit;font-size:16px;letter-spacing:0;text-transform:none;color:#1F1B19;background:transparent;border:0;border-bottom:1px solid #C9A97A;border-radius:0;padding:12px 2px;min-height:48px;box-sizing:border-box;width:100%}
@@ -46,57 +46,52 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 <div id="dc-root"></div>
 <template id="dc-tpl">
 
-<div style="font-family: 'Figtree', system-ui, sans-serif; font-weight: 400; color: #1F1B19; background: #FAF6F0; min-height: 100vh;">
+<div style="font-family: 'Figtree', system-ui, sans-serif; font-weight: 400; color: #1F1B19; background: #FAF6F0; min-height: 85vh;">
 
-<a href="quote.html" style="display: block; background: #1F1B19; color: #EFE6DB; text-align: center; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; padding: 12px 16px; text-decoration: none; font-weight: 500;">Now reserving 2027 dates · A limited number of weddings each month</a>
+<a href="quote.html" style="display: block; background: #FFF2C6; color: #1F1B19; text-align: center; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; padding: 12px 16px; text-decoration: none; font-weight: 500;">Now reserving 2027 dates · A limited number of weddings each month</a>
 
 <header style="background: #FAF6F0; border-bottom: 1px solid #E3D6C3;">
-<div style="max-width: 1320px; margin: 0 auto; padding: 18px 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 32px;">
-<a href="index.html" aria-label="The Blonde Bouquet home" style="display: block; max-width: 100%;"><img src="assets/tbb2-logo-horizontal.svg" alt="The Blonde Bouquet Floral Design" style="height: 66px; width: auto; max-width: 100%; object-fit: contain; object-position: left center; display: block;"></a>
-<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 36px;">
-<a class="nv" href="weddings.html">Weddings</a>
-<a class="nv" href="investment.html">Investment</a>
-<a class="nv" href="portfolio.html">Portfolio</a>
-<a class="nv" href="about.html">About</a>
+<div style="max-width: 1320px; margin: 0 auto; padding: 18px 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 26px;">
+<a href="index.html" aria-label="The Blonde Bouquet home" style="display: block; max-width: 100%;"><img src="assets/tbb-logo-horizontal.svg" alt="The Blonde Bouquet Floral Design" style="height: 53px; width: auto; max-width: 100%; object-fit: contain; object-position: left center; display: block;"></a>
+<nav aria-label="Main" style="display: flex; flex-wrap: wrap; align-items: center; gap: 4px 29px;">
+<a class="nv" href="index.html">Home</a>
+<a class="nv" href="portfolio.html">Gallery</a>
+<a class="nv" href="workshop.html">Workshop</a>
+<a class="nv" href="services.html">Services &amp; Pricing</a>
 <a class="btn" href="quote.html" aria-current="page" style="border: 1px solid {{accent}}; background: {{accent}}; color: #FFFFFF; text-decoration: none; padding: 15px 26px; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center;">Request a Quote</a>
 </nav>
 </div>
 </header>
 
-<section style="max-width: 1240px; margin: 0 auto; padding: 110px 28px 72px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 80px; align-items: center;">
+<section style="max-width: 1240px; margin: 0 auto; padding: 88px 28px 58px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 64px; align-items: center;">
 <div style="display: flex; flex-direction: column; gap: 28px;">
 <p class="in1" style="margin: 0; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; color: #6A605A; font-weight: 500;">Request a Quote</p>
-<h1 class="in2" style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(50px, 6.6vw, 98px); line-height: 0.98; letter-spacing: 0.04em; text-transform: uppercase;">Tell us about <em style="display: block; text-transform: none; letter-spacing: 0; color: {{accent}};">your day</em></h1>
+<h1 class="in2" style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(40px, 5.28vw, 78px); line-height: 0.98; letter-spacing: 0.04em; text-transform: uppercase;">Tell us about <em style="display: block; text-transform: none; letter-spacing: 0; color: {{accent}};">your day</em></h1>
 <p class="in3" style="margin: 0; font-size: 17px; line-height: 1.85; color: #4A413C; font-weight: 300; max-width: 520px;">La Raye reads every inquiry personally and replies within two business days. If your date is open, we'll set up a consultation to talk through what you're picturing. Prefer email? <a href="mailto:theblondebouquet@gmail.com">theblondebouquet@gmail.com</a></p>
 </div>
 <div class="in3" style="border: 1px solid #B8955A; border-radius: 400px 400px 0 0; padding: 12px;">
-<div class="zm" style="border-radius: 400px 400px 0 0;"><img src="assets/ig_greenhouse.jpg" alt="Couple in front of a glass greenhouse, the bride holding an ivory bouquet" style="width: 100%; height: 560px; object-fit: cover; display: block;"></div>
+<div class="zm" style="border-radius: 400px 400px 0 0;"><img src="assets/al-p058.jpg" alt="Couple sharing a kiss, the bride holding a bright pink and coral bouquet" style="width: 100%; height: 448px; object-fit: cover; display: block;"></div>
 </div>
 </section>
 
-<section style="background: #F4E6E1; padding: 80px max(28px, calc((100% - 1184px) / 2)) 120px; display: flex; flex-wrap: wrap; gap: 56px; align-items: flex-start;">
+<section style="background: #F4E6E1; padding: 64px max(28px, calc((100% - 947px) / 2)) 96px; display: flex; flex-wrap: wrap; gap: 45px; align-items: flex-start;">
 
-<div style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 32px;">
+<div style="flex: 999 1 600px; min-width: 0; display: flex; flex-direction: column; gap: 26px;">
 
 <sc-if value="{{showForms}}" hint-placeholder-val="{{ true }}">
-<div style="display: flex; flex-direction: column; gap: 32px;">
-<div role="group" aria-label="What are you planning?" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr)); gap: 14px;">
-<button type="button" class="opt" onClick="{{pickWedding}}" aria-pressed="{{isWedding}}" style="{{wedCard}}">
-<span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #6A605A;">i.</span>
-<span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 26px; line-height: 1.15;">Full wedding or event</span>
-<span style="font-size: 14px; line-height: 1.6; color: #4A413C; font-weight: 300;">Ceremony, reception and installations.</span>
-</button>
-<button type="button" class="opt" onClick="{{pickAlc}}" aria-pressed="{{isAlc}}" style="{{alcCard}}">
-<span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #6A605A;">ii.</span>
-<span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 26px; line-height: 1.15;">A la carte order</span>
-<span style="font-size: 14px; line-height: 1.6; color: #4A413C; font-weight: 300;">A bouquet, boutonnieres or a few pieces.</span>
-</button>
-</div>
-
+<div style="display: flex; flex-direction: column; gap: 26px;">
 <sc-if value="{{isWedding}}" hint-placeholder-val="{{ true }}">
-<form class="f" aria-label="Full wedding or event quote" style="background: #FFFFFF; outline: 1px solid #E2CFB0; outline-offset: -18px; padding: clamp(36px, 5vw, 64px); display: flex; flex-direction: column; gap: 34px;">
-<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 36px;">Your <em style="color: {{accent}};">wedding</em></h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 28px 32px;">
+<form class="f" aria-label="Full wedding or event quote" style="background: #FFFFFF; outline: 1px solid #E2CFB0; outline-offset: -18px; padding: clamp(36px, 5vw, 64px); display: flex; flex-direction: column; gap: 27px;">
+<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 29px;">Your <em style="color: {{accent}};">wedding</em></h2>
+<sc-if value="{{hasEst}}" hint-placeholder-val="{{ false }}">
+<div style="border: 1px solid #C9A97A; background: #FFFDF9; padding: 24px 26px; display: flex; flex-direction: column; gap: 10px;">
+<p style="margin: 0; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #6A605A; font-weight: 500;">Your floral estimate is attached</p>
+<p style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 22px; line-height: 1.15;">{{estTotal}}</p>
+<p style="margin: 0; font-size: 13px; line-height: 1.6; color: #4A413C; white-space: pre-line;">{{estLines}}</p>
+<a class="tl" href="services.html#estimator" style="align-self: flex-start;">Edit my estimate</a>
+</div>
+</sc-if>
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 28px 26px;">
 <label style="display: flex; flex-direction: column; gap: 6px;">Your name *<input type="text" autocomplete="name" required=""></label>
 <label style="display: flex; flex-direction: column; gap: 6px;">Partner's name<input type="text"></label>
 <label style="display: flex; flex-direction: column; gap: 6px;">Email *<input type="email" autocomplete="email" required=""></label>
@@ -143,64 +138,27 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 </fieldset>
 <label style="display: flex; flex-direction: column; gap: 10px;">Tell us about your day
 <textarea rows="5" placeholder="Colors, inspiration, your estimator number, what matters most to you"></textarea></label>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 28px 32px;">
+<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 28px 26px;">
 <label style="display: flex; flex-direction: column; gap: 6px;">Pinterest or inspiration link<input type="url" placeholder="https://"></label>
 <label style="display: flex; flex-direction: column; gap: 6px;">Planner or coordinator<input type="text" placeholder="Name and company"></label>
 <label style="display: flex; flex-direction: column; gap: 6px;">How did you find us?
 <select><option>Instagram</option><option>Google</option><option>Venue referral</option><option>Planner referral</option><option>Friend or past couple</option><option>The Knot or WeddingWire</option><option>Other</option></select></label>
 </div>
-<button type="button" class="btn" onClick="{{submit}}" style="align-self: flex-start; border: 1px solid {{accent}}; background: {{accent}}; color: #FFFFFF; padding: 19px 40px; border-radius: 0; font: inherit; font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; cursor: pointer; min-height: 52px;">Send my inquiry</button>
+<button type="button" class="btn" onClick="{{submit}}" style="align-self: flex-start; border: 1px solid {{accent}}; background: {{accent}}; color: #FFFFFF; padding: 19px 32px; border-radius: 0; font: inherit; font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; cursor: pointer; min-height: 42px;">Send my inquiry</button>
 </form>
 </sc-if>
 
-<sc-if value="{{isAlc}}" hint-placeholder-val="{{ false }}">
-<form class="f" aria-label="A la carte quote" style="background: #FFFFFF; outline: 1px solid #E2CFB0; outline-offset: -18px; padding: clamp(36px, 5vw, 64px); display: flex; flex-direction: column; gap: 34px;">
-<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 36px;">Your <em style="color: {{accent}};">a la carte</em> order</h2>
-<div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 240px), 1fr)); gap: 28px 32px;">
-<label style="display: flex; flex-direction: column; gap: 6px;">Your name *<input type="text" autocomplete="name" required=""></label>
-<label style="display: flex; flex-direction: column; gap: 6px;">Email *<input type="email" autocomplete="email" required=""></label>
-<label style="display: flex; flex-direction: column; gap: 6px;">Phone *<input type="tel" autocomplete="tel" required=""></label>
-<label style="display: flex; flex-direction: column; gap: 6px;">Date needed *<input type="date" required=""></label>
-<label style="display: flex; flex-direction: column; gap: 6px;">Rough quantities<input type="text" placeholder="1 bridal, 4 bridesmaids, 5 bouts"></label>
-<label style="display: flex; flex-direction: column; gap: 6px;">Budget
-<select><option>$500 to $1,000</option><option>$1,000 to $1,500</option><option>$1,500 to $2,500</option><option>$2,500+</option><option>Not sure yet</option></select></label>
-</div>
-<fieldset style="margin: 0; padding: 0; border: 0;">
-<legend style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; color: #4A413C; padding: 0; margin-bottom: 14px;">Pickup or delivery?</legend>
-<div style="display: flex; flex-wrap: wrap; gap: 10px; align-items: flex-end;">
-<label class="chip"><input type="radio" name="a-pickup">Pick up in Auburn</label>
-<label class="chip"><input type="radio" name="a-pickup">Delivery</label>
-<label style="display: flex; flex-direction: column; gap: 6px; flex: 1 1 220px;"><span style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip: rect(0 0 0 0);">Delivery city</span><input type="text" placeholder="Delivery city"></label>
-</div>
-</fieldset>
-<fieldset style="margin: 0; padding: 0; border: 0;">
-<legend style="font-size: 11px; letter-spacing: 0.2em; text-transform: uppercase; font-weight: 500; color: #4A413C; padding: 0; margin-bottom: 14px;">What do you need?</legend>
-<div style="display: flex; flex-wrap: wrap; gap: 10px;">
-<label class="chip"><input type="checkbox">Bridal bouquet</label>
-<label class="chip"><input type="checkbox">Bridesmaid bouquets</label>
-<label class="chip"><input type="checkbox">Boutonnieres</label>
-<label class="chip"><input type="checkbox">Corsages</label>
-<label class="chip"><input type="checkbox">Hairpiece or flower crown</label>
-<label class="chip"><input type="checkbox">Bud vases</label>
-<label class="chip"><input type="checkbox">Cake flowers</label>
-</div>
-</fieldset>
-<label style="display: flex; flex-direction: column; gap: 10px;">Colors and style
-<textarea rows="4" placeholder="Your palette, your dress, anything you've saved that you love"></textarea></label>
-<button type="button" class="btn" onClick="{{submit}}" style="align-self: flex-start; border: 1px solid {{accent}}; background: {{accent}}; color: #FFFFFF; padding: 19px 40px; border-radius: 0; font: inherit; font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase; cursor: pointer; min-height: 52px;">Request my quote</button>
-</form>
-</sc-if>
 </div>
 </sc-if>
 
 <sc-if value="{{sent}}" hint-placeholder-val="{{ false }}">
 <div role="status" style="background: #FFFFFF; outline: 1px solid #E2CFB0; outline-offset: -18px; padding: clamp(40px, 5vw, 72px); display: flex; flex-direction: column; gap: 24px; align-items: center; text-align: center;">
-<img src="assets/tbb2-mark.svg" alt="" aria-hidden="true" style="width: 76px; height: 76px; display: block;">
+<img src="assets/tbb-logo-mark.svg" alt="" aria-hidden="true" style="width: auto; height: 79px; display: block;">
 <p style="margin: 0; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #6A605A; font-weight: 500;">Thank you</p>
-<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(34px, 4vw, 52px); line-height: 1.08;">We have it. Expect a note within <em style="color: {{accent}};">two business days.</em></h2>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(27px, 3.2vw, 42px); line-height: 1.08;">We have it. Expect a note within <em style="color: {{accent}};">two business days.</em></h2>
 <p style="margin: 0; font-size: 16px; line-height: 1.8; color: #4A413C; font-weight: 300; max-width: 520px;">In the meantime, follow along on Instagram for recent weddings and what's blooming in the studio this week.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 16px 28px; align-items: center; justify-content: center;">
-<a class="btn" href="portfolio.html" style="border: 1px solid {{accent}}; background: {{accent}}; color: #FFFFFF; text-decoration: none; padding: 17px 32px; font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase;">View the portfolio</a>
+<a class="btn" href="portfolio.html" style="border: 1px solid {{accent}}; background: {{accent}}; color: #FFFFFF; text-decoration: none; padding: 17px 26px; font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase;">View the gallery</a>
 <a class="tl" href="https://www.instagram.com/the_blonde_bouquet">@the_blonde_bouquet</a>
 </div>
 <button type="button" onClick="{{reset}}" style="background: none; border: 0; padding: 12px 0; font: inherit; font-size: 13px; color: #6A605A; text-decoration: underline; cursor: pointer; min-height: 44px;">Back to the form</button>
@@ -208,42 +166,42 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 </sc-if>
 </div>
 
-<aside style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 32px;">
-<div style="background: #1F1B19; color: #EFE6DB; padding: 44px 36px; outline: 1px solid rgba(201, 169, 122, 0.6); outline-offset: -12px; display: flex; flex-direction: column; gap: 22px;">
-<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 28px;">What happens <em style="color: #F29BC0;">next</em></h2>
-<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; font-size: 14px; line-height: 1.7; font-weight: 300; color: #D8CCBF;">
-<li style="display: flex; gap: 16px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 20px; color: #C9A97A; min-width: 22px;">i.</span><span>La Raye reads your inquiry and replies within two business days.</span></li>
-<li style="display: flex; gap: 16px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 20px; color: #C9A97A; min-width: 22px;">ii.</span><span>If your date is open, we schedule your consultation.</span></li>
-<li style="display: flex; gap: 16px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 20px; color: #C9A97A; min-width: 22px;">iii.</span><span>Your proposal arrives with sketches and line-item pricing.</span></li>
+<aside style="flex: 1 1 300px; display: flex; flex-direction: column; gap: 26px;">
+<div style="background: #FFF2C6; color: #1F1B19; padding: 44px 36px; outline: 1px solid rgba(184, 149, 90, 0.6); outline-offset: -12px; display: flex; flex-direction: column; gap: 22px;">
+<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 22px;">What happens <em style="color: {{accent}};">next</em></h2>
+<ol style="margin: 0; padding: 0; list-style: none; display: flex; flex-direction: column; gap: 18px; font-size: 14px; line-height: 1.7; font-weight: 300; color: #4A413C;">
+<li style="display: flex; gap: 16px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 16px; color: #A3134F; min-width: 22px;">i.</span><span>La Raye reads your inquiry and replies within two business days.</span></li>
+<li style="display: flex; gap: 16px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 16px; color: #A3134F; min-width: 22px;">ii.</span><span>If your date is open, we schedule your consultation.</span></li>
+<li style="display: flex; gap: 16px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 16px; color: #A3134F; min-width: 22px;">iii.</span><span>Your proposal arrives with sketches and line-item pricing.</span></li>
 </ol>
 </div>
 <p style="margin: 0; font-size: 14px; line-height: 1.8; color: #4A413C; font-weight: 300;">We take a limited number of weddings each month so every couple has our full attention. Peak season dates (April through October) tend to reserve [9 to 14] months ahead.</p>
-<p style="margin: 0; font-size: 14px; line-height: 1.8; color: #4A413C; font-weight: 300;">Wondering about investment first? <a href="investment.html">Try the estimator.</a></p>
-<div style="border: 1px solid #B8955A; border-radius: 50%; padding: 10px;"><img src="assets/s01.jpg" alt="La Raye in a sun hat holding a bright bouquet" style="width: 100%; height: 380px; object-fit: cover; display: block; border-radius: 50%;"></div>
+<p style="margin: 0; font-size: 14px; line-height: 1.8; color: #4A413C; font-weight: 300;">Wondering about investment first? <a href="services.html#estimator">Try the estimator.</a></p>
+<div style="border: 1px solid #B8955A; border-radius: 50%; padding: 10px;"><img src="assets/al-p008.jpg" alt="La Raye laughing with a bright poppy and peony bouquet" style="width: 100%; height: 304px; object-fit: cover; object-position: center 30%; display: block; border-radius: 50%;"></div>
 </aside>
 </section>
 <div style="position: relative; height: 0;"><div class="wv wv-t wv-bl" aria-hidden="true"></div></div>
-<footer class="ft" style="background: #1F1B19; color: #EFE6DB; padding: 96px 28px 40px;">
-<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 64px;">
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 56px; align-items: flex-start;">
+<footer class="ft" style="background: #FFF2C6; color: #1F1B19; padding: 77px 28px 32px;">
+<div style="max-width: 1240px; margin: 0 auto; display: flex; flex-direction: column; gap: 51px;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 45px; align-items: flex-start;">
 <div style="flex: 1 1 320px; max-width: 420px; display: flex; flex-direction: column; gap: 22px;">
-<img src="assets/tbb2-logo-stacked-light.svg" alt="The Blonde Bouquet Floral Design, Auburn, California" style="width: 300px; height: auto; display: block;">
-<p style="margin: 0; font-size: 14px; line-height: 1.8; color: #CFC3B6; font-weight: 300;">Luxury wedding florals designed in Auburn, California. Love is for all. A portion of every wedding supports organizations that empower women.</p>
+<img src="assets/tbb-logo-stacked.svg" alt="The Blonde Bouquet Floral Design Co., Auburn, California" style="width: 224px; height: auto; display: block;">
+<p style="margin: 0; font-size: 14px; line-height: 1.8; color: #4A413C; font-weight: 300;">Luxury wedding florals designed in Auburn, California. Love is for all. A portion of every wedding supports organizations that empower women.</p>
 </div>
-<nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 48px 80px;">
+<nav aria-label="Footer" style="display: flex; flex-wrap: wrap; gap: 38px 64px;">
 <div style="display: flex; flex-direction: column; gap: 14px; font-size: 14px;">
-<span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #C9A97A;">Explore</span>
-<a href="weddings.html">Weddings</a><a href="investment.html">Investment</a><a href="a-la-carte.html">A La Carte</a><a href="portfolio.html">Portfolio</a><a href="about.html">About</a><a href="faq.html">FAQ</a>
+<span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #8A6A3A;">Explore</span>
+<a href="index.html">Home</a><a href="portfolio.html">Gallery</a><a href="workshop.html">Workshop</a><a href="services.html">Services &amp; Pricing</a><a href="about.html">About</a><a href="faq.html">FAQ</a>
 </div>
 <div style="display: flex; flex-direction: column; gap: 14px; font-size: 14px;">
-<span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #C9A97A;">Say hello</span>
+<span style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #8A6A3A;">Say hello</span>
 <a href="quote.html">Request a Quote</a><a href="mailto:theblondebouquet@gmail.com">theblondebouquet@gmail.com</a><a href="https://www.instagram.com/the_blonde_bouquet">Instagram</a><a href="https://www.yelp.com/biz/the-blonde-bouquet-roseville-2">Yelp</a>
 </div>
 </nav>
 </div>
-<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid rgba(201, 169, 122, 0.4); padding-top: 26px; font-size: 12px; letter-spacing: 0.08em; color: #A89C90;">
+<div style="display: flex; flex-wrap: wrap; justify-content: space-between; gap: 12px; border-top: 1px solid rgba(201, 169, 122, 0.4); padding-top: 26px; font-size: 12px; letter-spacing: 0.08em; color: #6A605A;">
 <span>© 2026 The Blonde Bouquet Floral Design · Auburn, California</span>
-<span style="display: flex; gap: 28px;"><a href="portfolio.html">Photo Credits</a><a href="about.html">Workshops</a></span>
+<span style="display: flex; gap: 28px;"><a href="portfolio.html">Photo Credits</a><a href="workshop.html">Workshops</a></span>
 </div>
 </div>
 </footer>
@@ -262,17 +220,19 @@ class Component extends DCLogic {
     const accent = this.props.accent ?? '#A3134F';
     const form = this.state.form ?? (this.props.startWith ?? 'wedding');
     const sent = this.state.sent;
+    let est = null;
+    try { est = JSON.parse(localStorage.getItem('tbb-estimate') || 'null'); } catch (e) {}
     const card = (on) => 'text-align:left;display:flex;flex-direction:column;gap:10px;padding:26px 26px;border-radius:0;cursor:pointer;font:inherit;color:#1F1B19;min-height:44px;background:' + (on ? '#FFFDF9' : 'transparent') + ';border:1px solid ' + (on ? accent : '#D9C9AE') + ';box-shadow:' + (on ? 'inset 0 0 0 1px ' + accent : 'none') + ';';
     return {
       accent,
       sent,
       showForms: !sent,
       isWedding: form === 'wedding',
-      isAlc: form === 'alacarte',
+      hasEst: !!(est && est.total),
+      estTotal: est ? est.total + ' estimated' : '',
+      estLines: est ? est.lines.join('\n') + '\n' + est.notes : '',
       wedCard: card(form === 'wedding'),
-      alcCard: card(form === 'alacarte'),
       pickWedding: () => this.setState({ form: 'wedding' }),
-      pickAlc: () => this.setState({ form: 'alacarte' }),
       submit: () => this.setState({ sent: true }),
       reset: () => this.setState({ sent: false })
     };
