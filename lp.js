@@ -154,6 +154,8 @@
     try { vals = inst.renderVals(); } catch (e) { console.error(e); return; }
     var frag = document.createElement('div');
     build(tpl.content.childNodes, [vals], frag);
+    /* Merge neighbouring text nodes so a fresh render lines up node for node with the pre-built HTML in #dc-root. */
+    frag.normalize();
     morphChildren(root, frag);
   }
 
@@ -222,13 +224,16 @@ function kwPlace(kw) {
 /** True when the search was about Facebook, Instagram or Meta ads. */
 const kwMeta = (kw) => /facebook|instagram|meta ads/.test(String(kw == null ? "" : kw).toLowerCase());
 /** The service they searched for, in their words. Sits inside the h1, above the headline.
-    With no search term it is the page's own search target. */
-function kwTopic(kw, web) {
+    With no search term it is the page's own search target. home is the page's town; def is the page's own topic.
+    Words like "agency", "company" and "near me" never print. */
+function kwTopic(kw, web, home = "Roseville", def = "") {
   const k = String(kw == null ? "" : kw).toLowerCase(), place = kwPlace(k), inPlace = place ? " in " + place : "";
+  if (!k && def) return def;
+  const at = inPlace || " in " + home;
   if (web) {
     if (k.includes("contractor")) return "Contractor website design";
     if (k.includes("small business")) return "Small business website design" + inPlace;
-    return "Website design" + (inPlace || " in Roseville");
+    return "Website design" + at;
   }
   if (/google ads|adwords|ppc/.test(k)) return k.includes("contractor") ? "Google Ads for contractors" : "Google Ads management" + inPlace;
   if (kwMeta(k)) return k.includes("contractor") ? "Facebook ads for contractors" : "Facebook and Instagram ads" + inPlace;
@@ -236,9 +241,11 @@ function kwTopic(kw, web) {
   if (k.includes("tree")) return "Tree service marketing";
   if (k.includes("home service")) return "Home service marketing";
   if (k.includes("small business")) return "Small business marketing" + inPlace;
+  if (k.includes("digital marketing")) return "Digital marketing" + at;
   if (k.includes("lead")) return "More leads for your business";
   if (place) return "Marketing for " + place + " businesses";
-  if (!k) return "Google Ads management in Roseville";
+  if (/near me|near you|local/.test(k)) return "Marketing for " + home + " businesses";
+  if (!k) return "Google Ads management in " + home;
   return "Marketing for contractors";
 }
 /* What owners say. The ones they tap ride along with the lead as "said". */
@@ -276,6 +283,13 @@ function selfTest() {
     ["kwTopic growth contractor", kwTopic("contractor marketing", false) === "Marketing for contractors"],
     ["kwTopic growth no search", kwTopic("", false) === "Google Ads management in Roseville"],
     ["kwTopic never says coaching", !/coach/i.test(kwTopic("business coach roseville", false))],
+    ["kwTopic digital marketing", kwTopic("digital marketing agency sacramento", false) === "Digital marketing in Sacramento"],
+    ["kwTopic digital near me", kwTopic("digital marketing agency near me", false, "Sacramento") === "Digital marketing in Sacramento"],
+    ["kwTopic marketing near me", kwTopic("marketing agency near me", false, "Sacramento") === "Marketing for Sacramento businesses"],
+    ["kwTopic web near me", kwTopic("website design near me", true) === "Website design in Roseville"],
+    ["kwTopic web default Sacramento", kwTopic("", true, "Sacramento") === "Website design in Sacramento"],
+    ["kwTopic page topic", kwTopic("", false, "Sacramento", "Digital marketing in Sacramento") === "Digital marketing in Sacramento"],
+    ["kwTopic never prints agency, company or near me", ["digital marketing agency sacramento", "marketing agency near me", "marketing companies sacramento", "advertising agency sacramento", "web design company sacramento", "website design near me", "web designer near me", "marketing company roseville"].every((x) => !/agenc|compan|near me/i.test(kwTopic(x, false, "Sacramento") + kwTopic(x, true, "Sacramento")))],
     ["kwMeta", kwMeta("Instagram ads management") === true && kwMeta("google ads") === false],
     ["quoteLeak", quoteLeak(20, 5000) === 10000],
     ["six growth pains, four website pains", PAINS.growth.length === 6 && PAINS.websites.length === 4]
@@ -286,6 +300,10 @@ function selfTest() {
 
 /* ---------- Page plumbing ---------- */
 const PAGE = document.documentElement.dataset.page || "";
+/* A town version of a page (/websites-sacramento) sets data-town, data-lp and, if needed, data-topic on <html>. */
+const HOME = document.documentElement.dataset.town || "Roseville";
+const PAGE_TOPIC = document.documentElement.dataset.topic || "";
+const LP_TAG = document.documentElement.dataset.lp || PAGE;
 const store = {
   get(k) { try { return JSON.parse(sessionStorage.getItem(k) || "null"); } catch (e) { return null; } },
   set(k, v) { try { sessionStorage.setItem(k, JSON.stringify(v)); } catch (e) { /* private mode */ } }
@@ -320,7 +338,7 @@ function initTracking() {
     (function (c, l, a, r, i, t, y) { c[a] = c[a] || function () { (c[a].q = c[a].q || []).push(arguments); }; t = l.createElement(r); t.async = 1; t.src = "https://www.clarity.ms/tag/" + i; y = l.getElementsByTagName(r)[0]; y.parentNode.insertBefore(t, y); })(window, document, "clarity", "script", LP.CLARITY_ID);
     /* Tags so recordings can be filtered by page and by the search that brought them. */
     const utm = store.get("gc-utm") || {};
-    window.clarity("set", "lp", PAGE || "other");
+    window.clarity("set", "lp", LP_TAG || "other");
     if (utm.utm_term) window.clarity("set", "search_term", String(utm.utm_term).slice(0, 80));
     if (utm.utm_source) window.clarity("set", "source", String(utm.utm_source).slice(0, 40));
   }
@@ -344,7 +362,7 @@ class Component extends DCLogic {
     const q = new URLSearchParams(location.search);
     const saved = store.get("gc-lp5") || {};
     const term = cleanName((store.get("gc-utm") || {}).utm_term, 60);
-    this.town = titleCase(cleanName(q.get("town"), 28)) || kwPlace(term) || "Roseville";
+    this.town = titleCase(cleanName(q.get("town"), 28)) || kwPlace(term) || HOME;
     this.state = {
       company: cleanName(q.get("co")) || saved.company || "",
       phone: "", step: 1, err: "", sending: false, sendFail: false, trap: "",
@@ -444,7 +462,7 @@ class Component extends DCLogic {
       web, grow: !web, town,
       otherHref: web ? "growth" : "websites",
       otherFoot: web ? "Google and Meta ads" : "Website design",
-      topic: kwTopic(kw, web),
+      topic: kwTopic(kw, web, HOME, PAGE_TOPIC),
       h1a: web ? "A website that brings you " : "More jobs ", h1b: web ? "customers." : (kwMeta(kw) ? "from Facebook." : "from Google."),
       lede: web
         ? "I’m a Roseville local. I build yours first, and you pay only if you want it live."

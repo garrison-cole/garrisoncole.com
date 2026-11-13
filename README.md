@@ -64,3 +64,11 @@ Search the HTML for `[Garrison` to find them.
 6. Tools: 3000 / 40 / 12 / 4500 / 2 crews gives $75, 30%, $250, $6,236. Press **Save my scorecard**.
 7. Stay on the home page two minutes. The ring by the clock fills and the card shows once.
 8. Run Lighthouse on the three main pages.
+
+## Ad landing pages (growth, websites and their Sacramento versions)
+
+`growth.html`, `websites.html`, `growth-sacramento.html` and `websites-sacramento.html` draw themselves from `<template id="dc-tpl">` with `lp.js`. The default view is also pre-built into `<div id="dc-root">`, so the page text is in the HTML for crawlers and Google's ad checks. `lp.js` updates that HTML in place.
+
+**After any change to a landing page template or to `lp.js`, run `python3 _tools/prerender.py`** (needs Playwright and Chrome), then bump the `lp.js?v=` tag. The template is shared, so edit it in all four files.
+
+A town version of a page sets `data-town`, `data-lp` and, when needed, `data-topic` on `<html>`.
