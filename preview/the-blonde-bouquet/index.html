@@ -32,11 +32,11 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 .fr-petal{background-image:url(assets/stripe-petal.svg)}.fr-blush{background-image:url(assets/stripe-blush.svg)}.fr-raspberry{background-image:url(assets/stripe-raspberry.svg)}
 .shd{filter:drop-shadow(0 18px 38px rgba(70,45,35,.14))}
 .hc{position:absolute;inset:0}
-.hc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;animation:hcf 36s linear infinite both}
-@keyframes hcf{0%{opacity:0;transform:scale(1.06)}3.33%{opacity:1}16.67%{opacity:1}20%{opacity:0;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+.hc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;animation:hcf 24s linear infinite both}
+@keyframes hcf{0%{opacity:0;transform:scale(1.06)}5%{opacity:1}25%{opacity:1}30%{opacity:0;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
 .hcd{position:absolute;left:0;right:0;bottom:46px;z-index:4;display:flex;justify-content:center;gap:10px}
-.hcd span{width:8px;height:8px;border-radius:50%;border:1px solid #FFFFFF;background:transparent;animation:hcd 36s linear infinite both}
-@keyframes hcd{0%,18.33%{background:#FFFFFF}20%,100%{background:transparent}}
+.hcd span{width:8px;height:8px;border-radius:50%;border:1px solid #FFFFFF;background:transparent;animation:hcd 24s linear infinite both}
+@keyframes hcd{0%,27.5%{background:#FFFFFF}30%,100%{background:transparent}}
 @media (prefers-reduced-motion: reduce){.hc img,.hcd span{animation:none}.hc img:first-child{opacity:1}.hcd{display:none}}
 @keyframes up{from{opacity:0;transform:translateY(34px)}to{opacity:1;transform:none}}
 @keyframes unveil{from{opacity:0;clip-path:inset(8% 8% 8% 8%)}to{opacity:1;clip-path:inset(0 0 0 0)}}
@@ -63,6 +63,12 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 @media (min-width: 500px) and (max-width: 734.98px){.prg{grid-template-columns:repeat(4,1fr) !important}.prg>a{grid-column:span 2}.prg>a:nth-child(5){grid-column:2 / span 2}}
 @media (min-width: 735px) and (max-width: 1204.98px){.prg{grid-template-columns:repeat(6,1fr) !important}.prg>a{grid-column:span 2}.prg>a:nth-child(4){grid-column:2 / span 2}}
 @media (min-width: 1205px){.prg{grid-template-columns:repeat(5,1fr) !important}}
+@media (min-width: 1140px){.rvq{min-height:212px !important}}
+@media (max-width: 640px){.rvq{min-height:210px !important}}
+@media (max-width: 440px){.rvq{min-height:236px !important}}
+@media (max-width: 405px){.rvq{min-height:264px !important}}
+@media (max-width: 375px){.rvq{min-height:292px !important}}
+@media (max-width: 340px){.rvq{min-height:332px !important}}
 .hero{min-height:max(75vh, calc(100vh - var(--hdr, 170px) + 2px)) !important;min-height:max(75vh, calc(100svh - var(--hdr, 170px) + 2px)) !important}</style>
 <div id="dc-root"></div>
 <template id="dc-tpl">
@@ -85,10 +91,10 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 </header>
 
 <section class="hero" style="position: relative; overflow: hidden; min-height: 75vh; display: flex; align-items: flex-end;">
-<div class="hc" aria-hidden="true"><img src="assets/al-oak.jpg" srcset="assets/sm/al-oak.jpg 1200w, assets/al-oak.jpg 1262w" sizes="100vw" alt="" style="object-position: center 45%; animation-delay: 0s;"><img src="assets/al-p098.jpg" srcset="assets/sm/al-p098.jpg 1100w, assets/al-p098.jpg 1242w" sizes="100vw" alt="" style="object-position: center 45%; animation-delay: 6s;" loading="lazy"><img src="assets/al-p136.jpg" srcset="assets/sm/al-p136.jpg 1100w, assets/al-p136.jpg 1242w" sizes="100vw" alt="" style="object-position: center 55%; animation-delay: 12s;" loading="lazy"><img src="assets/al-p178.jpg" srcset="assets/sm/al-p178.jpg 1200w, assets/al-p178.jpg 1920w" sizes="100vw" alt="" style="object-position: center 45%; animation-delay: 18s;" loading="lazy"><img src="assets/al-p003.jpg" srcset="assets/sm/al-p003.jpg 1200w, assets/al-p003.jpg 1600w" sizes="100vw" alt="" style="object-position: center 40%; animation-delay: 24s;" loading="lazy"><img src="assets/al-p021.jpg" srcset="assets/sm/al-p021.jpg 1200w, assets/al-p021.jpg 1800w" sizes="100vw" alt="" style="object-position: center 45%; animation-delay: 30s;" loading="lazy"></div>
+<div class="hc" aria-hidden="true"><img src="assets/al-oak.jpg" srcset="assets/sm/al-oak.jpg 1200w, assets/al-oak.jpg 1262w" sizes="100vw" alt="" style="object-position: center 45%; animation-delay: 0s;"><img src="assets/al-p111.jpg" srcset="assets/sm/al-p111.jpg 1100w, assets/al-p111.jpg 1242w" sizes="100vw" alt="" style="object-position: center 92%; animation-delay: 6s;" loading="lazy"><img src="assets/al-p037.jpg" srcset="assets/sm/al-p037.jpg 1100w, assets/al-p037.jpg 1242w" sizes="100vw" alt="" style="object-position: center 32%; animation-delay: 12s;" loading="lazy"><img src="assets/al-p030.jpg" srcset="assets/sm/al-p030.jpg 1100w, assets/al-p030.jpg 1284w" sizes="100vw" alt="" style="object-position: center 45%; animation-delay: 18s;" loading="lazy"></div>
 <div style="position: absolute; inset: 0; background: rgba(24, 18, 16, 0.38);"></div>
 <div class="wv wv-t wv-iv" aria-hidden="true"></div>
-<div class="hcd" aria-hidden="true"><span style="animation-delay: 0s;"></span><span style="animation-delay: 6s;"></span><span style="animation-delay: 12s;"></span><span style="animation-delay: 18s;"></span><span style="animation-delay: 24s;"></span><span style="animation-delay: 30s;"></span></div>
+<div class="hcd" aria-hidden="true"><span style="animation-delay: 0s;"></span><span style="animation-delay: 6s;"></span><span style="animation-delay: 12s;"></span><span style="animation-delay: 18s;"></span></div>
 <div class="wv wv-b wv-iv" aria-hidden="true"></div>
 <div style="position: relative; width: 100%; max-width: 1320px; margin: 0 auto; padding: 120px 51px 88px; box-sizing: border-box; color: #FFFFFF; display: flex; flex-direction: column; gap: 28px; align-items: center; text-align: center;">
 <p class="in1" style="margin: 0; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 500;">Luxury wedding florals · Northern California</p>
@@ -104,8 +110,8 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 <div style="background-color: #FAF6F0; background-image: url(assets/stripe-soft.svg); background-size: 120px 480px; background-repeat: repeat;">
 <section style="max-width: 1240px; margin: 0 auto; padding: 120px 28px 104px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 77px; align-items: center;">
 <div class="rvi" style="position: relative; padding: 0 0 72px 0;">
-<div style="border: 1px solid #B8955A; border-radius: 400px 400px 0 0; padding: 12px;"><div class="zm" style="border-radius: 400px 400px 0 0;"><img src="assets/al-p063.jpg" srcset="assets/sm/al-p063.jpg 1100w, assets/al-p063.jpg 1206w" sizes="(max-width: 760px) 94vw, 50vw" loading="lazy" decoding="async" alt="Couple kissing between two tall columns of white roses and greenery" style="width: 100%; height: 512px; object-fit: cover; display: block;"></div></div>
-<div class="shd" style="position: absolute; right: -36px; bottom: 0; width: 44%;"><div style="background: #FFFFFF; border-radius: 50%; padding: 10px;"><div style="border: 1px solid #B8955A; border-radius: 50%; padding: 6px;"><img src="assets/al-p131.jpg" srcset="assets/sm/al-p131.jpg 1100w, assets/al-p131.jpg 1242w" sizes="(max-width: 760px) 50vw, 22vw" loading="lazy" decoding="async" alt="Bridal bouquet of hot pink peonies, coral ranunculus and lavender sweet peas" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block; border-radius: 50%;"></div></div></div>
+<div style="border: 1px solid #B8955A; border-radius: 400px 400px 0 0; padding: 12px;"><div class="zm" style="border-radius: 400px 400px 0 0;"><img src="assets/al-p111.jpg" srcset="assets/sm/al-p111.jpg 1100w, assets/al-p111.jpg 1242w" sizes="(max-width: 760px) 94vw, 50vw" loading="lazy" decoding="async" alt="Couple kissing, the bride holding a bouquet of coral peonies with orange and yellow poppies" style="width: 100%; height: 512px; object-fit: cover; object-position: center 100%; display: block;"></div></div>
+<div class="shd" style="position: absolute; right: -36px; bottom: 0; width: 44%;"><div style="background: #FFFFFF; border-radius: 50%; padding: 10px;"><div style="border: 1px solid #B8955A; border-radius: 50%; padding: 6px;"><img src="assets/al-p000.jpg" srcset="assets/sm/al-p000.jpg 1100w, assets/al-p000.jpg 1221w" sizes="(max-width: 760px) 50vw, 22vw" loading="lazy" decoding="async" alt="Wedding invitation flat lay with a blue envelope, ranunculus and garden roses" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 50%; display: block; border-radius: 50%;"></div></div></div>
 </div>
 <div class="rv" style="display: flex; flex-direction: column; gap: 28px;">
 <p style="margin: 0; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #6A605A; font-weight: 500;">I &nbsp;·&nbsp; The Studio</p>
@@ -129,17 +135,17 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 </div>
 <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 340px), 1fr)); gap: 38px; align-items: end;">
 <a class="rv" href="services.html" style="display: flex; flex-direction: column; gap: 24px; text-decoration: none; color: #1F1B19;">
-<div class="mir" style="background: #B8955A; padding: 3px;"><div class="zm mir"><img src="assets/al-p074.jpg" srcset="assets/sm/al-p074.jpg 1100w, assets/al-p074.jpg 1206w" sizes="(max-width: 760px) 94vw, 45vw" loading="lazy" decoding="async" alt="Couple kissing beneath a floral installation hung from a pergola, hills behind them" style="width: 100%; height: 400px; object-fit: cover; object-position: center 40%; display: block;"></div></div>
+<div class="mir" style="background: #B8955A; padding: 3px;"><div class="zm mir"><img src="assets/al-p145.jpg" srcset="assets/sm/al-p145.jpg 1100w, assets/al-p145.jpg 1242w" sizes="(max-width: 760px) 94vw, 45vw" loading="lazy" decoding="async" alt="Bride walking with her bridal party in pink, orange and lavender dresses, flower girls in front" style="width: 100%; height: 400px; object-fit: cover; object-position: center 70%; display: block;"></div></div>
 <div style="display: flex; flex-direction: column; gap: 10px; text-align: center;">
 <h3 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 24px;">Full-Service Weddings</h3>
 <p style="margin: 0; font-size: 15px; line-height: 1.75; color: #4A413C; font-weight: 300;">Ceremony, reception, installations, delivery, setup and breakdown. You never touch a vase.</p>
 </div>
 </a>
 <a class="rv" href="services.html" style="display: flex; flex-direction: column; gap: 24px; text-decoration: none; color: #1F1B19;">
-<div class="mir" style="background: #B8955A; padding: 3px;"><div class="zm mir"><img src="assets/al-p132.jpg" srcset="assets/sm/al-p132.jpg 1100w, assets/al-p132.jpg 1242w" sizes="(max-width: 760px) 94vw, 45vw" loading="lazy" decoding="async" alt="Outdoor dinner table with a low, colorful garden centerpiece" style="width: 100%; height: 400px; object-fit: cover; display: block;"></div></div>
+<div class="mir" style="background: #B8955A; padding: 3px;"><div class="zm mir"><img src="assets/al-p136.jpg" srcset="assets/sm/al-p136.jpg 1100w, assets/al-p136.jpg 1242w" sizes="(max-width: 760px) 94vw, 45vw" loading="lazy" decoding="async" alt="Head table with a full garland of pink and red blooms and tall floral columns" style="width: 100%; height: 400px; object-fit: cover; object-position: center 55%; display: block;"></div></div>
 <div style="display: flex; flex-direction: column; gap: 10px; text-align: center;">
-<h3 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 24px;">Intimate Celebrations</h3>
-<p style="margin: 0; font-size: 15px; line-height: 1.75; color: #4A413C; font-weight: 300;">Elopements, vow renewals and dinners for the people who matter most. Same artistry, smaller guest list.</p>
+<h3 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: 24px;">Coordinator-Led Weddings</h3>
+<p style="margin: 0; font-size: 15px; line-height: 1.75; color: #4A413C; font-weight: 300;">Let your wedding coordinator handle the details. We work with them directly on every floral decision, and you relax and enjoy the process.</p>
 </div>
 </a>
 </div>
@@ -152,15 +158,15 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 <div class="rv" style="display: flex; flex-wrap: wrap; justify-content: space-between; align-items: end; gap: 20px;">
 <div style="display: flex; flex-direction: column; gap: 16px;">
 <p style="margin: 0; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #5E534D; font-weight: 500;">III &nbsp;·&nbsp; The Experience</p>
-<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(27px, 3.2vw, 43px); line-height: 1.06;">From first note <em style="color: {{accent}};">to final petal</em></h2>
+<h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(27px, 3.2vw, 43px); line-height: 1.06;">From first note <em style="color: #8A6A3A;">to final petal</em></h2>
 </div>
 <a class="tl" href="services.html">See the full process</a>
 </div>
 <ol class="exg" style="list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 210px), 1fr)); gap: 35px;">
-<li class="rv" style="display: flex; flex-direction: column; gap: 14px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 51px; line-height: 1; color: {{accent}};">i.</span><span style="height: 1px; background: #C9A97A;"></span><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 19px;">Inquire</span><span style="font-size: 15px; line-height: 1.7; color: #4A413C; font-weight: 300;">Share your date, venue and vision. About five minutes.</span></li>
-<li class="rv" style="display: flex; flex-direction: column; gap: 14px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 51px; line-height: 1; color: {{accent}};">ii.</span><span style="height: 1px; background: #C9A97A;"></span><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 19px;">Consult</span><span style="font-size: 15px; line-height: 1.7; color: #4A413C; font-weight: 300;">A conversation with La Raye about your inspiration and your day.</span></li>
-<li class="rv" style="display: flex; flex-direction: column; gap: 14px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 51px; line-height: 1; color: {{accent}};">iii.</span><span style="height: 1px; background: #C9A97A;"></span><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 19px;">Design</span><span style="font-size: 15px; line-height: 1.7; color: #4A413C; font-weight: 300;">A custom proposal with sketches, palette and line-item pricing.</span></li>
-<li class="rv" style="display: flex; flex-direction: column; gap: 14px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 51px; line-height: 1; color: {{accent}};">iv.</span><span style="height: 1px; background: #C9A97A;"></span><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 19px;">Celebrate</span><span style="font-size: 15px; line-height: 1.7; color: #4A413C; font-weight: 300;">We deliver, install and style it all, then clear it away at night's end.</span></li>
+<li class="rv" style="display: flex; flex-direction: column; gap: 14px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 51px; line-height: 1; color: #8A6A3A;">i.</span><span style="height: 1px; background: #C9A97A;"></span><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 19px;">Inquire</span><span style="font-size: 15px; line-height: 1.7; color: #4A413C; font-weight: 300;">Share your date, venue and vision. About five minutes.</span></li>
+<li class="rv" style="display: flex; flex-direction: column; gap: 14px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 51px; line-height: 1; color: #8A6A3A;">ii.</span><span style="height: 1px; background: #C9A97A;"></span><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 19px;">Consult</span><span style="font-size: 15px; line-height: 1.7; color: #4A413C; font-weight: 300;">A conversation with La Raye about your inspiration and your day.</span></li>
+<li class="rv" style="display: flex; flex-direction: column; gap: 14px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 51px; line-height: 1; color: #8A6A3A;">iii.</span><span style="height: 1px; background: #C9A97A;"></span><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 19px;">Design</span><span style="font-size: 15px; line-height: 1.7; color: #4A413C; font-weight: 300;">A custom proposal with sketches, palette and line-item pricing.</span></li>
+<li class="rv" style="display: flex; flex-direction: column; gap: 14px;"><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: 51px; line-height: 1; color: #8A6A3A;">iv.</span><span style="height: 1px; background: #C9A97A;"></span><span style="font-family: 'Bodoni Moda', Didot, Georgia, serif; font-size: 19px;">Celebrate</span><span style="font-size: 15px; line-height: 1.7; color: #4A413C; font-weight: 300;">We deliver, install and style it all, then clear it away at night's end.</span></li>
 </ol>
 </div>
 </div>
@@ -191,14 +197,14 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 <div style="background: #FFFFFF; padding: 100px clamp(28px, 6vw, 96px); outline: 1px solid #E2CFB0; outline-offset: -18px;">
 <div class="rv" style="display: flex; flex-direction: column; gap: 29px; align-items: center; text-align: center;">
 <img src="assets/tbb-logo-mark.svg" alt="" aria-hidden="true" style="width: auto; height: 73px; display: block;">
-<blockquote style="margin: 0; display: flex; flex-direction: column; gap: 26px; min-height: 176px; justify-content: center;">
+<blockquote class="rvq" style="margin: 0; display: flex; flex-direction: column; gap: 26px; min-height: 176px; justify-content: center;">
 <p style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-style: italic; font-size: clamp(21px, 2.56vw, 32px); line-height: 1.32;">“{{review.quote}}”</p>
 <footer style="font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; color: #6A605A;">{{review.who}}</footer>
 </blockquote>
 <div style="display: flex; align-items: center; gap: 24px;">
 <button type="button" onClick="{{prev}}" aria-label="Previous review" style="width: 48px; height: 48px; border-radius: 999px; border: 1px solid #C9A97A; background: transparent; color: #1F1B19; cursor: pointer; display: flex; align-items: center; justify-content: center;"><svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.4" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 18l-6-6 6-6"></path></svg></button>
 <div style="display: flex; gap: 10px;">
-<sc-for list="{{dots}}" as="d" hint-placeholder-count="3">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="5">
 <span style="{{d.style}}"></span>
 </sc-for>
 </div>
@@ -309,9 +315,11 @@ class Component extends DCLogic {
   renderVals() {
     const accent = this.props.accent ?? '#A3134F';
     const reviews = [
-      { quote: 'La Raye delivered my bouquet to me directly herself with tears in her eyes.', who: 'A Blonde Bouquet bride · via Yelp' },
-      { quote: '[Pull a five-star review from Google that names a specific detail of the flowers.]', who: '[First names] · [Month]' },
-      { quote: '[Pull a five-star review from Yelp about how easy she was to work with.]', who: '[First names] · [Month]' }
+      { quote: "You made my vision come to life. I've never seen such a beautiful set up. It literally was a dream. Thank you so much La Raye.", who: "Kaleigh · June 2026" },
+      { quote: "The flowers were EVERYTHING!!!!!! Thank you so much!!!!!", who: "Megan · June 2026" },
+      { quote: "Thank you soooo much for making my bridal purse so special and adding your creative touch to add the Camellia in there. The florals displayed everywhere were beyond. I'm so grateful and appreciative.", who: "Camellia · September 2026" },
+      { quote: "Thank you La Raye!! Your flowers were absolutely magical. I loved them so so much.", who: "Amanda · September 2026" },
+      { quote: "La Raye delivered my bouquet to me directly herself with tears in her eyes.", who: "A Blonde Bouquet bride · via Yelp" }
     ];
     const n = reviews.length;
     const i = this.state.i;
