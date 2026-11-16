@@ -30,7 +30,8 @@ img{max-width:100%}
 .tapme:hover{transform:translateY(-1px);box-shadow:0 8px 18px -12px rgba(17,20,24,.55)}
 .tapme:active{transform:scale(.98)}
 .rng{display:block;width:100%;height:28px;margin:6px 0 2px;accent-color:#2348E0;cursor:pointer}
-.stick{position:sticky;bottom:0;z-index:5}
+.stick{position:sticky;bottom:0;z-index:5;transition:opacity .15s ease}
+html.at-book .stick{opacity:0;visibility:hidden;pointer-events:none}
 @media (min-width:768px){.stick{display:none !important}}
 @media (prefers-reduced-motion: reduce){.in1,.in2,.in3{animation:none}.tapme{transition:none}}
 button:disabled{opacity:.6;cursor:default}
@@ -39,7 +40,7 @@ button:disabled{opacity:.6;cursor:default}
 #dc-root{min-height:100vh}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
-<script src="lp.js?v=20261113a" defer></script>
+<script src="lp.js?v=20261115a" defer></script>
 </head>
 <body>
 <a class="vh" href="#start">Skip to the page</a>
@@ -63,7 +64,6 @@ button:disabled{opacity:.6;cursor:default}
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
 <a href="#book" class="tapme" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 26px; border-radius: 10px; background: #2348E0; color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600">Book a free call</a>
-<a href="#video" class="tapme" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 22px; border: 1.5px solid #111418; border-radius: 10px; background: #FFFFFF; color: #111418; text-decoration: none; font-size: 18px; font-weight: 600">Get a free video</a>
 </div>
 
 <div style="display: flex; align-items: center; gap: 12px; padding-top: 4px">
@@ -107,8 +107,8 @@ button:disabled{opacity:.6;cursor:default}
 <section id="book" class="dark" style="background: #111418; color: #FFFFFF">
 <div style="max-width: 1160px; margin: 0 auto; padding: clamp(52px, 6vw, 88px) clamp(18px, 4vw, 40px) clamp(28px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: clamp(22px, 3vw, 32px); align-items: flex-start">
 <div style="flex: 1 1 100%; min-width: 0; display: flex; flex-direction: column; gap: 14px">
-<h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(34px, 24px + 2.6vw, 56px); font-weight: 600; line-height: 1.02; letter-spacing: -0.03em; max-width: 900px; text-wrap: balance">Pick a time. I’ll look at your business before we talk.</h2>
-<p style="margin: 0; max-width: 480px; font-size: 18px; color: #C8CCD4">Free, 30 minutes. You’ll leave knowing what I’d fix first, what it costs and whether I’m the right fit.</p>
+<h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(34px, 24px + 2.6vw, 56px); font-weight: 600; line-height: 1.02; letter-spacing: -0.03em; max-width: 900px; text-wrap: balance">Pick a time. Get a complimentary audit.</h2>
+<p style="margin: 0; max-width: 480px; font-size: 18px; color: #C8CCD4">Free, 30 minutes. I go through your ads and website before we talk. You’ll leave knowing what I’d fix first, what it costs and whether I’m the right fit.</p>
 </div>
 <div class="light" style="flex: 1 1 100%; max-width: 900px; min-width: 0; margin: 0; padding: 18px; background: #FFFFFF; color: #111418; border-radius: 16px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 12px">
@@ -123,25 +123,8 @@ button:disabled{opacity:.6;cursor:default}
 </div>
 </div>
 
-<div id="video" style="max-width: 1160px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px) clamp(40px, 5vw, 60px)">
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px 32px; padding: 20px 0 0; border-top: 1px solid #3A3F48">
-<div style="flex: 1 1 320px; min-width: 0">
-<div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">Not ready to talk?</div>
-<div style="font-size: 16px; color: #C8CCD4">Send your company name. I’ll text you a free two-minute video of the first thing I’d fix.</div>
-</div>
-<div style="flex: 1 1 340px; max-width: 480px; min-width: 0">
+<div style="height: clamp(24px, 3vw, 40px)"></div>
 
-<form style="display: flex; flex-wrap: wrap; gap: 8px; margin: 0">
-<label for="co1" style="position: absolute; width: 1px; height: 1px; overflow: hidden; clip-path: inset(50%)">Company name</label>
-<input id="co1" type="text" autocomplete="organization" placeholder="Your company name" value="" style="flex: 1 1 200px; min-width: 0; min-height: 56px; box-sizing: border-box; padding: 0 16px; font-size: 17px; border: 0; border-radius: 10px; background: #FFFFFF; color: #111418">
-<button type="submit" class="tapme" style="flex: 1 0 auto; min-height: 56px; padding: 0 22px; border: 0; border-radius: 10px; background: #FFD84A; color: #111418; font-size: 17px; font-weight: 700">Text me the video</button>
-</form>
-
-
-
-</div>
-</div>
-</div>
 </section>
 
 
@@ -385,7 +368,6 @@ button:disabled{opacity:.6;cursor:default}
 
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
 <a href="#book" class="tapme" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 26px; border-radius: 10px; background: #2348E0; color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600">Book a free call</a>
-<a href="#video" class="tapme" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 22px; border: 1.5px solid #111418; border-radius: 10px; background: #FFFFFF; color: #111418; text-decoration: none; font-size: 18px; font-weight: 600">{{altBtn}}</a>
 </div>
 
 <div style="display: flex; align-items: center; gap: 12px; padding-top: 4px">
@@ -501,7 +483,9 @@ button:disabled{opacity:.6;cursor:default}
 </div>
 </div>
 
-<div id="video" style="max-width: 1160px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px) clamp(40px, 5vw, 60px)">
+<sc-if value="{{grow}}" hint-placeholder-val="{{ true }}"><div style="height: clamp(24px, 3vw, 40px)"></div></sc-if>
+<sc-if value="{{web}}" hint-placeholder-val="{{ false }}">
+<div id="draft" style="max-width: 1160px; margin: 0 auto; padding: 0 clamp(18px, 4vw, 40px) clamp(40px, 5vw, 60px)">
 <div style="display: flex; flex-wrap: wrap; align-items: center; gap: 14px 32px; padding: 20px 0 0; border-top: 1px solid #3A3F48">
 <div style="flex: 1 1 320px; min-width: 0">
 <div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 24px; font-weight: 600; letter-spacing: -0.02em; line-height: 1.15">{{altH}}</div>
@@ -531,6 +515,7 @@ button:disabled{opacity:.6;cursor:default}
 </div>
 </div>
 </div>
+</sc-if>
 </section>
 
 <!-- What I do -->

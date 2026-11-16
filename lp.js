@@ -248,6 +248,14 @@ function kwTopic(kw, web, home = "Roseville", def = "") {
   if (!k) return "Google Ads management in " + home;
   return "Marketing for contractors";
 }
+/** What the complimentary audit covers, matched to the ad they clicked. */
+function auditWhat(kw) {
+  const k = String(kw == null ? "" : kw).toLowerCase();
+  if (kwMeta(k)) return "Facebook ads and website";
+  if (/google ads|adwords|ppc/.test(k)) return "Google Ads and website";
+  if (k) return "Google listing and website";
+  return "ads and website";
+}
 /* What owners say. The ones they tap ride along with the lead as "said". */
 const PAINS = {
   websites: ["Customers look me up, then call the next guy.", "My site looks like 2015.", "I paid a web designer and got a template.", "I don’t have a website yet."],
@@ -291,6 +299,7 @@ function selfTest() {
     ["kwTopic page topic", kwTopic("", false, "Sacramento", "Digital marketing in Sacramento") === "Digital marketing in Sacramento"],
     ["kwTopic never prints agency, company or near me", ["digital marketing agency sacramento", "marketing agency near me", "marketing companies sacramento", "advertising agency sacramento", "web design company sacramento", "website design near me", "web designer near me", "marketing company roseville"].every((x) => !/agenc|compan|near me/i.test(kwTopic(x, false, "Sacramento") + kwTopic(x, true, "Sacramento")))],
     ["kwMeta", kwMeta("Instagram ads management") === true && kwMeta("google ads") === false],
+    ["auditWhat follows the ad", auditWhat("facebook ads agency") === "Facebook ads and website" && auditWhat("google ads management roseville") === "Google Ads and website" && auditWhat("marketing agency near me") === "Google listing and website" && auditWhat("") === "ads and website"],
     ["quoteLeak", quoteLeak(20, 5000) === 10000],
     ["six growth pains, four website pains", PAINS.growth.length === 6 && PAINS.websites.length === 4]
   ];
@@ -467,7 +476,6 @@ class Component extends DCLogic {
       lede: web
         ? "I’m a Roseville local. I build yours first, and you pay only if you want it live."
         : "I’m a Roseville local. I run your ads and build the page behind them, then help you turn more of those leads into booked jobs.",
-      altBtn: web ? "Build mine first" : "Get a free video",
 
       today: !st.engine, engine: st.engine,
       mockId: st.engine ? "mock-b" : "mock-a",
@@ -480,13 +488,13 @@ class Component extends DCLogic {
         ? (st.engine ? "Built first. You pay only if you want it live." : "What a customer sees when they look you up.")
         : (st.engine ? "You never left the job. The work got booked anyway." : "You were on a job the whole time."),
 
-      bookH: web ? "Pick a time. I’ll build yours before you pay." : "Pick a time. I’ll look at your business before we talk.",
-      bookSub: web ? "Free, 30 minutes. One flat price, and you hear it before I build." : "Free, 30 minutes. You’ll leave knowing what I’d fix first, what it costs and whether I’m the right fit.",
+      bookH: web ? "Pick a time. I’ll build yours before you pay." : "Pick a time. Get a complimentary audit.",
+      bookSub: web ? "Free, 30 minutes. One flat price, and you hear it before I build." : "Free, 30 minutes. I go through your " + auditWhat(kw) + " before we talk. You’ll leave knowing what I’d fix first, what it costs and whether I’m the right fit.",
       hasCal: !!LP.CAL_LINK && !st.calDown, noCal: !LP.CAL_LINK || st.calDown,
       bookingUrl: LP.BOOKING_URL || "#", bookClick: () => track("booking_click", { from: "page" }),
-      altH: web ? "Rather see it first?" : "Not ready to talk?",
-      altSub: web ? "Send your company name. I’ll build a first draft and text you the link." : "Send your company name. I’ll text you a free two-minute video of the first thing I’d fix.",
-      cta: web ? "Build mine" : "Text me the video",
+      altH: "Rather see it first?",
+      altSub: "Send your company name. I’ll build a first draft and text you the link.",
+      cta: "Build mine",
       company: st.company, phone: st.phone, trap: st.trap,
       err: !!st.err, errMsg: st.err, sendFail: st.sendFail, smsHref: smsHref(co, PAGE),
       sendLabel: st.sending ? "Sending" : "Text it to me",
@@ -568,6 +576,20 @@ function initSent() {
   captureAd(); initTracking();
   if (document.getElementById("dc-tpl")) DCLite.mount(Component, {});
   initSent();
+  /* Phone bottom bar steps aside while the calendar section is on screen. */
+  if (document.getElementById("dc-tpl")) {
+    let queued = false;
+    const check = () => {
+      queued = false;
+      const b = document.getElementById("book"); if (!b) return;
+      const r = b.getBoundingClientRect(), h = window.innerHeight || 0;
+      document.documentElement.classList.toggle("at-book", r.top < h * 0.6 && r.bottom > h * 0.4);
+    };
+    const ask = () => { if (!queued) { queued = true; requestAnimationFrame(check); } };
+    window.addEventListener("scroll", ask, { passive: true });
+    window.addEventListener("resize", ask);
+    ask();
+  }
   document.addEventListener("click", (e) => {
     const a = e.target.closest && e.target.closest("a[href^='tel:'], a[href^='sms:']");
     if (a) track(a.href.indexOf("tel:") === 0 ? "phone_tap" : "text_tap");
