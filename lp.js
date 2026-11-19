@@ -177,7 +177,7 @@ const LP = {
   GOOGLE_ADS_ID: "AW-18498275090",          // "AW-XXXXXXXXXX"
   GOOGLE_ADS_LEAD_LABEL: "wUHYCJO2rLUdEJKO1fRE",  // label of the lead conversion. A sent form and a booked call both count as one lead.
   GOOGLE_ADS_CALL_LABEL: "",  // optional: label of "Calls from website"
-  GOOGLE_ADS_TEXT_LABEL: "",  // label of "Text tap (website)", a secondary action. Empty keeps it off.
+  GOOGLE_ADS_TEXT_LABEL: "nAH1CJWX2LsdEJKO1fRE",  // label of "Text tap (website)", a secondary action. Empty keeps it off.
   CLARITY_ID: "zbt543g7fb",  // Microsoft Clarity project "Garrison Cole"
   BOOKING_URL: "https://cal.com/garrison-cole/call",  // Cal.com booking page, used by the fallback link and the sent page.
   CAL_LINK: "garrison-cole/call",  // the same event, for the calendar that sits on the page. Empty leaves only the link.
