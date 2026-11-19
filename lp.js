@@ -177,11 +177,15 @@ const LP = {
   GOOGLE_ADS_ID: "AW-18498275090",          // "AW-XXXXXXXXXX"
   GOOGLE_ADS_LEAD_LABEL: "wUHYCJO2rLUdEJKO1fRE",  // label of the lead conversion. A sent form and a booked call both count as one lead.
   GOOGLE_ADS_CALL_LABEL: "",  // optional: label of "Calls from website"
+  GOOGLE_ADS_TEXT_LABEL: "",  // label of "Text tap (website)", a secondary action. Empty keeps it off.
   CLARITY_ID: "zbt543g7fb",  // Microsoft Clarity project "Garrison Cole"
   BOOKING_URL: "https://cal.com/garrison-cole/call",  // Cal.com booking page, used by the fallback link and the sent page.
   CAL_LINK: "garrison-cole/call",  // the same event, for the calendar that sits on the page. Empty leaves only the link.
   PHONE: "+17606444559",
-  PHONE_SHOWN: "760-644-4559"
+  PHONE_SHOWN: "760-644-4559",
+  /* One owner's words, shown under the calendar on every landing page. Empty text shows nothing.
+     who is a description with no name, for example "Owner, demolition company, Roseville". */
+  QUOTE: { text: "", who: "" }
 };
 
 /* ---------- Pure functions. Add ?test to the URL to run the checks. ---------- */
@@ -208,9 +212,15 @@ function nextDay(dayIndex) {
   while (k === 0 || k === 6) k = (k + 1) % 7;
   return WD[k];
 }
+/* What a Text button types for them, so Garrison can tell which page a text came from. */
+const SMS_ASK = {
+  websites: "I'd like to talk about a website for my business.",
+  growth: "I'd like the complimentary audit.",
+  other: "I was on your site and have a question."
+};
 function smsHref(co, page) {
-  const what = page === "websites" ? "I'd like to see a first draft of a site" : "I'd like the free two-minute video";
-  const body = "Hi Garrison, " + (co ? "this is " + co + ". " : "") + what + ".";
+  const what = SMS_ASK[page] || SMS_ASK.other;
+  const body = "Hi Garrison, " + (co ? "this is " + co + ". " : "") + what;
   return "sms:" + LP.PHONE + "?&body=" + encodeURIComponent(body);
 }
 /* ---------- What they searched decides the words they read ---------- */
@@ -261,6 +271,13 @@ const PAINS = {
   websites: ["Customers look me up, then call the next guy.", "My site looks like 2015.", "I paid a web designer and got a template.", "I don’t have a website yet."],
   growth: ["The phone rings while I’m on a job.", "I pay Angi for leads three other guys get.", "Quotes go out and I never hear back.", "Slammed in spring, dead in winter.", "My last marketing company sent impression reports.", "They’re getting three bids and I flinch on price."]
 };
+/* Home page: tap the one that sounds like you. Each points to the page that answers it. */
+const HOME_OPTS = [
+  { t: "My website looks dated, or I don’t have one.", line: "I build yours first, and you pay only if you want it live.", href: "websites", label: "See how websites work" },
+  { t: "Customers look me up, then call the next guy.", line: "Your best work and reviews go up top, with one button to reach you.", href: "websites", label: "See how websites work" },
+  { t: "I pay for leads three other companies get.", line: "Your own Google ads put you in front of people searching your trade and your town.", href: "growth", label: "See how I run ads" },
+  { t: "Quotes go out and I never hear back.", line: "Follow-up that keeps running while you’re on a job.", href: "growth", label: "See how I run ads" }
+];
 const JOB_STOPS = [150, 250, 400, 600, 800, 1000, 1500, 2000, 2500, 3000, 4000, 5000, 6500, 8000, 10000, 12500, 15000, 20000, 30000, 50000];
 /** Same math as the Quote Leak Calculator on the home page: follow-up closes about one more quote in ten. */
 const quoteLeak = (quotes, job) => quotes * job * 0.10;
@@ -278,6 +295,8 @@ function selfTest() {
     ["dueDay Thursday", dueDay(4) === "Monday"],
     ["nextDay Friday", nextDay(5) === "Monday"],
     ["smsHref encodes", smsHref("A&B Fence", "websites").includes("A%26B%20Fence")],
+    ["smsHref says the page", decodeURIComponent(smsHref("", "growth")).includes("complimentary audit") && decodeURIComponent(smsHref("", "websites")).includes("a website") && decodeURIComponent(smsHref("", "home")).includes("a question")],
+    ["no text asks for a video", !["websites", "growth", "home"].some((pg) => /video/i.test(decodeURIComponent(smsHref("", pg))))],
     ["kwPlace finds the town", kwPlace("website design el dorado hills") === "El Dorado Hills"],
     ["kwPlace none", kwPlace("web designer near me") === ""],
     ["kwTopic web with town", kwTopic("website design sacramento", true) === "Website design in Sacramento"],
@@ -323,6 +342,15 @@ function track(name, params) {
     if (typeof window.gtag === "function") window.gtag("event", name, Object.assign({ lp: PAGE }, params || {}));
     if (typeof window.clarity === "function") window.clarity("event", name);
   } catch (e) { /* tracking never breaks the page */ }
+}
+/* A tap on a Text button. Counted once per page view, as a secondary action, because a tap is not a sent message. */
+let textCounted = false;
+function textConversion() {
+  if (textCounted) return;
+  textCounted = true;
+  if (LP.GOOGLE_ADS_ID && LP.GOOGLE_ADS_TEXT_LABEL && typeof window.gtag === "function") {
+    window.gtag("event", "conversion", { send_to: LP.GOOGLE_ADS_ID + "/" + LP.GOOGLE_ADS_TEXT_LABEL });
+  }
 }
 function leadConversion() {
   if (LP.GOOGLE_ADS_ID && LP.GOOGLE_ADS_LEAD_LABEL && typeof window.gtag === "function") {
@@ -375,7 +403,7 @@ class Component extends DCLogic {
     this.state = {
       company: cleanName(q.get("co")) || saved.company || "",
       phone: "", step: 1, err: "", sending: false, sendFail: false, trap: "",
-      engine: false, picks: [], q: 12, jobIdx: 8, ranCalc: false, calDown: false
+      engine: PAGE === "websites", picks: [], pick: -1, q: 12, jobIdx: 8, ranCalc: false, calDown: false
     };
   }
   keep() { store.set("gc-lp5", { company: this.state.company }); }
@@ -431,9 +459,9 @@ class Component extends DCLogic {
     this.setState({ err: "", sendFail: false, sending: true });
     const co = cleanName(s.company), web = PAGE === "websites";
     const body = Object.assign({
-      _subject: (web ? "Website draft request: " : "Video request: ") + co,
+      _subject: (web ? "Website draft request: " : "Audit request: ") + co,
       company: co, phone: formatPhone(d),
-      wants: web ? "Build-first website draft" : "Free two-minute video"
+      wants: web ? "Build-first website draft" : "Complimentary audit"
     }, this.context());
     try {
       const r = await postLead(body);
@@ -457,7 +485,7 @@ class Component extends DCLogic {
       this.setState({ picks: at === -1 ? cur.concat([i]) : cur.filter((x) => x !== i) });
       track("pain_pick", { n: i + 1, on: at === -1 });
     };
-    const noun = web ? "first draft" : "video";
+    const noun = web ? "first draft" : "audit";
     const today = new Date(new Date().toLocaleString("en-US", { timeZone: "America/Los_Angeles" })).getDay();
     const next = (e) => {
       e.preventDefault();
@@ -476,6 +504,11 @@ class Component extends DCLogic {
       lede: web
         ? "I’m a Roseville local. I build yours first, and you pay only if you want it live."
         : "I’m a Roseville local. I run your ads and build the page behind them, then help you turn more of those leads into booked jobs.",
+
+      hasQuote: !!(LP.QUOTE && LP.QUOTE.text), quoteText: (LP.QUOTE && LP.QUOTE.text) || "", quoteWho: (LP.QUOTE && LP.QUOTE.who) || "",
+      workClick: () => track("work_open"),
+      homeOpts: HOME_OPTS.map((o, i) => ({ t: o.t, on: st.pick === i, off: st.pick !== i, pick: () => { this.setState({ pick: i }); track("home_pick", { n: i + 1 }); } })),
+      hasPick: st.pick > -1, pickLine: (HOME_OPTS[st.pick] || {}).line || "", pickHref: (HOME_OPTS[st.pick] || {}).href || "#book", pickLabel: (HOME_OPTS[st.pick] || {}).label || "",
 
       today: !st.engine, engine: st.engine,
       mockId: st.engine ? "mock-b" : "mock-a",
@@ -556,7 +589,7 @@ function initSent() {
   if (s && s.co) $("[data-sent-title]").textContent = "Got it, " + s.co + ".";
   $("[data-sent-line]").textContent = (web
     ? "I'll text you by " + nextDay(today) + " to grab a few photos, and I start on your first draft from there."
-    : "Your two-minute video is due " + dueDay(today) + ". I'll text it to you.")
+    : "I'll text you by " + dueDay(today) + " to set up your complimentary audit.")
     + (s && s.last4 ? " It's coming to the number ending in " + s.last4 + ", from " + LP.PHONE_SHOWN + "." : "");
   document.querySelectorAll("[data-sent-for]").forEach((n) => { n.hidden = n.dataset.sentFor !== (web ? "websites" : "growth"); });
   const book = $("[data-book]");
@@ -592,7 +625,10 @@ function initSent() {
   }
   document.addEventListener("click", (e) => {
     const a = e.target.closest && e.target.closest("a[href^='tel:'], a[href^='sms:']");
-    if (a) track(a.href.indexOf("tel:") === 0 ? "phone_tap" : "text_tap");
+    if (!a) return;
+    if (a.href.indexOf("tel:") === 0) { track("phone_tap"); return; }
+    track("text_tap");
+    textConversion();
   });
   if (new URLSearchParams(location.search).has("test")) console.log("lp self-test " + (selfTest() ? "passed" : "FAILED"));
 })();
