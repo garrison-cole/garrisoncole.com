@@ -21,31 +21,19 @@
     if (extra) list.push(extra);
     var n = list.length;
     var hasTemplate = list.indexOf('a coach who sent a template') !== -1;
-    var out = { state: 'empty', count: n, lead: 'tap a few.', rest: 'then see what we\'d tell you.' };
+    /* Avery's copy (Nov 20 2026). Her one result line shows as soon as anything is tapped. */
+    var out = { state: 'empty', count: n, lead: 'Tap a few & let me give ya some thoughts', rest: '', extra: '' };
     if (n === 0) return out;
-    if (n <= 2) {
-      out.state = 'few';
-      out.lead = list.join(' and ') + '.';
-      out.rest = 'you tried, it didn\'t stick, and you\'re still out here looking for the thing that will, which is exactly the kind of woman we love coaching.';
-    } else if (n <= 5) {
-      out.state = 'some';
-      out.lead = n + ' different plans.';
-      out.rest = 'every one of them asked you to eat less and want it more, and you showed up for every single one, so effort like that deserves a plan built around your actual week.';
-    } else {
-      out.state = 'many';
-      out.lead = n + ' different plans, which is years.';
-      out.rest = 'years of showing up, and you\'re still here reading, which tells us a lot about how you\'d do once you finally have real support in your corner.';
-    }
-    if (hasTemplate) out.rest += ' and that template one always stings, which is why your protocol gets written for your week and rewritten whenever your week changes.';
+    out.state = n <= 2 ? 'few' : n <= 5 ? 'some' : 'many';
+    out.lead = 'Every one of these handed you more rules.';
+    out.rest = 'Not one of them asked about your job, your stress, your cycle or your kids. Tell us everything you tapped on your application and we\'ll build the plan that does :)';
+    if (hasTemplate) out.extra = 'And that template one always stings, which is why your protocol gets written for your week and rewritten whenever your week changes.';
     return out;
   }
-  /* Test cases, worked by hand:
-     triedItAll(['keto','75 Hard','macro tracking','a coach who sent a template'])
-       -> state 'some', count 4, lead '4 different plans.', rest ends with the template line.
-     triedItAll([]) -> state 'empty', lead 'tap a few.'
-     triedItAll(['fasting']) -> state 'few', lead 'fasting.'
-     triedItAll(['keto','other'], 'the soup diet') -> state 'few', lead 'keto and the soup diet.'
-     triedItAll(seven chips) -> state 'many', lead '7 different plans, which is years.' */
+  /* Test cases:
+     triedItAll([]) -> state 'empty', lead 'Tap a few & let me give ya some thoughts', rest ''.
+     triedItAll(['fasting']) -> state 'few', lead 'Every one of these handed you more rules.', extra ''.
+     triedItAll(['keto','75 Hard','macro tracking','a coach who sent a template']) -> state 'some', extra is the template line. */
 
   function countBucket(n) { return n === 0 ? '0' : n <= 2 ? '1-2' : n <= 5 ? '3-5' : '6+'; }
   /* countBucket(0) '0', countBucket(2) '1-2', countBucket(4) '3-5', countBucket(9) '6+' */
@@ -91,77 +79,77 @@
   var STORIES = {
     olivia: {
       id: 'olivia', name: 'Olivia', coach: '', title: '"I\'m not sure I\'m capable" turned bloat free baddie',
-      meta: 'overnight nurse, over a year with us',
-      quote: 'the mentality to believe that I am capable of achieving my fitness goals', quoteNote: 'from her application, on what was stopping her',
+      meta: 'Overnight nurse, over a year with us',
+      quote: 'The mentality to believe that I am capable of achieving my fitness goals', quoteNote: 'From her application, on what was stopping her',
       imgs: ['client-olivia-01', 'client-olivia-02'],
       stops: [
-        { when: 'when she applied', text: 'an overnight nurse working long shifts with PCOS and limited time, running on fumes.', kind: 'life', img: 0 },
-        { when: 'her application', text: 'she wasn\'t sure she was capable of reaching her goals, and she wrote that down in almost those exact words.', kind: 'mind' },
-        { when: 'along the way', text: 'she went through a breakup, a cross country move and a few job changes, and not one of them stopped her.', kind: 'life' },
-        { when: 'the food', text: 'she\'s eating 1,200+ more calories a day and training on a structured 3 day split.', kind: 'food', img: 1 },
-        { when: 'over a year in', text: 'and her fat loss phase hasn\'t even started yet.', kind: 'next', img: 1 }
+        { when: 'When she applied', text: 'An overnight nurse working long shifts with PCOS and limited time, running on fumes.', kind: 'life', img: 0 },
+        { when: 'Her application', text: 'She wasn\'t sure she was capable of reaching her goals, and she wrote that down in almost those exact words.', kind: 'mind' },
+        { when: 'Along the way', text: 'She went through a breakup, a cross country move and a few job changes, and not one of them stopped her.', kind: 'life' },
+        { when: 'The food', text: 'She\'s eating 1,200+ more calories a day and training on a structured 3 day split.', kind: 'food', img: 1 },
+        { when: 'Over a year in', text: 'And her fat loss phase hasn\'t even started yet.', kind: 'next', img: 1 }
       ],
       source: 'freelyfitcoaching.com/transformations'
     },
     maddie: {
       id: 'maddie', name: 'Maddie', coach: '', title: 'Down 30lbs & ditched her meds',
-      meta: 'started as a beginner',
+      meta: 'Started as a beginner',
       imgs: ['client-maddie-01', 'client-maddie-02'],
       stops: [
-        { when: 'when she started', text: 'a beginner who grew up in a chronic dieting household and wanted strength and fat loss without ever feeling restricted.', kind: 'life', img: 0 },
-        { when: 'the first several months', text: 'we spent those months on sleep, overall calories and movement outside the gym so the foundation came first.', kind: 'training' },
-        { when: 'along the way', text: 'she navigated a job transition, a surgery, seasons of mental health struggles and coming off her medications.', kind: 'life' },
-        { when: 'the food', text: 'she learned that all foods fit and tried several new fruits and veggies she never thought she would.', kind: 'food', img: 1 },
-        { when: 'now', text: 'she\'s 30 lbs down and off several medications.', kind: 'scale', img: 1 }
+        { when: 'When she started', text: 'A beginner who grew up in a chronic dieting household and wanted strength and fat loss without ever feeling restricted.', kind: 'life', img: 0 },
+        { when: 'The first several months', text: 'We spent those months on sleep, overall calories and movement outside the gym so the foundation came first.', kind: 'training' },
+        { when: 'Along the way', text: 'She navigated a job transition, a surgery, seasons of mental health struggles and coming off her medications.', kind: 'life' },
+        { when: 'The food', text: 'She learned that all foods fit and tried several new fruits and veggies she never thought she would.', kind: 'food', img: 1 },
+        { when: 'Now', text: 'She\'s 30 lbs down and off several medications.', kind: 'scale', img: 1 }
       ],
       source: 'freelyfitcoaching.com/transformations'
     },
     jauc: {
       id: 'jauc', name: 'Jauc', coach: 'Kae', title: 'Recomp queen',
-      meta: 'three phases',
+      meta: 'Three phases',
       imgs: ['client-jauc-01', 'client-jauc-02', 'client-jauc-03', 'client-jauc-05'],
       stops: [
-        { when: 'when she joined', text: 'she\'d already done her own building phase and came in ready for a deficit.', kind: 'training', img: 0 },
-        { when: 'deficit one, with Kae', text: 'she and Kae ran her first deficit together and she lost 20 lbs.', kind: 'scale', img: 1 },
-        { when: 'building phase', text: 'she gained 15 back on purpose, kept 5 of the 20 off and looks incredibly different.', kind: 'training', img: 2 },
-        { when: 'now', text: 'she\'s halfway through her second deficit, 3 lbs above her previous low with a lot more muscle.', kind: 'scale', img: 3 }
+        { when: 'When she joined', text: 'She\'d already done her own building phase and came in ready for a deficit.', kind: 'training', img: 0 },
+        { when: 'Deficit one, with Kae', text: 'She and Kae ran her first deficit together and she lost 20 lbs.', kind: 'scale', img: 1 },
+        { when: 'Building phase', text: 'She gained 15 back on purpose, kept 5 of the 20 off and looks incredibly different.', kind: 'training', img: 2 },
+        { when: 'Now', text: 'She\'s halfway through her second deficit, 3 lbs above her previous low with a lot more muscle.', kind: 'scale', img: 3 }
       ],
       source: 'freelyfitcoaching.com/transformations'
     },
     mama: {
       id: 'mama', name: 'Ashley', coach: 'Ave', title: 'From "You can\'t have kids" to muscle mommy',
-      meta: 'postpartum mom, 25 lbs down',
-      quote: 'Before I joined FreelyFit, my hormones were all messed up and so was my fertility.', quoteNote: 'in her words',
+      meta: 'Postpartum mom, 25 lbs down',
+      quote: 'Before I joined FreelyFit, my hormones were all messed up and so was my fertility.', quoteNote: 'In her words',
       imgs: ['client-mama-01', 'client-mama-02'],
       stops: [
-        { when: 'before', text: '"my hormones were all messed up and so was my fertility."', kind: 'life', img: 0 },
-        { when: 'with FreelyFit', text: '"Freely Fit is what helped my body get to where I am today."', kind: 'mind', img: 1 },
+        { when: 'Before', text: '"My hormones were all messed up and so was my fertility."', kind: 'life', img: 0 },
+        { when: 'With FreelyFit', text: '"Freely Fit is what helped my body get to where I am today."', kind: 'mind', img: 1 },
         { when: 'Riley', text: '"...the business she built helped bless me with Riley. And that\'s pretty dang special."', kind: 'life', img: 1 },
-        { when: 'now', text: 'a postpartum mom who has lost 25 lbs since.', kind: 'scale', img: 1 }
+        { when: 'Now', text: 'A postpartum mom who has lost 25 lbs since.', kind: 'scale', img: 1 }
       ],
       source: 'freelyfitcoaching.com/transformations'
     },
     madi: {
       id: 'madi', name: 'Madi', coach: '', title: 'Food fear to food freedom',
-      meta: '"a hard and long road", 20 lbs gained',
+      meta: '"A hard and long road", 20 lbs gained',
       imgs: ['client-madi-01', 'client-madi-02'],
       stops: [
-        { when: 'when she came in', text: 'she was afraid of food and afraid of getting bigger, and her social life had been traded for physical results.', kind: 'mind', img: 0 },
-        { when: 'the approach', text: 'we put the "less is more" approach to the test with her.', kind: 'training' },
-        { when: 'the food', text: 'she\'s eating 700+ more calories a day and has gained 20 lbs.', kind: 'food', img: 1 },
-        { when: 'now', text: 'she goes out to eat with friends, tries a new food every week and eats meals she doesn\'t track at all.', kind: 'life', img: 1 }
+        { when: 'When she came in', text: 'She was afraid of food and afraid of getting bigger, and her social life had been traded for physical results.', kind: 'mind', img: 0 },
+        { when: 'The approach', text: 'We put the "less is more" approach to the test with her.', kind: 'training' },
+        { when: 'The food', text: 'She\'s eating 700+ more calories a day and has gained 20 lbs.', kind: 'food', img: 1 },
+        { when: 'Now', text: 'She goes out to eat with friends, tries a new food every week and eats meals she doesn\'t track at all.', kind: 'life', img: 1 }
       ],
       source: 'freelyfitcoaching.com/transformations'
     },
     jasmine: {
       id: 'jasmine', name: 'Jasmine', coach: '', title: 'Balancing work, a masters program & motherhood while dropping over 20lbs',
-      meta: 'mom, full time job, master\'s degree, a year',
+      meta: 'Mom, full time job, master\'s degree, a year',
       imgs: ['client-jasmine-01', 'client-jasmine-02'],
       stops: [
-        { when: 'when she came in', text: 'she\'s a mom working full time while getting her master\'s, and she was frustrated that nothing was moving.', kind: 'life', img: 0 },
-        { when: 'the food', text: 'we brought her intake up almost 400 calories a day.', kind: 'food' },
-        { when: 'the phase', text: 'then she went through a fat loss phase with routines that still leave time for her family and school.', kind: 'training' },
-        { when: 'a year later', text: 'she\'s down 20+ lbs, with inches off her waist, arms and legs.', kind: 'scale', img: 1 }
+        { when: 'When she came in', text: 'She\'s a mom working full time while getting her master\'s, and she was frustrated that nothing was moving.', kind: 'life', img: 0 },
+        { when: 'The food', text: 'We brought her intake up almost 400 calories a day.', kind: 'food' },
+        { when: 'The phase', text: 'Then she went through a fat loss phase with routines that still leave time for her family and school.', kind: 'training' },
+        { when: 'A year later', text: 'She\'s down 20+ lbs, with inches off her waist, arms and legs.', kind: 'scale', img: 1 }
       ],
       source: 'freelyfitcoaching.com/transformations'
     }
@@ -171,24 +159,24 @@
   var CAPTIONS = [
     { t: 'I cut a single slice. I ate it slowly. I enjoyed every bite. Every action that followed was normal.', by: '@averyweiler', d: 'Oct 2026', u: 'https://www.instagram.com/averyweiler/reel/De3dz3NRrDK/' },
     { t: 'Come for the training/ nutrition but stay because we will ultimately end up navigating new jobs, weddings, pregnancies, postpartum, cross country moves, burnout and approximately 400 life crises together lol.', by: '@freelyfitcoaching', d: 'Oct 2026', u: 'https://www.instagram.com/freelyfitcoaching/p/De9xSPiGtnU/' },
-    { t: 'coaches aren\'t perfect & if you saw our meal logs I think you\'d breathe a sigh of relief <3', by: 'Coach Kae', d: 'Jun 2026', u: 'https://www.instagram.com/freelyfitcoaching/reel/DZYhZzJgpI-/' },
+    { t: 'Coaches aren\'t perfect & if you saw our meal logs I think you\'d breathe a sigh of relief <3', by: 'Coach Kae', d: 'Jun 2026', u: 'https://www.instagram.com/freelyfitcoaching/reel/DZYhZzJgpI-/' },
     { t: 'The bravest thing I ever did was stop trying to figure it all out alone.', by: 'Coach Alecia', d: 'Jun 2025', u: 'https://www.instagram.com/alecia.lifts/p/DKxg_FqzfnS/' },
     { t: 'So you had a bad week. does that mean the progress is gone? You\'re back to where you started? You have to start over?', by: 'Coach Ciera', d: 'Jul 2026', u: 'https://www.instagram.com/ciera.lord/reel/DbWhMmKpXBr/' },
     { t: 'Sometimes I say yes to exactly what I want. Most of the time I make a version at home, or enhance the version I really want by adding a protein or veg to it.', by: '@averyweiler', d: 'Nov 2026', u: 'https://www.instagram.com/averyweiler/p/DfbWzkLFsJA/' },
-    { t: 'just because it may be slow, doesn\'t mean it isn\'t happening. so take the pictures, collect the data & keep showing up my girl.', by: 'Coach Kae', d: 'Apr 2026', u: 'https://www.instagram.com/kaelaromano/p/DXpslT1jxDU/' },
+    { t: 'Just because it may be slow, doesn\'t mean it isn\'t happening. so take the pictures, collect the data & keep showing up my girl.', by: 'Coach Kae', d: 'Apr 2026', u: 'https://www.instagram.com/kaelaromano/p/DXpslT1jxDU/' },
     { t: 'Your progress is actually built during the messy weeks', by: 'Coach Alecia', d: 'Jun 2026', u: 'https://www.instagram.com/alecia.lifts/reel/DZqSrdLhQRr/' },
     { t: 'My gal has been working with me for the last 4 years, and I\'ve loved every season of it.', by: 'Coach Ang', d: 'Oct 2026', u: 'https://www.instagram.com/freelyfitcoaching/p/DezeED8mkzV/' },
     { t: 'What if I told you trying on dresses becomes fun. Going out dressed up doesn\'t lead to a spiral.', by: '@averyweiler', d: 'Jul 2026', u: 'https://www.instagram.com/averyweiler/reel/Daozsory10g/' },
-    { t: 'The girl who goes on vacation without spiraling. The girl who knows one meal doesn\'t erase weeks of consistency.', by: 'for Coach Alecia\'s client', d: 'Aug 2026', u: 'https://www.instagram.com/freelyfitcoaching/p/DctktpGj50V/' },
+    { t: 'The girl who goes on vacation without spiraling. The girl who knows one meal doesn\'t erase weeks of consistency.', by: 'For Coach Alecia\'s client', d: 'Aug 2026', u: 'https://www.instagram.com/freelyfitcoaching/p/DctktpGj50V/' },
     { t: '& honestly time passes whether you use it or not. Might as well use it to become the most confident version of yourself', by: 'Coach Ciera', d: 'Aug 2026', u: 'https://www.instagram.com/ciera.lord/reel/DcencDuRphO/' },
     { t: 'The woman who for the first time in 10 years took time completely off of the gym (and work) and didn\'t spiral.', by: '@averyweiler', d: 'Aug 2026', u: 'https://www.instagram.com/averyweiler/reel/DcB5WbSxbV7/' },
     { t: 'It\'s the women who learned how to navigate a hard week instead of starting over on Monday.', by: '@freelyfitcoaching', d: 'Jun 2026', u: 'https://www.instagram.com/freelyfitcoaching/p/Dads2ChlDu7/' },
-    { t: 'if you\'re wanting to come back home to yourself too, you know where to find us', by: 'Coach Kae', d: 'Jun 2026', u: 'https://www.instagram.com/kaelaromano/p/DZDv9H6D7Vj/' },
-    { t: 'you are always in the process of becoming.', by: '@freelyfitcoaching', d: 'Sep 2026', u: 'https://www.instagram.com/freelyfitcoaching/reel/DcwwN4oAYZZ/' },
+    { t: 'If you\'re wanting to come back home to yourself too, you know where to find us', by: 'Coach Kae', d: 'Jun 2026', u: 'https://www.instagram.com/kaelaromano/p/DZDv9H6D7Vj/' },
+    { t: 'You are always in the process of becoming.', by: '@freelyfitcoaching', d: 'Sep 2026', u: 'https://www.instagram.com/freelyfitcoaching/reel/DcwwN4oAYZZ/' },
     { t: 'The first step to achieving any goal is believing you can. The second step is having a good strategy', by: 'Coach Ciera', d: 'Jun 2026', u: 'https://www.instagram.com/ciera.lord/reel/DZGXQxJJse-/' },
     { t: 'I\'m throwing absolutely NO shade if I see some Reese\'s in there or dessert before dinner. in fact, we want to see that.', by: 'Coach Kae', d: 'Jun 2026', u: 'https://www.instagram.com/freelyfitcoaching/reel/DZYhZzJgpI-/' },
-    { t: 'Health is supposed to fit into every season of life.', by: 'for Avery\'s client Lauren', d: 'Aug 2026', u: 'https://www.instagram.com/freelyfitcoaching/p/DdZWS_iG1Z7/' },
-    { t: 'The point of coaching IS to learn to do it on your own, And Jennie girl know that you have a whole community cheering you on', by: 'for Coach Ciera\'s client', d: 'Oct 2026', u: 'https://www.instagram.com/freelyfitcoaching/p/DfFfrg7AfD_/' }
+    { t: 'Health is supposed to fit into every season of life.', by: 'For Avery\'s client Lauren', d: 'Aug 2026', u: 'https://www.instagram.com/freelyfitcoaching/p/DdZWS_iG1Z7/' },
+    { t: 'The point of coaching IS to learn to do it on your own, And Jennie girl know that you have a whole community cheering you on', by: 'For Coach Ciera\'s client', d: 'Oct 2026', u: 'https://www.instagram.com/freelyfitcoaching/p/DfFfrg7AfD_/' }
   ];
 
   /* =====================================================================
@@ -359,6 +347,12 @@
     new IntersectionObserver(function (en) {
       var e = en[0]; heroGone = !e.isIntersecting && e.boundingClientRect.top < 0; update();
     }, { threshold: 0 }).observe(hero);
+    /* a jump (scroll to top, anchor link) can skip the edge crossing, so re-check on scroll */
+    var ticking = false;
+    window.addEventListener('scroll', function () {
+      if (ticking) return; ticking = true;
+      requestAnimationFrame(function () { ticking = false; var r = hero.getBoundingClientRect(); var g = r.bottom < 0; if (g !== heroGone) { heroGone = g; update(); } });
+    }, { passive: true });
     var io = new IntersectionObserver(function (en) {
       en.forEach(function (e) { if (e.isIntersecting) visible.add(e.target); else visible.delete(e.target); }); update();
     }, { threshold: 0 });
@@ -383,12 +377,16 @@
   function initTried() {
     var box = $('[data-tried]'); if (!box) return;
     var chips = $$('.ff-chip', box), otherWrap = $('.ff-other', box), otherInput = $('.ff-other input', box);
-    var lead = $('.ff-result__lead', box), rest = $('.ff-result__rest', box), out = $('.ff-result', box), go = $('.ff-result .ff-btn', box);
+    var lead = $('.ff-result__lead', box), rest = $('.ff-result__rest', box), xtra = $('.ff-result__extra', box), out = $('.ff-result', box), go = $('.ff-result .ff-btn', box);
     var lastState = '';
     function selected() { return chips.filter(function (c) { return c.getAttribute('aria-pressed') === 'true'; }).map(function (c) { return c.getAttribute('data-v'); }); }
     function render() {
       var sel = selected(), r = triedItAll(sel, sel.indexOf('other') !== -1 && otherInput ? otherInput.value : '');
-      var swap = function () { lead.textContent = r.lead; rest.textContent = r.rest; out.classList.remove('is-out'); };
+      var swap = function () {
+        lead.textContent = r.lead; rest.textContent = r.rest; rest.hidden = !r.rest;
+        if (xtra) { xtra.textContent = r.extra; xtra.hidden = !r.extra; }
+        out.classList.toggle('is-filled', !!r.count); out.classList.remove('is-out');
+      };
       if (reduce) swap(); else { out.classList.add('is-out'); setTimeout(swap, 180); }
       var href = (go.getAttribute('data-base') || go.getAttribute('href')).split('#')[0];
       go.setAttribute('href', r.count ? href + '#tried=' + encodeURIComponent(sel.filter(function (s) { return s !== 'other'; }).join(',')) : href);
@@ -418,7 +416,7 @@
     $('.ff-story__meta', root).textContent = (story.coach ? 'coached by ' + story.coach + ', ' : '') + story.meta;
     var q = $('.ff-story__quote', root);
     if (q) { if (story.quote) { q.hidden = false; q.textContent = '"' + story.quote + '"' + (story.quoteNote ? ' (' + story.quoteNote + ')' : ''); } else q.hidden = true; }
-    if (sourceEl) sourceEl.innerHTML = 'as posted on <a href="https://' + story.source + '">' + story.source + '</a>. photos shared by FreelyFit.';
+    if (sourceEl) sourceEl.innerHTML = 'As posted on <a href="https://' + story.source + '">' + story.source + '</a>. Photos shared by FreelyFit.';
     photo.querySelectorAll('img').forEach(function (i) { i.remove(); });
     story.imgs.forEach(function (base, k) {
       var im = document.createElement('img'); im.src = imgSrc(base + '.webp'); im.alt = story.name + ', progress photos as posted by FreelyFit (' + (k + 1) + ' of ' + story.imgs.length + ')';
