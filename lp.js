@@ -243,6 +243,7 @@ function kwTopic(kw, web, home = "Roseville", def = "") {
   if (web) {
     if (k.includes("contractor")) return "Contractor website design";
     if (k.includes("small business")) return "Small business website design" + inPlace;
+    if (k.includes("web design") && !k.includes("website")) return "Web design" + at;
     return "Website design" + at;
   }
   if (/google ads|adwords|ppc/.test(k)) return k.includes("contractor") ? "Google Ads for contractors" : "Google Ads management" + inPlace;
@@ -302,6 +303,9 @@ function selfTest() {
     ["kwTopic web with town", kwTopic("website design sacramento", true) === "Website design in Sacramento"],
     ["kwTopic web contractor", kwTopic("contractor website design", true) === "Contractor website design"],
     ["kwTopic web default", kwTopic("", true) === "Website design in Roseville"],
+    ["kwTopic web design town", kwTopic("web design sacramento", true) === "Web design in Sacramento"],
+    ["kwTopic web designer near me", kwTopic("web designer near me", true) === "Web design in Roseville"],
+    ["kwTopic website design unchanged", kwTopic("website design sacramento", true, "Sacramento") === "Website design in Sacramento"],
     ["kwTopic growth ads", kwTopic("google ads for contractors", false) === "Google Ads for contractors"],
     ["kwTopic growth ads with town", kwTopic("google ads management roseville", false) === "Google Ads management in Roseville"],
     ["kwTopic growth meta", kwTopic("facebook ads management", false) === "Facebook and Instagram ads"],
@@ -414,7 +418,20 @@ class Component extends DCLogic {
     if (PAGE === "growth" && s.ranCalc) { out.quotes_a_month = s.q; out.average_job = money(JOB_STOPS[s.jobIdx] || 0); }
     return Object.assign(out, store.get("gc-utm") || {});
   }
-  componentDidMount() { this.loadCal(); }
+  /* The calendar script waits until the visitor moves or the page has finished loading, so it does not slow the first paint. */
+  componentDidMount() {
+    let started = false;
+    const evs = ["scroll", "touchstart", "pointerdown", "pointermove", "keydown"];
+    const go = () => {
+      if (started) return; started = true;
+      evs.forEach((e) => window.removeEventListener(e, go, { passive: true }));
+      this.loadCal();
+    };
+    evs.forEach((e) => window.addEventListener(e, go, { passive: true, once: true }));
+    const idle = () => { if (window.requestIdleCallback) window.requestIdleCallback(go, { timeout: 2000 }); else setTimeout(go, 1200); };
+    if (document.readyState === "complete") idle(); else window.addEventListener("load", idle, { once: true });
+    if (location.hash === "#book") go();
+  }
   /* The live calendar. It draws itself into #cal-inline, which the renderer leaves alone (data-keep). */
   loadCal() {
     if (!LP.CAL_LINK || !document.getElementById("cal-inline")) return;
@@ -475,6 +492,7 @@ class Component extends DCLogic {
   }
   renderVals() {
     const st = this.state, web = PAGE === "websites", town = this.town;
+    const sacWeb = web && HOME === "Sacramento";
     const kw = cleanName((store.get("gc-utm") || {}).utm_term, 60).toLowerCase();
     const co = cleanName(st.company);
     const job = JOB_STOPS[st.jobIdx] || 2500, leak = quoteLeak(st.q, job);
@@ -502,9 +520,10 @@ class Component extends DCLogic {
       topic: kwTopic(kw, web, HOME, PAGE_TOPIC),
       h1a: web ? "A website that brings you " : "More jobs ", h1b: web ? "customers." : (kwMeta(kw) ? "from Facebook." : "from Google."),
       lede: web
-        ? "I’m a Roseville local. I build yours first, and you pay only if you want it live."
+        ? (sacWeb ? "I’m local, just up 80 in Roseville. I build yours first, and you pay only if you want it live." : "I’m a Roseville local. I build yours first, and you pay only if you want it live.")
         : "I’m a Roseville local. I run your ads and build the page behind them, then help you turn more of those leads into booked jobs.",
 
+      meetLine: sacWeb ? "Glad to meet in person in Sacramento." : "Local, and glad to meet in person.",
       hasQuote: !!(LP.QUOTE && LP.QUOTE.text), quoteText: (LP.QUOTE && LP.QUOTE.text) || "", quoteWho: (LP.QUOTE && LP.QUOTE.who) || "",
       workClick: () => track("work_open"),
       homeOpts: HOME_OPTS.map((o, i) => ({ t: o.t, on: st.pick === i, off: st.pick !== i, pick: () => { this.setState({ pick: i }); track("home_pick", { n: i + 1 }); } })),
@@ -569,10 +588,14 @@ class Component extends DCLogic {
       leakShown: money(leak),
       leakSub: "If following up closes one more quote in ten. " + money(leak * 12) + " a year.",
 
-      areaLine: web
+      areaLine: sacWeb
+        ? "Web design for owner-run businesses in Sacramento, Elk Grove, Rancho Cordova, Folsom, Roseville, Rocklin and the towns around them. Glad to meet in person."
+        : web
         ? "Website design for owner-run businesses in Roseville, Rocklin, Granite Bay, Lincoln, Auburn, Folsom, El Dorado Hills and the rest of the Sacramento area. Glad to meet in person."
         : "Google Ads, Meta ads and landing pages for owner-run service businesses in Roseville, Rocklin, Granite Bay, Lincoln, Auburn, Folsom and El Dorado Hills. Glad to meet in person. Outside the area, we meet on Zoom.",
-      faq: web
+      faq: sacWeb
+        ? [{ q: "What does it cost?", a: "One flat price, and you hear it before I build." }, { q: "Do you host it?", a: "Yes, if you want. A flat monthly covers hosting and changes." }, { q: "Are you a web design company?", a: "You get me. One local web designer who builds your site and answers when you text." }, { q: "I already have a site.", a: "Compare them side by side. Nothing changes until you say go." }, { q: "Do you work with Sacramento businesses?", a: "Yes. Sacramento, Elk Grove, Rancho Cordova and Folsom, and up through Roseville and Rocklin. Glad to meet in person." }, { q: "How long does a website take?", a: "About 10 days from your go to live." }, { q: "Do you build websites for contractors?", a: "Yes. Contractors, landscapers, cleaners, photographers and other owner-run local businesses." }, { q: "Will my website show up on Google?", a: "It’s built so Google can read it, with your services and your towns on the page. Ranking takes time, and I’ll tell you what to expect on the call." }, { q: "Can you bring in more customers once it’s live?", a: "Yes, when you’re ready. I also run Google and Meta ads for local businesses." }]
+        : web
         ? [{ q: "What does it cost?", a: "One flat price, and you hear it before I build." }, { q: "Do you host it?", a: "Yes, if you want. A flat monthly covers hosting and changes." }, { q: "I already have a site.", a: "Compare them side by side. Nothing changes until you say go." }, { q: "Do you only do website design in Roseville?", a: "Roseville, Rocklin, Folsom, El Dorado Hills and the rest of the Sacramento area." }, { q: "How long does a website take?", a: "About 10 days from your go to live." }, { q: "Do you build websites for contractors?", a: "Yes. Contractors, landscapers, cleaners, photographers and other owner-run local businesses." }, { q: "Will my website show up on Google?", a: "It’s built so Google can read it, with your services and your towns on the page. Ranking takes time, and I’ll tell you what to expect on the call." }, { q: "Can you bring in more customers once it’s live?", a: "Yes, when you’re ready. I also run Google and Meta ads for local businesses." }]
         : [{ q: "What does it cost?", a: "Depends what’s broken. You get the number on the call, before you spend anything." }, { q: "Burned by a marketer before?", a: "You pay the ad spend directly and see every dollar." }, { q: "What if ads aren’t the problem?", a: "I’ll tell you what is." }, { q: "I only need someone to run my ads.", a: "That works. If your follow-up and quotes are already solid, I run the ads and the page and leave the rest alone." }, { q: "Do you do Google Ads management?", a: "Yes. Google, Meta and ChatGPT ads for local service businesses, with the page and follow-up behind them." }, { q: "Do you run Facebook and Instagram ads?", a: "Yes. Meta ads work well for before and after work, and I build the page they land on." }, { q: "Do you only work with contractors in Roseville?", a: "Mostly owner-run service businesses in Placer County, Folsom and El Dorado Hills. I work with owners anywhere when it’s a fit." }, { q: "Are you a marketing agency?", a: "You get me. One Roseville local who runs it and sits down with you to go through the numbers." }]
     };

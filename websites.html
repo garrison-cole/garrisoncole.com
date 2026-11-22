@@ -17,11 +17,11 @@
 <meta name="twitter:card" content="summary_large_image">
 <meta name="theme-color" content="#FAFAF9">
 <link rel="icon" href="favicon.svg" type="image/svg+xml">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link rel="preconnect" href="https://app.cal.com">
-<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Inter+Tight:wght@500;600;700&display=swap">
+<link rel="preload" href="fonts/inter-latin.woff2" as="font" type="font/woff2" crossorigin>
 <style>
+@font-face{font-family:'Inter';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/inter-latin.woff2) format('woff2')}
+@font-face{font-family:'Inter Tight';font-style:normal;font-weight:100 900;font-display:swap;src:url(fonts/inter-tight-latin.woff2) format('woff2')}
 html{scroll-behavior:smooth;-webkit-text-size-adjust:100%}
 body{margin:0;background:#FAFAF9}
 a{color:#111418;text-decoration-color:#9AA0A8}a:hover{color:#4A4F58}
@@ -51,7 +51,7 @@ button:disabled{opacity:.6;cursor:default}
 .foot a{display:inline-flex;align-items:center;min-height:44px}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
-<script src="lp.js?v=20261119b" defer></script>
+<script src="lp.js?v=20261122a" defer></script>
 </head>
 <body>
 <a class="vh" href="#start">Skip to the page</a>
@@ -81,7 +81,7 @@ button:disabled{opacity:.6;cursor:default}
 </div>
 
 <div style="display: flex; align-items: center; gap: 12px; padding-top: 4px">
-<img src="garrison.webp" width="56" height="56" alt="Garrison Cole, Roseville, CA" style="flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover">
+<img src="garrison-112.webp" width="56" height="56" alt="Garrison Cole, Roseville, CA" style="flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover" decoding="async">
 <div style="font-size: 15px; line-height: 1.35"><strong style="font-weight: 600">Garrison Cole, Roseville.</strong><br><span style="color: #5E636D">Local, and glad to meet in person.</span></div>
 </div>
 </div>
@@ -109,7 +109,7 @@ button:disabled{opacity:.6;cursor:default}
 </div>
 <div class="light" style="flex: 1 1 100%; max-width: 900px; min-width: 0; margin: 0; padding: 18px; background: #FFFFFF; color: #111418; border-radius: 16px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 12px">
-<img src="garrison.webp" width="44" height="44" alt="" style="flex: none; width: 44px; height: 44px; border-radius: 50%; object-fit: cover">
+<img src="garrison-112.webp" width="44" height="44" alt="" style="flex: none; width: 44px; height: 44px; border-radius: 50%; object-fit: cover" decoding="async">
 <div style="line-height: 1.3"><div style="font-weight: 600">Call with Garrison Cole</div><div style="font-size: 14px; color: #5E636D">Free · 30 minutes · Zoom or in person</div></div>
 </div>
 
@@ -202,11 +202,11 @@ button:disabled{opacity:.6;cursor:default}
 <h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 46px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em">Sites I’ve built.</h2>
 <div style="display: flex; flex-wrap: wrap; gap: 14px">
 <div style="flex: 2 1 360px; min-width: 0; padding: 14px; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px">
-<img src="work-florist.jpg?v=20261113" width="1600" height="900" alt="Home page of a wedding florist website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3">
+<img src="work-florist-800.webp" width="1600" height="900" alt="Home page of a wedding florist website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3" srcset="work-florist-800.webp 800w, work-florist-1600.webp 1600w" sizes="(min-width: 900px) 460px, calc(100vw - 64px)" loading="lazy" decoding="async">
 <div style="margin: 12px 8px 4px; font-size: 16px; color: #4A4F58"><strong style="font-weight: 600; color: #111418">A site I built.</strong> Wedding florist, Auburn. <a href="/preview/the-blonde-bouquet/" target="_blank" rel="noopener" style="display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: #111418">See the full site</a></div>
 </div>
 <div style="flex: 2 1 360px; min-width: 0; padding: 14px; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px">
-<img src="work-coaching.jpg?v=20261113" width="1600" height="900" alt="Home page of a coaching company website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3">
+<img src="work-coaching-800.webp" width="1600" height="900" alt="Home page of a coaching company website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3" srcset="work-coaching-800.webp 800w, work-coaching-1600.webp 1600w" sizes="(min-width: 900px) 460px, calc(100vw - 64px)" loading="lazy" decoding="async">
 <div style="margin: 12px 8px 4px; font-size: 16px; color: #4A4F58"><strong style="font-weight: 600; color: #111418">A site I built.</strong> Online coaching company.</div>
 </div>
 <div style="flex: 1 1 220px; min-width: 0; padding: 22px; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px; display: flex; flex-direction: column; justify-content: center">
@@ -376,8 +376,8 @@ button:disabled{opacity:.6;cursor:default}
 </div>
 
 <div style="display: flex; align-items: center; gap: 12px; padding-top: 4px">
-<img src="garrison.webp" width="56" height="56" alt="Garrison Cole, Roseville, CA" style="flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover">
-<div style="font-size: 15px; line-height: 1.35"><strong style="font-weight: 600">Garrison Cole, Roseville.</strong><br><span style="color: #5E636D">Local, and glad to meet in person.</span></div>
+<img src="garrison-112.webp" decoding="async" width="56" height="56" alt="Garrison Cole, Roseville, CA" style="flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover">
+<div style="font-size: 15px; line-height: 1.35"><strong style="font-weight: 600">Garrison Cole, Roseville.</strong><br><span style="color: #5E636D">{{meetLine}}</span></div>
 </div>
 </div>
 
@@ -424,7 +424,7 @@ button:disabled{opacity:.6;cursor:default}
 </div>
 <div class="light" style="flex: 1 1 100%; max-width: 900px; min-width: 0; margin: 0; padding: 18px; background: #FFFFFF; color: #111418; border-radius: 16px; display: flex; flex-direction: column; gap: 14px">
 <div style="display: flex; align-items: center; gap: 12px">
-<img src="garrison.webp" width="44" height="44" alt="" style="flex: none; width: 44px; height: 44px; border-radius: 50%; object-fit: cover">
+<img src="garrison-112.webp" decoding="async" width="44" height="44" alt="" style="flex: none; width: 44px; height: 44px; border-radius: 50%; object-fit: cover">
 <div style="line-height: 1.3"><div style="font-weight: 600">Call with Garrison Cole</div><div style="font-size: 14px; color: #5E636D">Free · 30 minutes · Zoom or in person</div></div>
 </div>
 <sc-if value="{{hasCal}}" hint-placeholder-val="{{ true }}">
@@ -541,11 +541,11 @@ button:disabled{opacity:.6;cursor:default}
 <h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 46px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em">Sites I’ve built.</h2>
 <div style="display: flex; flex-wrap: wrap; gap: 14px">
 <div style="flex: 2 1 360px; min-width: 0; padding: 14px; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px">
-<img src="work-florist.jpg?v=20261113" width="1600" height="900" alt="Home page of a wedding florist website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3">
+<img src="work-florist-800.webp" srcset="work-florist-800.webp 800w, work-florist-1600.webp 1600w" sizes="(min-width: 900px) 460px, calc(100vw - 64px)" width="1600" height="900" loading="lazy" decoding="async" alt="Home page of a wedding florist website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3">
 <div style="margin: 12px 8px 4px; font-size: 16px; color: #4A4F58"><strong style="font-weight: 600; color: #111418">A site I built.</strong> Wedding florist, Auburn. <a href="/preview/the-blonde-bouquet/" target="_blank" rel="noopener" onClick="{{workClick}}" style="display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: #111418">See the full site</a></div>
 </div>
 <div style="flex: 2 1 360px; min-width: 0; padding: 14px; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px">
-<img src="work-coaching.jpg?v=20261113" width="1600" height="900" alt="Home page of a coaching company website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3">
+<img src="work-coaching-800.webp" srcset="work-coaching-800.webp 800w, work-coaching-1600.webp 1600w" sizes="(min-width: 900px) 460px, calc(100vw - 64px)" width="1600" height="900" loading="lazy" decoding="async" alt="Home page of a coaching company website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3">
 <div style="margin: 12px 8px 4px; font-size: 16px; color: #4A4F58"><strong style="font-weight: 600; color: #111418">A site I built.</strong> Online coaching company.</div>
 </div>
 <div style="flex: 1 1 220px; min-width: 0; padding: 22px; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px; display: flex; flex-direction: column; justify-content: center">
@@ -631,7 +631,7 @@ button:disabled{opacity:.6;cursor:default}
 </div>
 </sc-if>
 <div style="flex: 2 1 360px; min-width: 0; padding: 14px; background: #FAFAF9; border: 1px solid #E6E6E3; border-radius: 14px">
-<img src="work-florist.jpg?v=20261113" width="1600" height="900" loading="lazy" alt="Home page of a wedding florist website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3">
+<img src="work-florist-800.webp" srcset="work-florist-800.webp 800w, work-florist-1600.webp 1600w" sizes="(min-width: 900px) 460px, calc(100vw - 64px)" width="1600" height="900" loading="lazy" decoding="async" alt="Home page of a wedding florist website Garrison built" style="display: block; width: 100%; height: auto; aspect-ratio: 16 / 9; object-fit: cover; object-position: top; border-radius: 8px; border: 1px solid #E6E6E3">
 <div style="margin: 12px 8px 4px; font-size: 16px; color: #4A4F58"><strong style="font-weight: 600; color: #111418">A site I built.</strong> Wedding florist, Auburn. <a href="/preview/the-blonde-bouquet/" target="_blank" rel="noopener" onClick="{{workClick}}" style="display: inline-flex; align-items: center; min-height: 44px; font-weight: 600; color: #111418">See the full site</a></div>
 </div>
 </div>
