@@ -9,7 +9,7 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 .nv{color:#1F1B19;text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;padding:12px 0}
 .nv:hover{color:#A3134F}
 .btn{transition:background-color .35s ease,color .35s ease,border-color .35s ease}
-.btn:hover{background-color:#7A0E3B !important;color:#FFFFFF !important;border-color:#7A0E3B !important}
+.btn:hover{background-color:#D9698C !important;color:#1F1B19 !important;border-color:#D9698C !important}
 .btnl:hover{background-color:#FFFFFF !important;color:#1F1B19 !important}
 .tl{color:#1F1B19;text-decoration:none;font-size:12px;font-weight:500;letter-spacing:.22em;text-transform:uppercase;border-bottom:1px solid #B8955A;padding-bottom:6px;transition:color .3s,border-color .3s}
 .tl:hover{color:#A3134F;border-color:#A3134F}
@@ -69,13 +69,15 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 @media (max-width: 405px){.rvq{min-height:264px !important}}
 @media (max-width: 375px){.rvq{min-height:292px !important}}
 @media (max-width: 340px){.rvq{min-height:332px !important}}
-.hero{min-height:max(75vh, calc(100vh - var(--hdr, 170px) + 2px)) !important;min-height:max(75vh, calc(100svh - var(--hdr, 170px) + 2px)) !important}</style>
+.hero{min-height:max(75vh, calc(100vh - var(--hdr, 170px) + 2px)) !important;min-height:max(75vh, calc(100svh - var(--hdr, 170px) + 2px)) !important}
+.hmk{position:absolute;inset:0;background:#FAF6F0;-webkit-mask:linear-gradient(#000 0 0) 0 0/100% calc(100% - 24px) no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 28' width='240' height='28' preserveAspectRatio='none'%3E%3Cpath d='M0,0 H240 V22 C180,22 180,2 120,2 C60,2 60,22 0,22 Z' fill='%23000'/%3E%3C/svg%3E") 0 calc(100% + 1px)/220px 26px repeat-x;mask:linear-gradient(#000 0 0) 0 0/100% calc(100% - 24px) no-repeat,url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 240 28' width='240' height='28' preserveAspectRatio='none'%3E%3Cpath d='M0,0 H240 V22 C180,22 180,2 120,2 C60,2 60,22 0,22 Z' fill='%23000'/%3E%3C/svg%3E") 0 calc(100% + 1px)/220px 26px repeat-x}
+@media (max-width: 640px){.stu-oval{right:-12px !important}}</style>
 <div id="dc-root"></div>
 <template id="dc-tpl">
 
 <div style="font-family: 'Figtree', system-ui, sans-serif; font-weight: 400; color: #1F1B19; background: #FAF6F0; min-height: 85vh; overflow-x: hidden;">
 
-<a href="quote.html" style="display: block; background: #FFF2C6; color: #1F1B19; text-align: center; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; padding: 12px 16px; text-decoration: none; font-weight: 500;">Now reserving 2027 dates · A limited number of weddings each month</a>
+<a href="quote.html" style="display: block; background: #FFF2C6; color: #1F1B19; text-align: center; font-size: 11px; letter-spacing: 0.3em; text-transform: uppercase; padding: 12px 16px; text-decoration: none; font-weight: 500;"><span style="display: inline-block;">Now Reserving 2027 &amp; 2028 Dates |</span> <span style="display: inline-block;">Limited Number of Weddings Each Year</span></a>
 
 <header style="background: #FAF6F0; border-bottom: 1px solid #E3D6C3;">
 <div style="max-width: 1320px; margin: 0 auto; padding: 14px 28px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 14px 26px;">
@@ -85,17 +87,17 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 <a class="nv" href="portfolio.html">Gallery</a>
 <a class="nv" href="workshop.html">Workshop</a>
 <a class="nv" href="services.html">Services &amp; Pricing</a>
-<a class="btn" href="quote.html" style="border: 1px solid {{accent}}; background: {{accent}}; color: #FFFFFF; text-decoration: none; padding: 15px 26px; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center;">Request a Quote</a>
+<a class="btn" href="services.html#estimator" style="border: 1px solid #E58AA6; background: #E58AA6; color: #1F1B19; text-decoration: none; padding: 15px 26px; font-size: 11px; font-weight: 600; letter-spacing: 0.24em; text-transform: uppercase; min-height: 44px; box-sizing: border-box; display: inline-flex; align-items: center;">Estimate Your Flowers</a>
 </nav>
 </div>
 </header>
 
+<div style="background-color: #FAF6F0; background-image: url(assets/stripe-soft.svg); background-size: 120px 480px; background-repeat: repeat;">
 <section class="hero" style="position: relative; overflow: hidden; min-height: 75vh; display: flex; align-items: flex-end;">
-<div class="hc" aria-hidden="true"><img src="assets/al-oak.jpg" srcset="assets/sm/al-oak.jpg 1200w, assets/al-oak.jpg 1262w" sizes="100vw" alt="" style="object-position: center 45%; animation-delay: 0s;"><img src="assets/al-p111.jpg" srcset="assets/sm/al-p111.jpg 1100w, assets/al-p111.jpg 1242w" sizes="100vw" alt="" style="object-position: center 92%; animation-delay: 6s;" loading="lazy"><img src="assets/al-p037.jpg" srcset="assets/sm/al-p037.jpg 1100w, assets/al-p037.jpg 1242w" sizes="100vw" alt="" style="object-position: center 32%; animation-delay: 12s;" loading="lazy"><img src="assets/al-p030.jpg" srcset="assets/sm/al-p030.jpg 1100w, assets/al-p030.jpg 1284w" sizes="100vw" alt="" style="object-position: center 45%; animation-delay: 18s;" loading="lazy"></div>
-<div style="position: absolute; inset: 0; background: rgba(24, 18, 16, 0.38);"></div>
+<div class="hmk" aria-hidden="true"><div class="hc" aria-hidden="true"><img src="assets/al-oak.jpg" srcset="assets/sm/al-oak.jpg 1200w, assets/al-oak.jpg 1262w" sizes="100vw" alt="" style="object-position: center 45%; animation-delay: 0s;"><img src="assets/al-p111.jpg" srcset="assets/sm/al-p111.jpg 1100w, assets/al-p111.jpg 1242w" sizes="100vw" alt="" style="object-position: center 92%; animation-delay: 6s;" loading="lazy"><img src="assets/al-p037.jpg" srcset="assets/sm/al-p037.jpg 1100w, assets/al-p037.jpg 1242w" sizes="100vw" alt="" style="object-position: center 32%; animation-delay: 12s;" loading="lazy"><img src="assets/al-p030.jpg" srcset="assets/sm/al-p030.jpg 1100w, assets/al-p030.jpg 1284w" sizes="100vw" alt="" style="object-position: center 45%; animation-delay: 18s;" loading="lazy"></div>
+<div style="position: absolute; inset: 0; background: rgba(24, 18, 16, 0.38);"></div></div>
 <div class="wv wv-t wv-iv" aria-hidden="true"></div>
 <div class="hcd" aria-hidden="true"><span style="animation-delay: 0s;"></span><span style="animation-delay: 6s;"></span><span style="animation-delay: 12s;"></span><span style="animation-delay: 18s;"></span></div>
-<div class="wv wv-b wv-iv" aria-hidden="true"></div>
 <div style="position: relative; width: 100%; max-width: 1320px; margin: 0 auto; padding: 120px 51px 88px; box-sizing: border-box; color: #FFFFFF; display: flex; flex-direction: column; gap: 28px; align-items: center; text-align: center;">
 <p class="in1" style="margin: 0; font-size: 11px; letter-spacing: 0.4em; text-transform: uppercase; font-weight: 500;">Luxury wedding florals · Northern California</p>
 <h1 class="in2" style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(37px, 5.92vw, 90px); line-height: 0.98; letter-spacing: 0.04em; text-transform: uppercase; max-width: 1100px;">Couture flowers <em style="display: block; text-transform: none; letter-spacing: 0; font-size: 0.86em; margin-top: 10px;">for the day you'll keep forever</em></h1>
@@ -107,11 +109,10 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 </div>
 </section>
 
-<div style="background-color: #FAF6F0; background-image: url(assets/stripe-soft.svg); background-size: 120px 480px; background-repeat: repeat;">
 <section style="max-width: 1240px; margin: 0 auto; padding: 120px 28px 104px; display: grid; grid-template-columns: repeat(auto-fit, minmax(min(100%, 460px), 1fr)); gap: 77px; align-items: center;">
-<div class="rvi" style="position: relative; padding: 0 0 72px 0;">
-<div style="border: 1px solid #B8955A; border-radius: 400px 400px 0 0; padding: 12px;"><div class="zm" style="border-radius: 400px 400px 0 0;"><img src="assets/al-p111.jpg" srcset="assets/sm/al-p111.jpg 1100w, assets/al-p111.jpg 1242w" sizes="(max-width: 760px) 94vw, 50vw" loading="lazy" decoding="async" alt="Couple kissing, the bride holding a bouquet of coral peonies with orange and yellow poppies" style="width: 100%; height: 512px; object-fit: cover; object-position: center 100%; display: block;"></div></div>
-<div class="shd" style="position: absolute; right: -36px; bottom: 0; width: 44%;"><div style="background: #FFFFFF; border-radius: 50%; padding: 10px;"><div style="border: 1px solid #B8955A; border-radius: 50%; padding: 6px;"><img src="assets/al-p000.jpg" srcset="assets/sm/al-p000.jpg 1100w, assets/al-p000.jpg 1221w" sizes="(max-width: 760px) 50vw, 22vw" loading="lazy" decoding="async" alt="Wedding invitation flat lay with a blue envelope, ranunculus and garden roses" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 50%; display: block; border-radius: 50%;"></div></div></div>
+<div style="position: relative; padding: 0 0 72px 0;">
+<div class="rvi" style="border: 1px solid #B8955A; border-radius: 400px 400px 0 0; padding: 12px;"><div class="zm" style="border-radius: 400px 400px 0 0;"><img src="assets/al-p111.jpg" srcset="assets/sm/al-p111.jpg 1100w, assets/al-p111.jpg 1242w" sizes="(max-width: 760px) 94vw, 50vw" loading="lazy" decoding="async" alt="Couple kissing, the bride holding a bouquet of coral peonies with orange and yellow poppies" style="width: 100%; height: 512px; object-fit: cover; object-position: center 100%; display: block;"></div></div>
+<div class="shd stu-oval" style="position: absolute; right: -36px; bottom: 0; width: 44%;"><div style="background: #FFFFFF; border-radius: 50%; padding: 10px;"><div style="border: 1px solid #B8955A; border-radius: 50%; padding: 6px;"><img src="assets/al-p000.jpg" srcset="assets/sm/al-p000.jpg 1100w, assets/al-p000.jpg 1221w" sizes="(max-width: 760px) 50vw, 22vw" loading="lazy" decoding="async" alt="Wedding invitation flat lay with a blue envelope, ranunculus and garden roses" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; object-position: center 50%; display: block; border-radius: 50%;"></div></div></div>
 </div>
 <div class="rv" style="display: flex; flex-direction: column; gap: 28px;">
 <p style="margin: 0; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #6A605A; font-weight: 500;">I &nbsp;·&nbsp; The Studio</p>
@@ -234,11 +235,11 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 <div class="rv" style="display: flex; flex-direction: column; gap: 28px;">
 <p style="margin: 0; font-size: 11px; letter-spacing: 0.34em; text-transform: uppercase; color: #6A605A; font-weight: 500;">V &nbsp;·&nbsp; The Designer</p>
 <h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(32px, 3.68vw, 51px); line-height: 1.02;">Hello, <em style="color: {{accent}};">I'm La Raye.</em></h2>
-<p style="margin: 0; font-size: 17px; line-height: 1.85; color: #4A413C; font-weight: 300;">Before flowers, I spent fourteen years in fashion, dressing windows for Anthropologie and Nordstrom up and down California. I started The Blonde Bouquet in 2014, and I still treat every wedding like a collection: a point of view, a palette, and tailoring down to the last detail. I will also absolutely cry at your ceremony.</p>
+<p style="margin: 0; font-size: 17px; line-height: 1.85; color: #4A413C; font-weight: 300;">Before flowers, I spent fourteen years in fashion, dressing windows for Anthropologie and Nordstrom up and down California. While I was at Nordstrom, I started making floral arrangements for the cosmetics counters, and people absolutely loved them. That's how I booked my very first wedding, without ever planning to work in flowers. Word of mouth built the business from there. Design was always my first love and flowers came second. Today I get to bring those two worlds together, and it feels incredibly special.</p>
 <a class="tl" href="about.html" style="align-self: flex-start;">Meet La Raye</a>
 </div>
-<div class="rvi" style="position: relative; max-width: 500px; justify-self: center; width: 100%;">
-<div style="border: 1px solid #B8955A; border-radius: 50%; padding: 14px;"><div style="border: 1px solid #E2CFB0; border-radius: 50%; padding: 8px;"><div class="zm" style="border-radius: 50%;"><img src="assets/a03.jpg" srcset="assets/sm/a03.jpg 1100w, assets/a03.jpg 1500w" sizes="(max-width: 760px) 94vw, 36vw" loading="lazy" decoding="async" alt="La Raye arranging a colorful centerpiece in her studio" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block;"></div></div></div>
+<div style="position: relative; max-width: 500px; justify-self: center; width: 100%;">
+<div class="rvi" style="border: 1px solid #B8955A; border-radius: 50%; padding: 14px;"><div style="border: 1px solid #E2CFB0; border-radius: 50%; padding: 8px;"><div class="zm" style="border-radius: 50%;"><img src="assets/a03.jpg" srcset="assets/sm/a03.jpg 1100w, assets/a03.jpg 1500w" sizes="(max-width: 760px) 94vw, 36vw" loading="lazy" decoding="async" alt="La Raye arranging a colorful centerpiece in her studio" style="width: 100%; aspect-ratio: 4 / 5; object-fit: cover; display: block;"></div></div></div>
 <img class="rvb" src="assets/tbb-logo-mark.svg" alt="" aria-hidden="true" style="position: absolute; left: -18px; bottom: 30px; width: auto; height: 125px; display: block;">
 </div>
 </section>
@@ -253,7 +254,7 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 </div>
 <div class="rv" style="display: flex; flex-direction: column; gap: 26px;">
 <p style="margin: 0; font-size: 17px; line-height: 1.85; color: #4A413C; font-weight: 300;">Our floral estimator prices your wedding live as you choose your bouquets, ceremony and reception pieces. In about a minute you'll know exactly where your vision lands.</p>
-<a class="btn" href="services.html#estimator" style="align-self: flex-start; border: 1px solid {{accent}}; background: {{accent}}; color: #FFFFFF; text-decoration: none; padding: 18px 26px; font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase;">Open the estimator</a>
+<a class="btn" href="services.html#estimator" style="align-self: flex-start; border: 1px solid #E58AA6; background: #E58AA6; color: #1F1B19; text-decoration: none; padding: 18px 26px; font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase;">Open the estimator</a>
 </div>
 </div>
 </div>
@@ -271,7 +272,7 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 <img src="assets/tbb-logo-mark.svg" alt="" aria-hidden="true" style="width: auto; height: 60px; display: block;">
 <h2 style="margin: 0; font-family: 'Bodoni Moda', Didot, Georgia, serif; font-weight: 400; font-size: clamp(29px, 3.52vw, 46px); line-height: 1.02; letter-spacing: 0.04em; text-transform: uppercase;">Tell us about <em style="display: block; text-transform: none; letter-spacing: 0; color: {{accent}};">your day</em></h2>
 <p style="margin: 0; font-size: 16px; line-height: 1.8; color: #4A413C; font-weight: 300;">La Raye personally reads every inquiry and replies within two business days.</p>
-<a class="btn" href="quote.html" style="border: 1px solid {{accent}}; background: {{accent}}; color: #FFFFFF; text-decoration: none; padding: 18px 29px; font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase;">Request a Quote</a>
+<a class="btn" href="quote.html" style="border: 1px solid #E58AA6; background: #E58AA6; color: #1F1B19; text-decoration: none; padding: 18px 29px; font-size: 11px; font-weight: 600; letter-spacing: 0.26em; text-transform: uppercase;">Request a Quote</a>
 </div>
 </div>
 </div>
