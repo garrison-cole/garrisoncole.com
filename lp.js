@@ -181,6 +181,9 @@ const LP = {
   CLARITY_ID: "zbt543g7fb",  // Microsoft Clarity project "Garrison Cole"
   BOOKING_URL: "https://cal.com/garrison-cole/call",  // Cal.com booking page, used by the fallback link and the sent page.
   CAL_LINK: "garrison-cole/call",  // the same event, for the calendar that sits on the page. Empty leaves only the link.
+  /* The business coach page's own event, with the "how many jobs a month" question. Empty uses CAL_LINK above. */
+  CAL_LINK_COACH: "",
+  BOOKING_URL_COACH: "",
   PHONE: "+17606444559",
   PHONE_SHOWN: "760-644-4559",
   /* One owner's words, shown under the calendar on every landing page. Empty text shows nothing.
@@ -216,6 +219,7 @@ function nextDay(dayIndex) {
 const SMS_ASK = {
   websites: "I'd like to talk about a website for my business.",
   growth: "I'd like the complimentary audit.",
+  coach: "I'd like to talk about business coaching.",
   other: "I was on your site and have a question."
 };
 function smsHref(co, page) {
@@ -259,6 +263,22 @@ function kwTopic(kw, web, home = "Roseville", def = "") {
   if (!k) return "Google Ads management in " + home;
   return "Marketing for contractors";
 }
+/** Business coach page only: the h1's first line follows the search. Never used on the other pages. */
+const COACH_TOWNS = ["sacramento", "roseville", "rocklin", "folsom"];
+function coachTopic(kw, home = "Roseville") {
+  const k = String(kw == null ? "" : kw).toLowerCase();
+  const hit = COACH_TOWNS.find((p) => k.includes(p));
+  const town = hit ? titleCase(hit) : home;
+  return (k.includes("consultant") ? "Business consultant in " : "Business coach in ") + town + ".";
+}
+/* Business coach page: tap the one that sounds like your week. One open at a time. */
+const COACH_TAPS = [
+  { t: "The phone rings while I’m on a job.", line: "Every missed call gets an answer within minutes, so the job stays yours." },
+  { t: "Quotes go out and I never hear back.", line: "Follow-up keeps going while you’re on the next job, and more quotes turn into deposits." },
+  { t: "Slammed in spring, quiet in winter.", line: "We line up winter work in the fall, while the phone is still ringing." },
+  { t: "I drop my price when they’re getting three bids.", line: "We put the real cost of a job on paper, so you can hold your number and still win." },
+  { t: "Everything runs through me.", line: "We pick what only you can do and get the rest off your plate, starting with where the next job comes from." }
+];
 /** What the complimentary audit covers, matched to the ad they clicked. */
 function auditWhat(kw) {
   const k = String(kw == null ? "" : kw).toLowerCase();
@@ -324,7 +344,16 @@ function selfTest() {
     ["kwMeta", kwMeta("Instagram ads management") === true && kwMeta("google ads") === false],
     ["auditWhat follows the ad", auditWhat("facebook ads agency") === "Facebook ads and website" && auditWhat("google ads management roseville") === "Google Ads and website" && auditWhat("marketing agency near me") === "Google listing and website" && auditWhat("") === "ads and website"],
     ["quoteLeak", quoteLeak(20, 5000) === 10000],
-    ["six growth pains, four website pains", PAINS.growth.length === 6 && PAINS.websites.length === 4]
+    ["six growth pains, four website pains", PAINS.growth.length === 6 && PAINS.websites.length === 4],
+    ["coachTopic business coach sacramento", coachTopic("business coach sacramento") === "Business coach in Sacramento."],
+    ["coachTopic business consultant sacramento", coachTopic("business consultant sacramento") === "Business consultant in Sacramento."],
+    ["coachTopic business coach near me", coachTopic("business coach near me") === "Business coach in Roseville."],
+    ["coachTopic small business coach", coachTopic("small business coach") === "Business coach in Roseville."],
+    ["coachTopic business coach for contractors", coachTopic("business coach for contractors") === "Business coach in Roseville."],
+    ["coachTopic rocklin and folsom", coachTopic("business coach rocklin") === "Business coach in Rocklin." && coachTopic("business consultant folsom") === "Business consultant in Folsom."],
+    ["coachTopic no search", coachTopic("") === "Business coach in Roseville."],
+    ["coach text asks about coaching", decodeURIComponent(smsHref("", "coach")).includes("business coaching")],
+    ["five coach taps", COACH_TAPS.length === 5]
   ];
   console.table(t.map(([name, pass]) => ({ name, pass })));
   return t.every((r) => r[1]);
@@ -415,6 +444,7 @@ class Component extends DCLogic {
   context() {
     const s = this.state, list = PAINS[PAGE] || [];
     const out = { said: s.picks.slice().sort().map((i) => list[i]).filter(Boolean).join(" | "), page: PAGE };
+    if (PAGE === "coach" && s.pick > -1 && COACH_TAPS[s.pick]) out.said = COACH_TAPS[s.pick].t;
     if (PAGE === "growth" && s.ranCalc) { out.quotes_a_month = s.q; out.average_job = money(JOB_STOPS[s.jobIdx] || 0); }
     return Object.assign(out, store.get("gc-utm") || {});
   }
@@ -434,14 +464,15 @@ class Component extends DCLogic {
   }
   /* The live calendar. It draws itself into #cal-inline, which the renderer leaves alone (data-keep). */
   loadCal() {
-    if (!LP.CAL_LINK || !document.getElementById("cal-inline")) return;
+    const calLink = (PAGE === "coach" && LP.CAL_LINK_COACH) || LP.CAL_LINK;
+    if (!calLink || !document.getElementById("cal-inline")) return;
     const ns = "call";
     try {
       (function (C, A, L) { let p = function (a, ar) { a.q.push(ar); }; let d = C.document; C.Cal = C.Cal || function () { let cal = C.Cal; let ar = arguments; if (!cal.loaded) { cal.ns = {}; cal.q = cal.q || []; let sc = d.createElement("script"); sc.src = A; sc.onerror = function () { C.dispatchEvent(new Event("gc-cal-down")); }; d.head.appendChild(sc); cal.loaded = true; } if (ar[0] === L) { const api = function () { p(api, arguments); }; const namespace = ar[1]; api.q = api.q || []; if (typeof namespace === "string") { cal.ns[namespace] = cal.ns[namespace] || api; p(cal.ns[namespace], ar); p(cal, ["initNamespace", namespace]); } else p(cal, ar); return; } p(cal, ar); }; })(window, "https://app.cal.com/embed/embed.js", "init");
       window.addEventListener("gc-cal-down", () => this.setState({ calDown: true }));
       const Cal = window.Cal;
       Cal("init", ns, { origin: "https://cal.com" });
-      Cal.ns[ns]("inline", { elementOrSelector: "#cal-inline", config: { layout: "month_view", theme: "light" }, calLink: LP.CAL_LINK });
+      Cal.ns[ns]("inline", { elementOrSelector: "#cal-inline", config: { layout: "month_view", theme: "light" }, calLink });
       Cal.ns[ns]("ui", { theme: "light", hideEventTypeDetails: true, layout: "month_view", cssVarsPerTheme: { light: { "cal-brand": "#2348E0" } } });
       const booked = (e) => this.onBooked((e && e.detail && e.detail.data) || {});
       ["bookingSuccessfulV2", "bookingSuccessful"].forEach((action) => Cal.ns[ns]("on", { action, callback: booked }));
@@ -490,7 +521,28 @@ class Component extends DCLogic {
       track("lp_send_error");
     }
   }
+  /* Business coach page. Its own values, so the other pages render exactly as before. */
+  coachVals() {
+    const st = this.state;
+    const kw = cleanName((store.get("gc-utm") || {}).utm_term, 60).toLowerCase();
+    const co = cleanName(st.company);
+    const calLink = LP.CAL_LINK_COACH || LP.CAL_LINK, bookUrl = LP.BOOKING_URL_COACH || LP.BOOKING_URL;
+    const picked = COACH_TAPS[st.pick];
+    return {
+      topic: coachTopic(kw, HOME),
+      smsHref: smsHref(co, "coach"),
+      hasQuote: !!(LP.QUOTE && LP.QUOTE.text), quoteText: (LP.QUOTE && LP.QUOTE.text) || "", quoteWho: (LP.QUOTE && LP.QUOTE.who) || "",
+      hasCal: !!calLink && !st.calDown, noCal: !calLink || st.calDown,
+      bookingUrl: bookUrl || "#", bookClick: () => track("booking_click", { from: "page" }),
+      taps: COACH_TAPS.map((o, i) => ({
+        t: o.t, line: o.line, on: st.pick === i, off: st.pick !== i,
+        pick: () => { this.setState({ pick: st.pick === i ? -1 : i }); if (st.pick !== i) track("coach_pick", { n: i + 1 }); }
+      })),
+      hasPick: !!picked
+    };
+  }
   renderVals() {
+    if (PAGE === "coach") return this.coachVals();
     const st = this.state, web = PAGE === "websites", town = this.town;
     const sacWeb = web && HOME === "Sacramento";
     const kw = cleanName((store.get("gc-utm") || {}).utm_term, 60).toLowerCase();

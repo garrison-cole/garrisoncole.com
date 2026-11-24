@@ -15,7 +15,7 @@ import http.server, os, re, socketserver, sys, threading
 from functools import partial
 from playwright.sync_api import sync_playwright
 
-PAGES = ["websites.html", "growth.html", "websites-sacramento.html", "growth-sacramento.html", "home-preview.html"]
+PAGES = ["websites.html", "growth.html", "websites-sacramento.html", "growth-sacramento.html", "home-preview.html", "business-coach.html"]
 ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 BOX = re.compile(r'(<div id="dc-root">)(.*?)(</div>\n<noscript>)', re.S)
 # The calendar must not draw (or fail) during the build, so stub it out.
