@@ -289,8 +289,19 @@ function coachGap(have, want, worth, noun = "customers") {
     state: "gap", gap,
     head: "You’re " + gap + " short every month.",
     line: "That’s what the call is for. " + (gap === 1 ? "We’ll find that one." : "We’ll find those " + gap + "."),
-    worthLine: v > 0 ? "That’s about " + money(gap * v) + " a month you aren’t collecting." : ""
+    worthMonth: v > 0 ? money(gap * v) + " a month" : "",
+    worthYear: v > 0 ? "About " + money(gap * v * 12) + " a year you aren’t collecting yet." : ""
   };
+}
+/** Their month as dots: white for the customers they have, yellow for the gap.
+    Past 40 dots, each dot stands for more than one so the row stays short. */
+function coachDots(have, want) {
+  if (have === "" || want === "" || have == null || want == null) return { unit: 1, have: 0, gap: 0, ghost: 20 };
+  const h = Number(have), w = Number(want), top = Math.max(h, w, 1);
+  const unit = top <= 40 ? 1 : Math.ceil(top / 40);
+  const hd = Math.round(Math.min(h, w) / unit) + (h > w ? Math.round((h - w) / unit) : 0);
+  const gd = w > h ? Math.max(1, Math.round((w - h) / unit)) : 0;
+  return { unit, have: hd, gap: gd, ghost: h === 0 && w === 0 ? 20 : 0 };
 }
 /** Size groups for analytics, so no exact numbers leave the page. */
 const gapBucket = (n) => (n === 0 ? "0" : n <= 5 ? "1-5" : n <= 10 ? "6-10" : n <= 20 ? "11-20" : "21+");
@@ -371,8 +382,11 @@ function selfTest() {
     ["wholeNum digits only", wholeNum("00a12x9") === "129" && wholeNum("") === "" && wholeNum("0") === "0" && wholeNum("12345") === "123"],
     ["coachGap empty", coachGap("", "14").state === "empty" && coachGap("6", "").state === "empty"],
     ["coachGap 6 and 14", coachGap("6", "14").gap === 8 && coachGap("6", "14").head === "You’re 8 short every month."],
-    ["coachGap worth", coachGap("6", "14", "3000").worthLine === "That’s about $24,000 a month you aren’t collecting."],
-    ["coachGap no worth", coachGap("6", "14", "").worthLine === ""],
+    ["coachGap worth", coachGap("6", "14", "3000").worthMonth === "$24,000 a month" && coachGap("6", "14", "3000").worthYear === "About $288,000 a year you aren’t collecting yet."],
+    ["coachGap no worth", coachGap("6", "14", "").worthMonth === ""],
+    ["coachDots small", JSON.stringify(coachDots("6", "14")) === JSON.stringify({ unit: 1, have: 6, gap: 8, ghost: 0 })],
+    ["coachDots big", coachDots("100", "200").unit === 5 && coachDots("100", "200").have === 20 && coachDots("100", "200").gap === 20],
+    ["coachDots empty", coachDots("", "").ghost === 20 && coachDots("12", "8").gap === 0 && coachDots("12", "8").have === 12],
     ["coachGap one short", coachGap("4", "5").line.endsWith("We’ll find that one.")],
     ["coachGap have enough", coachGap("12", "12").state === "have" && coachGap("20", "12").state === "have"],
     ["coachGap zero now", coachGap("0", "5").state === "none" && coachGap("0", "5").head.includes("first customers")],
@@ -566,6 +580,11 @@ class Component extends DCLogic {
     const calLink = LP.CAL_LINK_COACH || LP.CAL_LINK, bookUrl = LP.BOOKING_URL_COACH || LP.BOOKING_URL;
     const noun = coachNoun(kw), Noun = noun[0].toUpperCase() + noun.slice(1), one = noun === "jobs" ? "job" : "customer";
     const g = coachGap(st.have, st.want, st.worth, noun);
+    const dd = coachDots(st.have, st.want);
+    const dots = []
+      .concat(Array.from({ length: dd.have }, () => ({ c: "dot dot-have", s: "" })))
+      .concat(Array.from({ length: dd.gap }, (_, i) => ({ c: "dot dot-gap", s: "animation-delay: " + Math.min(i * 35, 900) + "ms" })))
+      .concat(Array.from({ length: dd.ghost }, () => ({ c: "dot dot-ghost", s: "" })));
     const step = (key, d) => () => {
       const cur = this.state[key];
       const n = cur === "" ? (d > 0 ? 1 : 0) : Math.max(0, Math.min(999, Number(cur) + d));
@@ -577,16 +596,23 @@ class Component extends DCLogic {
       hasQuote: !!(LP.QUOTE && LP.QUOTE.text), quoteText: (LP.QUOTE && LP.QUOTE.text) || "", quoteWho: (LP.QUOTE && LP.QUOTE.who) || "",
       hasCal: !!calLink && !st.calDown, noCal: !calLink || st.calDown,
       bookingUrl: bookUrl || "#", bookClick: () => track("booking_click", { from: "page" }),
-      haveLabel: Noun + " you get in a month", wantLabel: Noun + " you want in a month",
+      haveLabel: Noun + " a month now", wantLabel: Noun + " a month you want",
       have: st.have, want: st.want, worth: st.worth,
       setHave: (e) => this.setNum("have", wholeNum(e.target.value)),
       setWant: (e) => this.setNum("want", wholeNum(e.target.value)),
       setWorth: (e) => this.setState({ worth: wholeNum(e.target.value, 7) }),
       haveUp: step("have", 1), haveDown: step("have", -1), wantUp: step("want", 1), wantDown: step("want", -1),
-      gapShow: g.state !== "empty", gapHead: g.head || "", gapLine: g.line || "",
+      gapShow: g.state !== "empty", gapEmpty: g.state === "empty", gapHead: g.head || "", gapLine: g.line || "",
       askWorth: g.state === "gap", worthLabel: "One " + one + " is worth about $",
-      worthShow: !!g.worthLine, worthLine: g.worthLine || "",
-      gapNone: g.state === "none", gapBook: g.state !== "none"
+      worthShow: !!g.worthMonth, worthMonth: g.worthMonth || "", worthYear: g.worthYear || "",
+      gapNone: g.state === "none", gapBook: g.state !== "none",
+      shortH: "How many " + noun + " are you short?",
+      monthLabel: "YOUR MONTH",
+      dots: dots,
+      dotLegend: g.state !== "empty", hasGap: dd.gap > 0,
+      legendHave: dd.unit > 1 ? "You have (each dot is " + dd.unit + ")" : "You have",
+      legendGap: "Short",
+      ctaText: g.state === "gap" ? (g.gap === 1 ? "Find my next one on a free call" : "Find my " + g.gap + " on a free call") : "Book a free call"
     };
   }
   renderVals() {

@@ -37,8 +37,24 @@ img{max-width:100%}
 .tapme{transition:transform .12s ease,box-shadow .12s ease}
 .tapme:hover{transform:translateY(-1px);box-shadow:0 8px 18px -12px rgba(17,20,24,.55)}
 .tapme:active{transform:scale(.98)}
-.nbtn{flex:none;width:48px;height:48px;border:1.5px solid #D3D3CF;border-radius:50%;background:#FFFFFF;color:#111418;font-size:24px;font-weight:500;line-height:1;display:inline-flex;align-items:center;justify-content:center}.nbtn:hover{border-color:#111418}
-.nin{width:76px;min-height:52px;box-sizing:border-box;text-align:center;font-size:24px;font-weight:600;border:1.5px solid #D3D3CF;border-radius:10px;background:#FFFFFF;color:#111418}.nin:focus{border-color:#2348E0}
+.gx{background:#2348E0;color:#FFFFFF;border-radius:24px;box-shadow:0 30px 60px -34px rgba(35,72,224,.75)}
+.gx :focus-visible{outline-color:#FFD84A}
+.tile{flex:1 1 0;min-width:0;background:#FFFFFF;color:#111418;border-radius:16px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px}
+.tile label{font-size:14px;font-weight:600;line-height:1.3;color:#4A4F58}
+.big{width:100%;min-height:64px;box-sizing:border-box;padding:0;border:0;background:transparent;color:#111418;text-align:center;font-family:'Inter Tight','Inter',sans-serif;font-size:clamp(44px,36px + 2vw,60px);font-weight:700;letter-spacing:-0.03em;line-height:1}
+.big::placeholder{color:#C8CCD4}
+.big:focus{outline:none}.tile:focus-within{box-shadow:0 0 0 3px #FFD84A}
+.stp{display:flex;gap:8px}.stp button{flex:1;min-height:44px;border:0;border-radius:10px;background:#EEF1FD;color:#2348E0;font-size:24px;font-weight:600;line-height:1}.stp button:hover{background:#DDE3FB}.stp button:active{transform:scale(.97)}
+.dots{display:flex;flex-wrap:wrap;gap:7px;min-height:22px}
+.dot{width:18px;height:18px;border-radius:50%;box-sizing:border-box}
+.dot-have{background:#FFFFFF}
+.dot-gap{background:#FFD84A;animation:pop .4s both}
+.dot-ghost{border:1.5px dashed rgba(255,255,255,.45)}
+.wrth{width:120px;min-height:48px;box-sizing:border-box;padding:0 12px;border:0;border-radius:10px;background:#FFFFFF;color:#111418;font-size:22px;font-weight:700}
+.gocta{display:flex;align-items:center;justify-content:center;min-height:58px;padding:0 24px;border-radius:12px;background:#FFD84A;color:#111418;text-decoration:none;font-size:18px;font-weight:700;text-align:center}
+.gocta:hover{color:#111418;background:#FFE27A}
+.gocta.ghost{background:transparent;color:#FFFFFF;border:1.5px solid #FFFFFF}
+@media (prefers-reduced-motion: reduce){.dot-gap{animation:none}}
 .rng{display:block;width:100%;height:28px;margin:6px 0 2px;accent-color:#2348E0;cursor:pointer}
 .stick{position:sticky;bottom:0;z-index:5;transition:opacity .15s ease}
 html.at-book .stick{opacity:0;visibility:hidden;pointer-events:none}
@@ -53,7 +69,7 @@ button:disabled{opacity:.6;cursor:default}
 .foot a{display:inline-flex;align-items:center;min-height:44px}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
-<script src="lp.js?v=20261125a" defer></script>
+<script src="lp.js?v=20261125b" defer></script>
 </head>
 <body>
 <a class="vh" href="#start">Skip to the page</a>
@@ -75,7 +91,7 @@ button:disabled{opacity:.6;cursor:default}
 <section id="start" style="max-width: 1160px; margin: 0 auto; padding: clamp(30px, 6vw, 84px) clamp(18px, 4vw, 40px) clamp(40px, 6vw, 80px)">
 <div style="max-width: 820px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
 <div style="font-size: 15px; font-weight: 600; letter-spacing: 0.02em; color: #4A4F58">Business coach in Roseville and Sacramento</div>
-<h1 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(40px, 22px + 4.4vw, 72px); font-weight: 600; line-height: 1.02; letter-spacing: -0.035em; text-wrap: balance"><span style="display: block">Business coach in Roseville.</span><span class="hl">More customers every month. No more guessing.</span></h1>
+<h1 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(40px, 22px + 4.4vw, 72px); font-weight: 600; line-height: 1.02; letter-spacing: -0.035em; text-wrap: balance"><span style="display: block">Business coach in Roseville.</span><span style="display: block; color: #2348E0">More customers every month.</span><span style="display: block">No more guessing.</span></h1>
 <p style="margin: 0; max-width: 600px; font-size: clamp(19px, 17px + 0.4vw, 22px); line-height: 1.4; color: #4A4F58">I’m Garrison, a Roseville local. You’re good at the work. I help with the part nobody taught you: getting customers, and getting them to say yes.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
 <a href="#book" class="tapme" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 26px; border-radius: 10px; background: #2348E0; color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600">Book a free call</a>
@@ -113,35 +129,43 @@ button:disabled{opacity:.6;cursor:default}
 
 
 
-<section style="max-width: 1160px; margin: 0 auto; padding: clamp(48px, 6vw, 84px) clamp(18px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: clamp(24px, 5vw, 72px)">
-<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
-<h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 46px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em">Two numbers.</h2>
-<p style="margin: 0; font-size: 18px; color: #4A4F58">Every first call starts here.</p>
+<section style="max-width: 1160px; margin: 0 auto; padding: clamp(40px, 6vw, 84px) clamp(14px, 4vw, 40px)">
+<div class="gx" role="group" aria-label="How many are you short" style="padding: clamp(22px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 28px clamp(28px, 5vw, 64px)">
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<div style="display: inline-flex; align-self: flex-start; align-items: center; min-height: 30px; padding: 0 12px; border-radius: 999px; background: rgba(255,255,255,.16); font-size: 14px; font-weight: 600">Every first call starts here</div>
+<h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(32px, 22px + 2.6vw, 52px); font-weight: 700; line-height: 1.02; letter-spacing: -0.03em; text-wrap: balance">How many customers are you short?</h2>
+<div style="display: flex; gap: 10px">
+<div class="tile">
+<label for="n-have">Customers a month now</label>
+<input id="n-have" class="big" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" placeholder="0" value="">
+<div class="stp"><button type="button" aria-label="One less, now">−</button><button type="button" aria-label="One more, now">+</button></div>
 </div>
-<div role="group" aria-label="Two numbers" style="flex: 1.4 1 420px; min-width: 0; display: flex; flex-direction: column">
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 16px 0; border-top: 1px solid #E6E6E3">
-<label for="n-have" style="flex: 1 1 200px; font-size: 18px; font-weight: 600; line-height: 1.35">Customers you get in a month</label>
-<div style="display: flex; align-items: center; gap: 8px">
-<button type="button" class="nbtn" aria-label="One less, now">−</button>
-<input id="n-have" class="nin" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" value="">
-<button type="button" class="nbtn" aria-label="One more, now">+</button>
-</div>
-</div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 16px 0; border-top: 1px solid #E6E6E3">
-<label for="n-want" style="flex: 1 1 200px; font-size: 18px; font-weight: 600; line-height: 1.35">Customers you want in a month</label>
-<div style="display: flex; align-items: center; gap: 8px">
-<button type="button" class="nbtn" aria-label="One less, wanted">−</button>
-<input id="n-want" class="nin" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" value="">
-<button type="button" class="nbtn" aria-label="One more, wanted">+</button>
+<div class="tile">
+<label for="n-want">Customers a month you want</label>
+<input id="n-want" class="big" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" placeholder="0" value="">
+<div class="stp"><button type="button" aria-label="One less, wanted">−</button><button type="button" aria-label="One more, wanted">+</button></div>
 </div>
 </div>
-<div aria-live="polite">
+</div>
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px; justify-content: center">
+<div style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #DCE3FF">YOUR MONTH</div>
+<div class="dots" aria-hidden="true">
+<span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span>
+</div>
+
+<div aria-live="polite" style="display: flex; flex-direction: column; gap: 8px">
+
+
+<div style="font-size: 17px; line-height: 1.45; color: #DCE3FF">Tap + or type your numbers. Your month fills in here.</div>
+
+
 
 </div>
 
 
-<a href="#book" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; font-size: 17px; font-weight: 600; color: #2348E0">Book a free call</a>
+<a href="#book" class="gocta tapme">Book a free call</a>
 
+</div>
 </div>
 </section>
 
@@ -242,7 +266,7 @@ button:disabled{opacity:.6;cursor:default}
 <section id="start" style="max-width: 1160px; margin: 0 auto; padding: clamp(30px, 6vw, 84px) clamp(18px, 4vw, 40px) clamp(40px, 6vw, 80px)">
 <div style="max-width: 820px; min-width: 0; display: flex; flex-direction: column; gap: 20px">
 <div style="font-size: 15px; font-weight: 600; letter-spacing: 0.02em; color: #4A4F58">Business coach in Roseville and Sacramento</div>
-<h1 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(40px, 22px + 4.4vw, 72px); font-weight: 600; line-height: 1.02; letter-spacing: -0.035em; text-wrap: balance"><span style="display: block">{{topic}}</span><span class="hl">More customers every month. No more guessing.</span></h1>
+<h1 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(40px, 22px + 4.4vw, 72px); font-weight: 600; line-height: 1.02; letter-spacing: -0.035em; text-wrap: balance"><span style="display: block">{{topic}}</span><span style="display: block; color: #2348E0">More customers every month.</span><span style="display: block">No more guessing.</span></h1>
 <p style="margin: 0; max-width: 600px; font-size: clamp(19px, 17px + 0.4vw, 22px); line-height: 1.4; color: #4A4F58">I’m Garrison, a Roseville local. You’re good at the work. I help with the part nobody taught you: getting customers, and getting them to say yes.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
 <a href="#book" class="tapme" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 26px; border-radius: 10px; background: #2348E0; color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600">Book a free call</a>
@@ -288,52 +312,61 @@ button:disabled{opacity:.6;cursor:default}
 </section>
 </sc-if>
 
-<!-- Two numbers. The same two questions every first call starts with. -->
-<section style="max-width: 1160px; margin: 0 auto; padding: clamp(48px, 6vw, 84px) clamp(18px, 4vw, 40px); display: flex; flex-wrap: wrap; gap: clamp(24px, 5vw, 72px)">
-<div style="flex: 1 1 320px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
-<h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 46px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em">Two numbers.</h2>
-<p style="margin: 0; font-size: 18px; color: #4A4F58">Every first call starts here.</p>
+<!-- How many are you short? Their month, drawn as dots. -->
+<section style="max-width: 1160px; margin: 0 auto; padding: clamp(40px, 6vw, 84px) clamp(14px, 4vw, 40px)">
+<div class="gx" role="group" aria-label="How many are you short" style="padding: clamp(22px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 28px clamp(28px, 5vw, 64px)">
+<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
+<div style="display: inline-flex; align-self: flex-start; align-items: center; min-height: 30px; padding: 0 12px; border-radius: 999px; background: rgba(255,255,255,.16); font-size: 14px; font-weight: 600">Every first call starts here</div>
+<h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(32px, 22px + 2.6vw, 52px); font-weight: 700; line-height: 1.02; letter-spacing: -0.03em; text-wrap: balance">{{shortH}}</h2>
+<div style="display: flex; gap: 10px">
+<div class="tile">
+<label for="n-have">{{haveLabel}}</label>
+<input id="n-have" class="big" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" placeholder="0" value="{{have}}" onChange="{{setHave}}">
+<div class="stp"><button type="button" aria-label="One less, now" onClick="{{haveDown}}">&#8722;</button><button type="button" aria-label="One more, now" onClick="{{haveUp}}">+</button></div>
 </div>
-<div role="group" aria-label="Two numbers" style="flex: 1.4 1 420px; min-width: 0; display: flex; flex-direction: column">
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 16px 0; border-top: 1px solid #E6E6E3">
-<label for="n-have" style="flex: 1 1 200px; font-size: 18px; font-weight: 600; line-height: 1.35">{{haveLabel}}</label>
-<div style="display: flex; align-items: center; gap: 8px">
-<button type="button" class="nbtn" aria-label="One less, now" onClick="{{haveDown}}">&#8722;</button>
-<input id="n-have" class="nin" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" value="{{have}}" onChange="{{setHave}}">
-<button type="button" class="nbtn" aria-label="One more, now" onClick="{{haveUp}}">+</button>
-</div>
-</div>
-<div style="display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 10px 16px; padding: 16px 0; border-top: 1px solid #E6E6E3">
-<label for="n-want" style="flex: 1 1 200px; font-size: 18px; font-weight: 600; line-height: 1.35">{{wantLabel}}</label>
-<div style="display: flex; align-items: center; gap: 8px">
-<button type="button" class="nbtn" aria-label="One less, wanted" onClick="{{wantDown}}">&#8722;</button>
-<input id="n-want" class="nin" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" value="{{want}}" onChange="{{setWant}}">
-<button type="button" class="nbtn" aria-label="One more, wanted" onClick="{{wantUp}}">+</button>
+<div class="tile">
+<label for="n-want">{{wantLabel}}</label>
+<input id="n-want" class="big" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" placeholder="0" value="{{want}}" onChange="{{setWant}}">
+<div class="stp"><button type="button" aria-label="One less, wanted" onClick="{{wantDown}}">&#8722;</button><button type="button" aria-label="One more, wanted" onClick="{{wantUp}}">+</button></div>
 </div>
 </div>
-<div aria-live="polite">
+</div>
+<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px; justify-content: center">
+<div style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #DCE3FF">{{monthLabel}}</div>
+<div class="dots" aria-hidden="true">
+<sc-for list="{{dots}}" as="d" hint-placeholder-count="20"><span class="{{d.c}}" style="{{d.s}}"></span></sc-for>
+</div>
+<sc-if value="{{dotLegend}}" hint-placeholder-val="{{ false }}">
+<div style="display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; color: #DCE3FF"><span style="display: inline-flex; align-items: center; gap: 8px"><span class="dot dot-have" style="width: 12px; height: 12px"></span>{{legendHave}}</span><sc-if value="{{hasGap}}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: center; gap: 8px"><span class="dot" style="width: 12px; height: 12px; background: #FFD84A"></span>{{legendGap}}</span></sc-if></div>
+</sc-if>
+<div aria-live="polite" style="display: flex; flex-direction: column; gap: 8px">
 <sc-if value="{{gapShow}}" hint-placeholder-val="{{ false }}">
-<div class="in1" style="margin-top: 4px; padding: 16px 18px; background: #FFF6CC; border-radius: 12px">
-<div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(22px, 19px + 0.8vw, 28px); font-weight: 600; line-height: 1.2; letter-spacing: -0.02em">{{gapHead}}</div>
-<div style="margin-top: 6px; font-size: 17px; line-height: 1.45">{{gapLine}}</div>
+<div class="in1" style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(26px, 20px + 1.6vw, 38px); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; color: #FFD84A">{{gapHead}}</div>
+<div style="font-size: 17px; line-height: 1.45; color: #FFFFFF">{{gapLine}}</div>
+</sc-if>
+<sc-if value="{{gapEmpty}}" hint-placeholder-val="{{ true }}">
+<div style="font-size: 17px; line-height: 1.45; color: #DCE3FF">Tap + or type your numbers. Your month fills in here.</div>
+</sc-if>
 <sc-if value="{{askWorth}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 14px">
-<label for="n-worth" style="font-size: 17px; font-weight: 600">{{worthLabel}}</label>
-<input id="n-worth" class="nin" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="7" value="{{worth}}" onChange="{{setWorth}}" style="width: 130px; font-size: 20px">
+<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 6px">
+<label for="n-worth" style="font-size: 16px; font-weight: 600">{{worthLabel}}</label>
+<input id="n-worth" class="wrth" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="7" placeholder="3000" value="{{worth}}" onChange="{{setWorth}}">
 </div>
+</sc-if>
 <sc-if value="{{worthShow}}" hint-placeholder-val="{{ false }}">
-<div style="margin-top: 10px; font-size: 18px; font-weight: 600">{{worthLine}}</div>
-</sc-if>
-</sc-if>
+<div class="in1" style="margin-top: 4px; padding: 14px 16px; border-radius: 14px; background: rgba(17,20,24,.28)">
+<div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 44px); font-weight: 700; line-height: 1; letter-spacing: -0.03em">{{worthMonth}}</div>
+<div style="margin-top: 6px; font-size: 16px; color: #DCE3FF">{{worthYear}}</div>
 </div>
 </sc-if>
 </div>
 <sc-if value="{{gapNone}}" hint-placeholder-val="{{ false }}">
-<a href="{{smsHref}}" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; font-size: 17px; font-weight: 600; color: #2348E0">Text me</a>
+<a href="{{smsHref}}" class="gocta ghost">Text me</a>
 </sc-if>
 <sc-if value="{{gapBook}}" hint-placeholder-val="{{ true }}">
-<a href="#book" style="align-self: flex-start; display: inline-flex; align-items: center; min-height: 44px; margin-top: 6px; font-size: 17px; font-weight: 600; color: #2348E0">Book a free call</a>
+<a href="#book" class="gocta tapme">{{ctaText}}</a>
 </sc-if>
+</div>
 </div>
 </section>
 
