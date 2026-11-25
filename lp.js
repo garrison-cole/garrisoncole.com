@@ -271,14 +271,29 @@ function coachTopic(kw, home = "Roseville") {
   const town = hit ? titleCase(hit) : home;
   return (k.includes("consultant") ? "Business consultant in " : "Business coach in ") + town + ".";
 }
-/* Business coach page: tap the one that sounds like your week. One open at a time. */
-const COACH_TAPS = [
-  { t: "The phone rings while I’m on a job.", line: "Every missed call gets an answer within minutes, so the job stays yours." },
-  { t: "Quotes go out and I never hear back.", line: "Follow-up keeps going while you’re on the next job, and more quotes turn into deposits." },
-  { t: "Slammed in spring, quiet in winter.", line: "We line up winter work in the fall, while the phone is still ringing." },
-  { t: "I drop my price when they’re getting three bids.", line: "We put the real cost of a job on paper, so you can hold your number and still win." },
-  { t: "Everything runs through me.", line: "We pick what only you can do and get the rest off your plate, starting with where the next job comes from." }
-];
+/* Business coach page: two numbers, the same two every first call starts with. */
+/** Digits only, no leading zeros, at most max digits. "" stays "". */
+function wholeNum(v, max = 3) {
+  return String(v == null ? "" : v).replace(/\D/g, "").replace(/^0+(?=\d)/, "").slice(0, max);
+}
+/** "jobs" when the search was about contractors, otherwise "customers". */
+const coachNoun = (kw) => (/contractor/.test(String(kw == null ? "" : kw).toLowerCase()) ? "jobs" : "customers");
+/** What the box says. have and want are strings from the inputs; "" means not filled in yet. */
+function coachGap(have, want, worth, noun = "customers") {
+  if (have === "" || want === "" || have == null || want == null) return { state: "empty" };
+  const h = Number(have), w = Number(want);
+  if (h === 0) return { state: "none", head: "Still looking for your first " + noun + "?", line: "I’m not the right fit yet. Text me and I’ll point you somewhere useful." };
+  if (w <= h) return { state: "have", head: "You have the " + noun + ".", line: "Then the call is about keeping more of the money and getting your time back." };
+  const gap = w - h, v = Number(worth) || 0;
+  return {
+    state: "gap", gap,
+    head: "You’re " + gap + " short every month.",
+    line: "That’s what the call is for. " + (gap === 1 ? "We’ll find that one." : "We’ll find those " + gap + "."),
+    worthLine: v > 0 ? "That’s about " + money(gap * v) + " a month you aren’t collecting." : ""
+  };
+}
+/** Size groups for analytics, so no exact numbers leave the page. */
+const gapBucket = (n) => (n === 0 ? "0" : n <= 5 ? "1-5" : n <= 10 ? "6-10" : n <= 20 ? "11-20" : "21+");
 /** What the complimentary audit covers, matched to the ad they clicked. */
 function auditWhat(kw) {
   const k = String(kw == null ? "" : kw).toLowerCase();
@@ -292,12 +307,12 @@ const PAINS = {
   websites: ["Customers look me up, then call the next guy.", "My site looks like 2015.", "I paid a web designer and got a template.", "I don’t have a website yet."],
   growth: ["The phone rings while I’m on a job.", "I pay Angi for leads three other guys get.", "Quotes go out and I never hear back.", "Slammed in spring, dead in winter.", "My last marketing company sent impression reports.", "They’re getting three bids and I flinch on price."]
 };
-/* Home page: tap the one that sounds like you. Each points to the page that answers it. */
+/* Home page: tap what you need. Each points to the page that answers it. */
 const HOME_OPTS = [
-  { t: "My website looks dated, or I don’t have one.", line: "I build yours first, and you pay only if you want it live.", href: "websites", label: "See how websites work" },
-  { t: "Customers look me up, then call the next guy.", line: "Your best work and reviews go up top, with one button to reach you.", href: "websites", label: "See how websites work" },
-  { t: "I pay for leads three other companies get.", line: "Your own Google ads put you in front of people searching your trade and your town.", href: "growth", label: "See how I run ads" },
-  { t: "Quotes go out and I never hear back.", line: "Follow-up that keeps running while you’re on a job.", href: "growth", label: "See how I run ads" }
+  { t: "My website looks old, or I don’t have one.", line: "I build it first. You see it before you pay.", href: "websites", label: "See websites" },
+  { t: "I need my phone to ring more.", line: "I run your Google ads and build the page behind them. You see every dollar.", href: "growth", label: "See ads" },
+  { t: "I’ve paid for marketing and got nothing.", line: "I hear that most weeks. On a free call I’ll look at what you tried and tell you what I think went wrong.", href: "#book", label: "Book a free call" },
+  { t: "I want help with the whole business.", line: "That’s coaching. We talk every week and I do the hard parts with you.", href: "business-coach", label: "See coaching" }
 ];
 const JOB_STOPS = [150, 250, 400, 600, 800, 1000, 1500, 2000, 2500, 3000, 4000, 5000, 6500, 8000, 10000, 12500, 15000, 20000, 30000, 50000];
 /** Same math as the Quote Leak Calculator on the home page: follow-up closes about one more quote in ten. */
@@ -353,7 +368,17 @@ function selfTest() {
     ["coachTopic rocklin and folsom", coachTopic("business coach rocklin") === "Business coach in Rocklin." && coachTopic("business consultant folsom") === "Business consultant in Folsom."],
     ["coachTopic no search", coachTopic("") === "Business coach in Roseville."],
     ["coach text asks about coaching", decodeURIComponent(smsHref("", "coach")).includes("business coaching")],
-    ["five coach taps", COACH_TAPS.length === 5]
+    ["wholeNum digits only", wholeNum("00a12x9") === "129" && wholeNum("") === "" && wholeNum("0") === "0" && wholeNum("12345") === "123"],
+    ["coachGap empty", coachGap("", "14").state === "empty" && coachGap("6", "").state === "empty"],
+    ["coachGap 6 and 14", coachGap("6", "14").gap === 8 && coachGap("6", "14").head === "You’re 8 short every month."],
+    ["coachGap worth", coachGap("6", "14", "3000").worthLine === "That’s about $24,000 a month you aren’t collecting."],
+    ["coachGap no worth", coachGap("6", "14", "").worthLine === ""],
+    ["coachGap one short", coachGap("4", "5").line.endsWith("We’ll find that one.")],
+    ["coachGap have enough", coachGap("12", "12").state === "have" && coachGap("20", "12").state === "have"],
+    ["coachGap zero now", coachGap("0", "5").state === "none" && coachGap("0", "5").head.includes("first customers")],
+    ["coachNoun contractor", coachNoun("business coach for contractors") === "jobs" && coachNoun("business coach sacramento") === "customers"],
+    ["gapBucket", gapBucket(0) === "0" && gapBucket(5) === "1-5" && gapBucket(8) === "6-10" && gapBucket(14) === "11-20" && gapBucket(40) === "21+"],
+    ["home has a coaching door", HOME_OPTS.some((o) => o.href === "business-coach") && HOME_OPTS.length === 4]
   ];
   console.table(t.map(([name, pass]) => ({ name, pass })));
   return t.every((r) => r[1]);
@@ -436,7 +461,8 @@ class Component extends DCLogic {
     this.state = {
       company: cleanName(q.get("co")) || saved.company || "",
       phone: "", step: 1, err: "", sending: false, sendFail: false, trap: "",
-      engine: PAGE === "websites", picks: [], pick: -1, q: 12, jobIdx: 8, ranCalc: false, calDown: false
+      engine: PAGE === "websites", picks: [], pick: -1, q: 12, jobIdx: 8, ranCalc: false, calDown: false,
+      have: "", want: "", worth: ""
     };
   }
   keep() { store.set("gc-lp5", { company: this.state.company }); }
@@ -444,7 +470,9 @@ class Component extends DCLogic {
   context() {
     const s = this.state, list = PAINS[PAGE] || [];
     const out = { said: s.picks.slice().sort().map((i) => list[i]).filter(Boolean).join(" | "), page: PAGE };
-    if (PAGE === "coach" && s.pick > -1 && COACH_TAPS[s.pick]) out.said = COACH_TAPS[s.pick].t;
+    if (PAGE === "coach" && s.have !== "" && s.want !== "") {
+      out.said = "Gets " + s.have + " a month, wants " + s.want + (Number(s.worth) > 0 ? ", one is worth about " + money(Number(s.worth)) : "");
+    }
     if (PAGE === "growth" && s.ranCalc) { out.quotes_a_month = s.q; out.average_job = money(JOB_STOPS[s.jobIdx] || 0); }
     return Object.assign(out, store.get("gc-utm") || {});
   }
@@ -522,23 +550,43 @@ class Component extends DCLogic {
     }
   }
   /* Business coach page. Its own values, so the other pages render exactly as before. */
+  setNum(key, v) {
+    this.setState({ [key]: v }, () => {
+      const st = this.state;
+      if (!this.gapTracked && st.have !== "" && st.want !== "") {
+        this.gapTracked = true;
+        track("coach_gap", { now: gapBucket(Number(st.have)), want: gapBucket(Number(st.want)) });
+      }
+    });
+  }
   coachVals() {
     const st = this.state;
     const kw = cleanName((store.get("gc-utm") || {}).utm_term, 60).toLowerCase();
     const co = cleanName(st.company);
     const calLink = LP.CAL_LINK_COACH || LP.CAL_LINK, bookUrl = LP.BOOKING_URL_COACH || LP.BOOKING_URL;
-    const picked = COACH_TAPS[st.pick];
+    const noun = coachNoun(kw), Noun = noun[0].toUpperCase() + noun.slice(1), one = noun === "jobs" ? "job" : "customer";
+    const g = coachGap(st.have, st.want, st.worth, noun);
+    const step = (key, d) => () => {
+      const cur = this.state[key];
+      const n = cur === "" ? (d > 0 ? 1 : 0) : Math.max(0, Math.min(999, Number(cur) + d));
+      this.setNum(key, String(n));
+    };
     return {
       topic: coachTopic(kw, HOME),
       smsHref: smsHref(co, "coach"),
       hasQuote: !!(LP.QUOTE && LP.QUOTE.text), quoteText: (LP.QUOTE && LP.QUOTE.text) || "", quoteWho: (LP.QUOTE && LP.QUOTE.who) || "",
       hasCal: !!calLink && !st.calDown, noCal: !calLink || st.calDown,
       bookingUrl: bookUrl || "#", bookClick: () => track("booking_click", { from: "page" }),
-      taps: COACH_TAPS.map((o, i) => ({
-        t: o.t, line: o.line, on: st.pick === i, off: st.pick !== i,
-        pick: () => { this.setState({ pick: st.pick === i ? -1 : i }); if (st.pick !== i) track("coach_pick", { n: i + 1 }); }
-      })),
-      hasPick: !!picked
+      haveLabel: Noun + " you get in a month", wantLabel: Noun + " you want in a month",
+      have: st.have, want: st.want, worth: st.worth,
+      setHave: (e) => this.setNum("have", wholeNum(e.target.value)),
+      setWant: (e) => this.setNum("want", wholeNum(e.target.value)),
+      setWorth: (e) => this.setState({ worth: wholeNum(e.target.value, 7) }),
+      haveUp: step("have", 1), haveDown: step("have", -1), wantUp: step("want", 1), wantDown: step("want", -1),
+      gapShow: g.state !== "empty", gapHead: g.head || "", gapLine: g.line || "",
+      askWorth: g.state === "gap", worthLabel: "One " + one + " is worth about $",
+      worthShow: !!g.worthLine, worthLine: g.worthLine || "",
+      gapNone: g.state === "none", gapBook: g.state !== "none"
     };
   }
   renderVals() {
