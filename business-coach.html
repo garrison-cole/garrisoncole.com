@@ -37,24 +37,22 @@ img{max-width:100%}
 .tapme{transition:transform .12s ease,box-shadow .12s ease}
 .tapme:hover{transform:translateY(-1px);box-shadow:0 8px 18px -12px rgba(17,20,24,.55)}
 .tapme:active{transform:scale(.98)}
-.gx{background:#2348E0;color:#FFFFFF;border-radius:24px;box-shadow:0 30px 60px -34px rgba(35,72,224,.75)}
-.gx :focus-visible{outline-color:#FFD84A}
-.tile{flex:1 1 0;min-width:0;background:#FFFFFF;color:#111418;border-radius:16px;padding:14px 14px 12px;display:flex;flex-direction:column;gap:8px}
-.tile label{font-size:14px;font-weight:600;line-height:1.3;color:#4A4F58}
-.big{width:100%;min-height:64px;box-sizing:border-box;padding:0;border:0;background:transparent;color:#111418;text-align:center;font-family:'Inter Tight','Inter',sans-serif;font-size:clamp(44px,36px + 2vw,60px);font-weight:700;letter-spacing:-0.03em;line-height:1}
-.big::placeholder{color:#C8CCD4}
-.big:focus{outline:none}.tile:focus-within{box-shadow:0 0 0 3px #FFD84A}
-.stp{display:flex;gap:8px}.stp button{flex:1;min-height:44px;border:0;border-radius:10px;background:#EEF1FD;color:#2348E0;font-size:24px;font-weight:600;line-height:1}.stp button:hover{background:#DDE3FB}.stp button:active{transform:scale(.97)}
-.dots{display:flex;flex-wrap:wrap;gap:7px;min-height:22px}
-.dot{width:18px;height:18px;border-radius:50%;box-sizing:border-box}
-.dot-have{background:#FFFFFF}
-.dot-gap{background:#FFD84A;animation:pop .4s both}
-.dot-ghost{border:1.5px dashed rgba(255,255,255,.45)}
-.wrth{width:120px;min-height:48px;box-sizing:border-box;padding:0 12px;border:0;border-radius:10px;background:#FFFFFF;color:#111418;font-size:22px;font-weight:700}
-.gocta{display:flex;align-items:center;justify-content:center;min-height:58px;padding:0 24px;border-radius:12px;background:#FFD84A;color:#111418;text-decoration:none;font-size:18px;font-weight:700;text-align:center}
-.gocta:hover{color:#111418;background:#FFE27A}
-.gocta.ghost{background:transparent;color:#FFFFFF;border:1.5px solid #FFFFFF}
-@media (prefers-reduced-motion: reduce){.dot-gap{animation:none}}
+.rd-card{background:#FFFFFF;border:1px solid #E6E6E3;border-radius:20px;padding:clamp(16px,2.4vw,26px)}
+.rd-row{display:flex;flex-direction:column;gap:2px}
+.rd-top{display:flex;align-items:baseline;justify-content:space-between;gap:12px}
+.rd-lab{font-size:16px;font-weight:600;line-height:1.3}.rd-lab small{display:block;font-size:13px;font-weight:400;color:#5E636D}
+.rd-num{flex:none;font-family:'Inter Tight','Inter',sans-serif;font-size:clamp(30px,24px + 1.4vw,40px);font-weight:700;letter-spacing:-0.03em;line-height:1}
+.rd-chip{align-self:flex-start;display:inline-flex;align-items:center;gap:8px;min-height:32px;margin:6px 0 12px;padding:4px 12px;border-radius:999px;background:#F1F2F4;color:#4A4F58;font-size:14px;font-weight:600}
+.rd-chip.hot{background:#FFD84A;color:#111418}
+.rd-phone{background:#FFFFFF;border:1px solid #D3D3CF;border-radius:28px;box-shadow:0 34px 60px -38px rgba(17,20,24,.5);overflow:hidden;display:flex;flex-direction:column}
+.rd-head{display:flex;align-items:center;gap:10px;padding:14px 16px;border-bottom:1px solid #E6E6E3;background:#FAFAF9}
+.rd-thread{display:flex;flex-direction:column;gap:8px;padding:16px;min-height:300px}
+.bub{align-self:flex-start;max-width:94%;padding:10px 14px;border-radius:18px 18px 18px 6px;background:#EEF0F3;color:#111418;font-size:16px;line-height:1.4;animation:rise .35s both}
+.bub.money{background:#FFD84A;font-weight:600}
+.bub.typing{display:inline-flex;gap:5px;padding:14px 16px}.bub.typing i{width:8px;height:8px;border-radius:50%;background:#9AA0A8;animation:blink 1s infinite both}.bub.typing i:nth-child(2){animation-delay:.15s}.bub.typing i:nth-child(3){animation-delay:.3s}
+@keyframes blink{0%,80%,100%{opacity:.3}40%{opacity:1}}
+.rd-order{display:flex;flex-wrap:wrap;align-items:center;gap:6px 8px;font-size:14px;color:#4A4F58}.rd-order b{display:inline-flex;align-items:center;min-height:28px;padding:0 10px;border-radius:999px;background:#EEF1FD;color:#2348E0;font-weight:600}
+@media (prefers-reduced-motion: reduce){.bub{animation:none}.bub.typing i{animation:none}}
 .rng{display:block;width:100%;height:28px;margin:6px 0 2px;accent-color:#2348E0;cursor:pointer}
 .stick{position:sticky;bottom:0;z-index:5;transition:opacity .15s ease}
 html.at-book .stick{opacity:0;visibility:hidden;pointer-events:none}
@@ -69,7 +67,7 @@ button:disabled{opacity:.6;cursor:default}
 .foot a{display:inline-flex;align-items:center;min-height:44px}
 @media (prefers-reduced-motion: reduce){html{scroll-behavior:auto}}
 </style>
-<script src="lp.js?v=20261125b" defer></script>
+<script src="lp.js?v=20261125c" defer></script>
 </head>
 <body>
 <a class="vh" href="#start">Skip to the page</a>
@@ -95,10 +93,15 @@ button:disabled{opacity:.6;cursor:default}
 <p style="margin: 0; max-width: 600px; font-size: clamp(19px, 17px + 0.4vw, 22px); line-height: 1.4; color: #4A4F58">I’m Garrison, a Roseville local. You’re good at the work. I help with the part nobody taught you: getting customers, and getting them to say yes.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
 <a href="#book" class="tapme" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 26px; border-radius: 10px; background: #2348E0; color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600">Book a free call</a>
+<a href="#read" class="tapme" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 22px; border-radius: 10px; border: 1.5px solid #111418; background: #FFFFFF; color: #111418; text-decoration: none; font-size: 18px; font-weight: 600">Run your month past me</a>
 </div>
 <div style="display: flex; align-items: center; gap: 12px; padding-top: 4px">
 <img src="garrison-112.webp" decoding="async" width="56" height="56" alt="Garrison Cole, Roseville, CA" style="flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover">
 <div style="font-size: 15px; line-height: 1.35"><strong style="font-weight: 600">Garrison Cole, Roseville.</strong><br><span style="color: #5E636D">Glad to meet in person.</span></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 32px; padding-top: 14px; border-top: 1px solid #E6E6E3; font-size: 15px; color: #4A4F58">
+<div><strong style="display: block; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: #111418">Thousands</strong>of businesses worked with</div>
+<div><strong style="display: block; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: #111418">Every week</strong>on live sales calls</div>
 </div>
 </div>
 </section>
@@ -129,42 +132,45 @@ button:disabled{opacity:.6;cursor:default}
 
 
 
-<section style="max-width: 1160px; margin: 0 auto; padding: clamp(40px, 6vw, 84px) clamp(14px, 4vw, 40px)">
-<div class="gx" role="group" aria-label="How many are you short" style="padding: clamp(22px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 28px clamp(28px, 5vw, 64px)">
-<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
-<div style="display: inline-flex; align-self: flex-start; align-items: center; min-height: 30px; padding: 0 12px; border-radius: 999px; background: rgba(255,255,255,.16); font-size: 14px; font-weight: 600">Every first call starts here</div>
-<h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(32px, 22px + 2.6vw, 52px); font-weight: 700; line-height: 1.02; letter-spacing: -0.03em; text-wrap: balance">How many customers are you short?</h2>
-<div style="display: flex; gap: 10px">
-<div class="tile">
-<label for="n-have">Customers a month now</label>
-<input id="n-have" class="big" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" placeholder="0" value="">
-<div class="stp"><button type="button" aria-label="One less, now">−</button><button type="button" aria-label="One more, now">+</button></div>
+<section id="read" style="max-width: 1160px; margin: 0 auto; padding: clamp(48px, 6vw, 84px) clamp(18px, 4vw, 40px); display: flex; flex-direction: column; gap: clamp(20px, 3vw, 32px)">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px">
+<h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(34px, 24px + 2.6vw, 56px); font-weight: 600; line-height: 1.02; letter-spacing: -0.03em; text-wrap: balance">Run your month past me.</h2>
+<p style="margin: 0; font-size: 18px; color: #4A4F58">Slide to your real numbers. I’ll tell you where I’d start and what I’d leave alone.</p>
 </div>
-<div class="tile">
-<label for="n-want">Customers a month you want</label>
-<input id="n-want" class="big" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" placeholder="0" value="">
-<div class="stp"><button type="button" aria-label="One less, wanted">−</button><button type="button" aria-label="One more, wanted">+</button></div>
+<div style="display: flex; flex-wrap: wrap; gap: clamp(18px, 3vw, 36px); align-items: flex-start">
+<div class="rd-card" role="group" aria-label="Your month" style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column">
+<div class="rd-row">
+<div class="rd-top"><label class="rd-lab" for="rd-reach">People who reach out in a month<small>Calls, texts and forms</small></label><span class="rd-num">40</span></div>
+<input id="rd-reach" class="rng" type="range" min="0" max="17" step="1" value="10">
+</div>
+<div class="rd-chip">18 never got a price</div>
+<div class="rd-row">
+<div class="rd-top"><label class="rd-lab" for="rd-priced">How many get a price from you</label><span class="rd-num">22</span></div>
+<input id="rd-priced" class="rng" type="range" min="0" max="40" step="1" value="22">
+</div>
+<div class="rd-chip hot">16 heard the price and walked. I’d start here.</div>
+<div class="rd-row">
+<div class="rd-top"><label class="rd-lab" for="rd-yes">How many say yes</label><span class="rd-num">6</span></div>
+<input id="rd-yes" class="rng" type="range" min="0" max="22" step="1" value="6">
+</div>
+<div style="height: 1px; margin: 16px 0; background: #E6E6E3"></div>
+<div class="rd-row">
+<div class="rd-top"><label class="rd-lab" for="rd-job">A typical customer is worth</label><span class="rd-num">$3,000</span></div>
+<input id="rd-job" class="rng" type="range" min="0" max="19" step="1" value="9">
 </div>
 </div>
+<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div class="rd-phone">
+<div class="rd-head"><img src="garrison-112.webp" decoding="async" width="40" height="40" alt="" style="flex: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover"><div style="line-height: 1.25"><div style="font-weight: 600">Garrison Cole</div><div style="font-size: 13px; color: #5E636D">What I’d text you after seeing this</div></div></div>
+<div class="rd-thread" aria-live="polite">
+
+<div id="rd-0" style="display: flex; flex-direction: column; gap: 8px"><div class="bub" style="animation-delay: 0ms">16 people heard your price and walked. You’re winning 6 of 22.</div><div class="bub" style="animation-delay: 220ms">I’d start with the sale. It’s the cheapest thing to fix, and more ads would only send you more people to lose.</div><div class="bub" style="animation-delay: 440ms">Next time someone says “let me think about it,” ask “what specifically?” Then stop talking.</div><div class="bub money" style="animation-delay: 660ms">Win 2 more out of every 10 and that’s about 4 more customers a month. Around $12,000.</div></div>
 </div>
-<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px; justify-content: center">
-<div style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #DCE3FF">YOUR MONTH</div>
-<div class="dots" aria-hidden="true">
-<span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span><span class="dot dot-ghost" style=""></span>
 </div>
+<div class="rd-order"><span>The order I’d go:</span><b>1. The sale</b><b>2. A price for everyone</b><b>3. More people reaching out</b></div>
+<a href="#book" class="tapme" style="display: flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 24px; border-radius: 10px; background: #2348E0; color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600">Do this on my real business</a>
 
-<div aria-live="polite" style="display: flex; flex-direction: column; gap: 8px">
-
-
-<div style="font-size: 17px; line-height: 1.45; color: #DCE3FF">Tap + or type your numbers. Your month fills in here.</div>
-
-
-
-</div>
-
-
-<a href="#book" class="gocta tapme">Book a free call</a>
-
+<div style="font-size: 14px; color: #5E636D">This is the one-minute version. On the free call I do it with your real numbers.</div>
 </div>
 </div>
 </section>
@@ -193,7 +199,6 @@ button:disabled{opacity:.6;cursor:default}
 <div style="flex: 1.4 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
 <h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 46px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em">Who you get.</h2>
 <p style="margin: 0; font-size: 18px; color: #4A4F58">You get me. I live in Roseville with my wife and our son. I still take sales calls every week, so I know what customers say right before they walk away.</p>
-<p style="margin: 0; font-size: 18px; color: #4A4F58">I’ve worked with thousands of businesses, most of them service-based.</p>
 </div>
 </section>
 
@@ -270,10 +275,15 @@ button:disabled{opacity:.6;cursor:default}
 <p style="margin: 0; max-width: 600px; font-size: clamp(19px, 17px + 0.4vw, 22px); line-height: 1.4; color: #4A4F58">I’m Garrison, a Roseville local. You’re good at the work. I help with the part nobody taught you: getting customers, and getting them to say yes.</p>
 <div style="display: flex; flex-wrap: wrap; gap: 10px">
 <a href="#book" class="tapme" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 26px; border-radius: 10px; background: #2348E0; color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600">Book a free call</a>
+<a href="#read" class="tapme" style="display: inline-flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 22px; border-radius: 10px; border: 1.5px solid #111418; background: #FFFFFF; color: #111418; text-decoration: none; font-size: 18px; font-weight: 600">Run your month past me</a>
 </div>
 <div style="display: flex; align-items: center; gap: 12px; padding-top: 4px">
 <img src="garrison-112.webp" decoding="async" width="56" height="56" alt="Garrison Cole, Roseville, CA" style="flex: none; width: 56px; height: 56px; border-radius: 50%; object-fit: cover">
 <div style="font-size: 15px; line-height: 1.35"><strong style="font-weight: 600">Garrison Cole, Roseville.</strong><br><span style="color: #5E636D">Glad to meet in person.</span></div>
+</div>
+<div style="display: flex; flex-wrap: wrap; gap: 8px 32px; padding-top: 14px; border-top: 1px solid #E6E6E3; font-size: 15px; color: #4A4F58">
+<div><strong style="display: block; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: #111418">Thousands</strong>of businesses worked with</div>
+<div><strong style="display: block; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: 24px; font-weight: 700; letter-spacing: -0.02em; color: #111418">Every week</strong>on live sales calls</div>
 </div>
 </div>
 </section>
@@ -312,60 +322,46 @@ button:disabled{opacity:.6;cursor:default}
 </section>
 </sc-if>
 
-<!-- How many are you short? Their month, drawn as dots. -->
-<section style="max-width: 1160px; margin: 0 auto; padding: clamp(40px, 6vw, 84px) clamp(14px, 4vw, 40px)">
-<div class="gx" role="group" aria-label="How many are you short" style="padding: clamp(22px, 4vw, 48px); display: flex; flex-wrap: wrap; gap: 28px clamp(28px, 5vw, 64px)">
-<div style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column; gap: 18px">
-<div style="display: inline-flex; align-self: flex-start; align-items: center; min-height: 30px; padding: 0 12px; border-radius: 999px; background: rgba(255,255,255,.16); font-size: 14px; font-weight: 600">Every first call starts here</div>
-<h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(32px, 22px + 2.6vw, 52px); font-weight: 700; line-height: 1.02; letter-spacing: -0.03em; text-wrap: balance">{{shortH}}</h2>
-<div style="display: flex; gap: 10px">
-<div class="tile">
-<label for="n-have">{{haveLabel}}</label>
-<input id="n-have" class="big" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" placeholder="0" value="{{have}}" onChange="{{setHave}}">
-<div class="stp"><button type="button" aria-label="One less, now" onClick="{{haveDown}}">&#8722;</button><button type="button" aria-label="One more, now" onClick="{{haveUp}}">+</button></div>
+<!-- Run your month past me. Their numbers in, his read out. -->
+<section id="read" style="max-width: 1160px; margin: 0 auto; padding: clamp(48px, 6vw, 84px) clamp(18px, 4vw, 40px); display: flex; flex-direction: column; gap: clamp(20px, 3vw, 32px)">
+<div style="display: flex; flex-direction: column; gap: 10px; max-width: 760px">
+<h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(34px, 24px + 2.6vw, 56px); font-weight: 600; line-height: 1.02; letter-spacing: -0.03em; text-wrap: balance">Run your month past me.</h2>
+<p style="margin: 0; font-size: 18px; color: #4A4F58">Slide to your real numbers. I’ll tell you where I’d start and what I’d leave alone.</p>
 </div>
-<div class="tile">
-<label for="n-want">{{wantLabel}}</label>
-<input id="n-want" class="big" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="3" placeholder="0" value="{{want}}" onChange="{{setWant}}">
-<div class="stp"><button type="button" aria-label="One less, wanted" onClick="{{wantDown}}">&#8722;</button><button type="button" aria-label="One more, wanted" onClick="{{wantUp}}">+</button></div>
+<div style="display: flex; flex-wrap: wrap; gap: clamp(18px, 3vw, 36px); align-items: flex-start">
+<div class="rd-card" role="group" aria-label="Your month" style="flex: 1 1 340px; min-width: 0; display: flex; flex-direction: column">
+<div class="rd-row">
+<div class="rd-top"><label class="rd-lab" for="rd-reach">People who reach out in a month<small>Calls, texts and forms</small></label><span class="rd-num">{{cReachN}}</span></div>
+<input id="rd-reach" class="rng" type="range" min="0" max="{{cReachMax}}" step="1" value="{{cReachIdx}}" onChange="{{setReach}}">
+</div>
+<div class="{{chipAClass}}">{{chipA}}</div>
+<div class="rd-row">
+<div class="rd-top"><label class="rd-lab" for="rd-priced">{{pricedLabel}}</label><span class="rd-num">{{cPriced}}</span></div>
+<input id="rd-priced" class="rng" type="range" min="0" max="{{cReachN}}" step="1" value="{{cPriced}}" onChange="{{setPriced}}">
+</div>
+<div class="{{chipBClass}}">{{chipB}}</div>
+<div class="rd-row">
+<div class="rd-top"><label class="rd-lab" for="rd-yes">How many say yes</label><span class="rd-num">{{cYes}}</span></div>
+<input id="rd-yes" class="rng" type="range" min="0" max="{{cPriced}}" step="1" value="{{cYes}}" onChange="{{setYes}}">
+</div>
+<div style="height: 1px; margin: 16px 0; background: #E6E6E3"></div>
+<div class="rd-row">
+<div class="rd-top"><label class="rd-lab" for="rd-job">{{jobLabel}}</label><span class="rd-num">{{cJobShown}}</span></div>
+<input id="rd-job" class="rng" type="range" min="0" max="{{cJobMax}}" step="1" value="{{cJobIdx}}" onChange="{{setCJob}}">
 </div>
 </div>
+<div style="flex: 1 1 360px; min-width: 0; display: flex; flex-direction: column; gap: 14px">
+<div class="rd-phone">
+<div class="rd-head"><img src="garrison-112.webp" decoding="async" width="40" height="40" alt="" style="flex: none; width: 40px; height: 40px; border-radius: 50%; object-fit: cover"><div style="line-height: 1.25"><div style="font-weight: 600">Garrison Cole</div><div style="font-size: 13px; color: #5E636D">What I’d text you after seeing this</div></div></div>
+<div class="rd-thread" aria-live="polite">
+<sc-if value="{{cTyping}}" hint-placeholder-val="{{ false }}"><div class="bub typing" aria-label="Garrison is typing"><i></i><i></i><i></i></div></sc-if>
+<sc-if value="{{cShow}}" hint-placeholder-val="{{ true }}"><div id="{{threadId}}" style="display: flex; flex-direction: column; gap: 8px"><sc-for list="{{bubbles}}" as="b" hint-placeholder-count="4"><div class="{{b.c}}" style="{{b.s}}">{{b.t}}</div></sc-for></div></sc-if>
 </div>
-<div style="flex: 1 1 380px; min-width: 0; display: flex; flex-direction: column; gap: 16px; justify-content: center">
-<div style="font-size: 14px; font-weight: 600; letter-spacing: 0.02em; color: #DCE3FF">{{monthLabel}}</div>
-<div class="dots" aria-hidden="true">
-<sc-for list="{{dots}}" as="d" hint-placeholder-count="20"><span class="{{d.c}}" style="{{d.s}}"></span></sc-for>
 </div>
-<sc-if value="{{dotLegend}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-wrap: wrap; gap: 6px 18px; font-size: 14px; color: #DCE3FF"><span style="display: inline-flex; align-items: center; gap: 8px"><span class="dot dot-have" style="width: 12px; height: 12px"></span>{{legendHave}}</span><sc-if value="{{hasGap}}" hint-placeholder-val="{{ false }}"><span style="display: inline-flex; align-items: center; gap: 8px"><span class="dot" style="width: 12px; height: 12px; background: #FFD84A"></span>{{legendGap}}</span></sc-if></div>
-</sc-if>
-<div aria-live="polite" style="display: flex; flex-direction: column; gap: 8px">
-<sc-if value="{{gapShow}}" hint-placeholder-val="{{ false }}">
-<div class="in1" style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(26px, 20px + 1.6vw, 38px); font-weight: 700; line-height: 1.08; letter-spacing: -0.025em; color: #FFD84A">{{gapHead}}</div>
-<div style="font-size: 17px; line-height: 1.45; color: #FFFFFF">{{gapLine}}</div>
-</sc-if>
-<sc-if value="{{gapEmpty}}" hint-placeholder-val="{{ true }}">
-<div style="font-size: 17px; line-height: 1.45; color: #DCE3FF">Tap + or type your numbers. Your month fills in here.</div>
-</sc-if>
-<sc-if value="{{askWorth}}" hint-placeholder-val="{{ false }}">
-<div style="display: flex; flex-wrap: wrap; align-items: center; gap: 8px 12px; margin-top: 6px">
-<label for="n-worth" style="font-size: 16px; font-weight: 600">{{worthLabel}}</label>
-<input id="n-worth" class="wrth" type="text" inputmode="numeric" pattern="[0-9]*" autocomplete="off" maxlength="7" placeholder="3000" value="{{worth}}" onChange="{{setWorth}}">
-</div>
-</sc-if>
-<sc-if value="{{worthShow}}" hint-placeholder-val="{{ false }}">
-<div class="in1" style="margin-top: 4px; padding: 14px 16px; border-radius: 14px; background: rgba(17,20,24,.28)">
-<div style="font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 44px); font-weight: 700; line-height: 1; letter-spacing: -0.03em">{{worthMonth}}</div>
-<div style="margin-top: 6px; font-size: 16px; color: #DCE3FF">{{worthYear}}</div>
-</div>
-</sc-if>
-</div>
-<sc-if value="{{gapNone}}" hint-placeholder-val="{{ false }}">
-<a href="{{smsHref}}" class="gocta ghost">Text me</a>
-</sc-if>
-<sc-if value="{{gapBook}}" hint-placeholder-val="{{ true }}">
-<a href="#book" class="gocta tapme">{{ctaText}}</a>
-</sc-if>
+<sc-if value="{{hasOrder}}" hint-placeholder-val="{{ true }}"><div class="rd-order"><span>The order I’d go:</span><sc-for list="{{order}}" as="o" hint-placeholder-count="3"><b>{{o}}</b></sc-for></div></sc-if>
+<sc-if value="{{readBook}}" hint-placeholder-val="{{ true }}"><a href="#book" class="tapme" style="display: flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 24px; border-radius: 10px; background: #2348E0; color: #FFFFFF; text-decoration: none; font-size: 18px; font-weight: 600">Do this on my real business</a></sc-if>
+<sc-if value="{{readText}}" hint-placeholder-val="{{ false }}"><a href="{{smsHref}}" class="tapme" style="display: flex; align-items: center; justify-content: center; min-height: 58px; padding: 0 24px; border-radius: 10px; border: 1.5px solid #111418; background: #FFFFFF; color: #111418; text-decoration: none; font-size: 18px; font-weight: 600">Text me</a></sc-if>
+<div style="font-size: 14px; color: #5E636D">This is the one-minute version. On the free call I do it with your real numbers.</div>
 </div>
 </div>
 </section>
@@ -394,7 +390,6 @@ button:disabled{opacity:.6;cursor:default}
 <div style="flex: 1.4 1 420px; min-width: 0; display: flex; flex-direction: column; gap: 12px">
 <h2 style="margin: 0; font-family: 'Inter Tight', 'Inter', sans-serif; font-size: clamp(30px, 22px + 2vw, 46px); font-weight: 600; line-height: 1.05; letter-spacing: -0.03em">Who you get.</h2>
 <p style="margin: 0; font-size: 18px; color: #4A4F58">You get me. I live in Roseville with my wife and our son. I still take sales calls every week, so I know what customers say right before they walk away.</p>
-<p style="margin: 0; font-size: 18px; color: #4A4F58">I’ve worked with thousands of businesses, most of them service-based.</p>
 </div>
 </section>
 

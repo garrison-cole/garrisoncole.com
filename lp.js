@@ -271,40 +271,63 @@ function coachTopic(kw, home = "Roseville") {
   const town = hit ? titleCase(hit) : home;
   return (k.includes("consultant") ? "Business consultant in " : "Business coach in ") + town + ".";
 }
-/* Business coach page: two numbers, the same two every first call starts with. */
-/** Digits only, no leading zeros, at most max digits. "" stays "". */
-function wholeNum(v, max = 3) {
-  return String(v == null ? "" : v).replace(/\D/g, "").replace(/^0+(?=\d)/, "").slice(0, max);
-}
+/* Business coach page: "Run your month past me." Their numbers in, Garrison's read out. */
 /** "jobs" when the search was about contractors, otherwise "customers". */
 const coachNoun = (kw) => (/contractor/.test(String(kw == null ? "" : kw).toLowerCase()) ? "jobs" : "customers");
-/** What the box says. have and want are strings from the inputs; "" means not filled in yet. */
-function coachGap(have, want, worth, noun = "customers") {
-  if (have === "" || want === "" || have == null || want == null) return { state: "empty" };
-  const h = Number(have), w = Number(want);
-  if (h === 0) return { state: "none", head: "Still looking for your first " + noun + "?", line: "I’m not the right fit yet. Text me and I’ll point you somewhere useful." };
-  if (w <= h) return { state: "have", head: "You have the " + noun + ".", line: "Then the call is about keeping more of the money and getting your time back." };
-  const gap = w - h, v = Number(worth) || 0;
-  return {
-    state: "gap", gap,
-    head: "You’re " + gap + " short every month.",
-    line: "That’s what the call is for. " + (gap === 1 ? "We’ll find that one." : "We’ll find those " + gap + "."),
-    worthMonth: v > 0 ? money(gap * v) + " a month" : "",
-    worthYear: v > 0 ? "About " + money(gap * v * 12) + " a year you aren’t collecting yet." : ""
-  };
+const REACH_STOPS = [0, 2, 5, 8, 10, 12, 15, 20, 25, 30, 40, 50, 60, 80, 100, 150, 200, 300];
+/* Garrison's rules of thumb. Change the numbers here and every read on the page follows.
+   answerMin: under this share getting a price, people are slipping away before the quote.
+   yesLow: under this share saying yes, the sale is the problem. yesHigh: at or over this, the price is too low.
+   startAt: fewer people than this reaching out means the business is still starting. */
+const READ = { answerMin: 0.6, yesLow: 0.3, yesHigh: 0.7, startAt: 5, answerWinBack: 0.5, saleLift: 0.2, priceRaise: 0.1 };
+const READ_ORDER = { sale: "The sale", phone: "A price for everyone", price: "Your price", more: "More people reaching out" };
+/** The read. Every problem that applies is sized in dollars, and the biggest one leads. */
+function coachRead(reach, priced, yes, job, noun = "customers") {
+  reach = Math.max(0, Number(reach) || 0);
+  priced = Math.min(Math.max(0, Number(priced) || 0), reach);
+  yes = Math.min(Math.max(0, Number(yes) || 0), priced);
+  job = Math.max(0, Number(job) || 0);
+  const one = noun === "jobs" ? "job" : "customer";
+  if (reach < READ.startAt) {
+    return { key: "start", next: "", order: [], money: "", lostA: 0, lostB: 0,
+      lines: ["You’re still getting your first " + noun + ".", "I’m not the right fit yet. Text me and I’ll point you somewhere useful."] };
+  }
+  const pr = priced / reach, yr = priced ? yes / priced : 0, lostA = reach - priced, lostB = priced - yes;
+  const issues = [];
+  if (pr < READ.answerMin) issues.push({ key: "phone", n: lostA * READ.answerWinBack * yr });
+  if (priced > 0 && yr < READ.yesLow) issues.push({ key: "sale", n: priced * READ.saleLift });
+  if (priced >= 5 && yr >= READ.yesHigh) issues.push({ key: "price", n: 0, val: yes * job * READ.priceRaise });
+  issues.forEach((i) => { if (i.val == null) i.val = i.n * job; });
+  issues.sort((x, y) => y.val - x.val);
+  const top = issues[0] || { key: "more", n: 10 * pr * yr };
+  const n = Math.round(top.n), cash = (v) => money(Math.round(v / 100) * 100);
+  const more = (k) => n + " more " + (n === 1 ? one : noun) + (k || "");
+  let lines, m = "";
+  if (top.key === "sale") {
+    lines = [lostB + " people heard your price and walked. You’re winning " + yes + " of " + priced + ".",
+      "I’d start with the sale. It’s the cheapest thing to fix, and more ads would only send you more people to lose.",
+      "Next time someone says “let me think about it,” ask “what specifically?” Then stop talking."];
+    if (n >= 1) m = "Win 2 more out of every 10 and that’s about " + more(" a month") + ". Around " + cash(n * job) + ".";
+  } else if (top.key === "phone") {
+    lines = [lostA + " people reached out and never got a price. They wanted to pay somebody.",
+      "I wouldn’t buy ads yet. You’d be paying for more calls nobody gets back to.",
+      "A text back inside a minute keeps a lot of them from calling the next name on the list."];
+    if (n >= 1) m = "Get a price to half of them and that’s about " + more(" a month") + ". Around " + cash(n * job) + ".";
+  } else if (top.key === "price") {
+    lines = ["You win " + yes + " of " + priced + ". Sounds great.",
+      "It usually means you’re too cheap. When the price is right, some people say no.",
+      "Raise it 10% before you spend a dollar on marketing. If they still all say yes, raise it again."];
+    if (top.val >= 100) m = "10% on what you already sell is about " + cash(top.val) + " a month. It costs you nothing.";
+  } else {
+    lines = ["Nothing here is broken. People get a price and " + yes + " of " + priced + " say yes.",
+      "You need more of the right people reaching out. This is when ads earn their keep.",
+      "I’d start with Google, where people are already typing what you do and your town. Then Meta."];
+    if (n >= 1) m = "Every 10 more who reach out is about " + more() + ". Around " + cash(n * job) + " a month.";
+  }
+  const keys = issues.map((i) => i.key);
+  return { key: top.key, next: keys[1] || "", lines, money: m, lostA, lostB,
+    order: top.key === "more" ? [] : keys.concat(["more"]).map((k, i) => (i + 1) + ". " + READ_ORDER[k]) };
 }
-/** Their month as dots: white for the customers they have, yellow for the gap.
-    Past 40 dots, each dot stands for more than one so the row stays short. */
-function coachDots(have, want) {
-  if (have === "" || want === "" || have == null || want == null) return { unit: 1, have: 0, gap: 0, ghost: 20 };
-  const h = Number(have), w = Number(want), top = Math.max(h, w, 1);
-  const unit = top <= 40 ? 1 : Math.ceil(top / 40);
-  const hd = Math.round(Math.min(h, w) / unit) + (h > w ? Math.round((h - w) / unit) : 0);
-  const gd = w > h ? Math.max(1, Math.round((w - h) / unit)) : 0;
-  return { unit, have: hd, gap: gd, ghost: h === 0 && w === 0 ? 20 : 0 };
-}
-/** Size groups for analytics, so no exact numbers leave the page. */
-const gapBucket = (n) => (n === 0 ? "0" : n <= 5 ? "1-5" : n <= 10 ? "6-10" : n <= 20 ? "11-20" : "21+");
 /** What the complimentary audit covers, matched to the ad they clicked. */
 function auditWhat(kw) {
   const k = String(kw == null ? "" : kw).toLowerCase();
@@ -379,19 +402,18 @@ function selfTest() {
     ["coachTopic rocklin and folsom", coachTopic("business coach rocklin") === "Business coach in Rocklin." && coachTopic("business consultant folsom") === "Business consultant in Folsom."],
     ["coachTopic no search", coachTopic("") === "Business coach in Roseville."],
     ["coach text asks about coaching", decodeURIComponent(smsHref("", "coach")).includes("business coaching")],
-    ["wholeNum digits only", wholeNum("00a12x9") === "129" && wholeNum("") === "" && wholeNum("0") === "0" && wholeNum("12345") === "123"],
-    ["coachGap empty", coachGap("", "14").state === "empty" && coachGap("6", "").state === "empty"],
-    ["coachGap 6 and 14", coachGap("6", "14").gap === 8 && coachGap("6", "14").head === "You’re 8 short every month."],
-    ["coachGap worth", coachGap("6", "14", "3000").worthMonth === "$24,000 a month" && coachGap("6", "14", "3000").worthYear === "About $288,000 a year you aren’t collecting yet."],
-    ["coachGap no worth", coachGap("6", "14", "").worthMonth === ""],
-    ["coachDots small", JSON.stringify(coachDots("6", "14")) === JSON.stringify({ unit: 1, have: 6, gap: 8, ghost: 0 })],
-    ["coachDots big", coachDots("100", "200").unit === 5 && coachDots("100", "200").have === 20 && coachDots("100", "200").gap === 20],
-    ["coachDots empty", coachDots("", "").ghost === 20 && coachDots("12", "8").gap === 0 && coachDots("12", "8").have === 12],
-    ["coachGap one short", coachGap("4", "5").line.endsWith("We’ll find that one.")],
-    ["coachGap have enough", coachGap("12", "12").state === "have" && coachGap("20", "12").state === "have"],
-    ["coachGap zero now", coachGap("0", "5").state === "none" && coachGap("0", "5").head.includes("first customers")],
+    ["coachRead sample month leads with the sale", coachRead(40, 22, 6, 3000).key === "sale" && coachRead(40, 22, 6, 3000).next === "phone"],
+    ["coachRead sale money", coachRead(40, 22, 6, 3000).money === "Win 2 more out of every 10 and that’s about 4 more customers a month. Around $12,000."],
+    ["coachRead order", coachRead(40, 22, 6, 3000).order.join(" ") === "1. The sale 2. A price for everyone 3. More people reaching out"],
+    ["coachRead phone", coachRead(40, 10, 5, 3000).key === "phone" && coachRead(40, 10, 5, 3000).lostA === 30 && coachRead(40, 10, 5, 3000).money.includes("8 more customers")],
+    ["coachRead price too low", coachRead(20, 18, 15, 3000).key === "price" && coachRead(20, 18, 15, 3000).money.includes("$4,500 a month")],
+    ["coachRead nothing broken", coachRead(40, 36, 18, 3000).key === "more" && coachRead(40, 36, 18, 3000).order.length === 0 && coachRead(40, 36, 18, 3000).money.includes("5 more customers")],
+    ["coachRead starting out", coachRead(3, 2, 1, 3000).key === "start"],
+    ["coachRead nobody gets a price", coachRead(40, 0, 0, 3000).key === "phone" && coachRead(40, 0, 0, 3000).money === ""],
+    ["coachRead clamps", coachRead(10, 50, 99, 1000).lostA === 0 && coachRead(10, 50, 99, 1000).lostB === 0],
+    ["coachRead says jobs", coachRead(40, 22, 6, 3000, "jobs").money.includes("4 more jobs")],
     ["coachNoun contractor", coachNoun("business coach for contractors") === "jobs" && coachNoun("business coach sacramento") === "customers"],
-    ["gapBucket", gapBucket(0) === "0" && gapBucket(5) === "1-5" && gapBucket(8) === "6-10" && gapBucket(14) === "11-20" && gapBucket(40) === "21+"],
+    ["reach stops", REACH_STOPS[10] === 40 && JOB_STOPS[9] === 3000],
     ["home has a coaching door", HOME_OPTS.some((o) => o.href === "business-coach") && HOME_OPTS.length === 4]
   ];
   console.table(t.map(([name, pass]) => ({ name, pass })));
@@ -476,7 +498,7 @@ class Component extends DCLogic {
       company: cleanName(q.get("co")) || saved.company || "",
       phone: "", step: 1, err: "", sending: false, sendFail: false, trap: "",
       engine: PAGE === "websites", picks: [], pick: -1, q: 12, jobIdx: 8, ranCalc: false, calDown: false,
-      have: "", want: "", worth: ""
+      cReachIdx: 10, cPriced: 22, cYes: 6, cJobIdx: 9, cTouched: false, cTyping: false, cVer: 0
     };
   }
   keep() { store.set("gc-lp5", { company: this.state.company }); }
@@ -484,8 +506,9 @@ class Component extends DCLogic {
   context() {
     const s = this.state, list = PAINS[PAGE] || [];
     const out = { said: s.picks.slice().sort().map((i) => list[i]).filter(Boolean).join(" | "), page: PAGE };
-    if (PAGE === "coach" && s.have !== "" && s.want !== "") {
-      out.said = "Gets " + s.have + " a month, wants " + s.want + (Number(s.worth) > 0 ? ", one is worth about " + money(Number(s.worth)) : "");
+    if (PAGE === "coach" && s.cTouched) {
+      const rd = coachRead(REACH_STOPS[s.cReachIdx], s.cPriced, s.cYes, JOB_STOPS[s.cJobIdx]);
+      out.said = "Month: " + REACH_STOPS[s.cReachIdx] + " reach out, " + s.cPriced + " get a price, " + s.cYes + " say yes, about " + money(JOB_STOPS[s.cJobIdx]) + " each. The page led with: " + (READ_ORDER[rd.key] || "still starting") + ".";
     }
     if (PAGE === "growth" && s.ranCalc) { out.quotes_a_month = s.q; out.average_job = money(JOB_STOPS[s.jobIdx] || 0); }
     return Object.assign(out, store.get("gc-utm") || {});
@@ -564,55 +587,54 @@ class Component extends DCLogic {
     }
   }
   /* Business coach page. Its own values, so the other pages render exactly as before. */
-  setNum(key, v) {
-    this.setState({ [key]: v }, () => {
-      const st = this.state;
-      if (!this.gapTracked && st.have !== "" && st.want !== "") {
-        this.gapTracked = true;
-        track("coach_gap", { now: gapBucket(Number(st.have)), want: gapBucket(Number(st.want)) });
+  /* A slider moved: show the typing dots, then the new read once they stop for a moment. */
+  slide(next) {
+    const still = window.matchMedia && window.matchMedia("(prefers-reduced-motion: reduce)").matches;
+    this.setState(Object.assign({ cTouched: true, cTyping: !still }, next, still ? { cVer: this.state.cVer + 1 } : {}));
+    clearTimeout(this.readTimer);
+    this.readTimer = setTimeout(() => {
+      if (!still) this.setState({ cTyping: false, cVer: this.state.cVer + 1 });
+      if (!this.readTracked) {
+        this.readTracked = true;
+        const st = this.state;
+        track("coach_read", { call: coachRead(REACH_STOPS[st.cReachIdx], st.cPriced, st.cYes, JOB_STOPS[st.cJobIdx]).key });
       }
-    });
+    }, 650);
   }
   coachVals() {
     const st = this.state;
     const kw = cleanName((store.get("gc-utm") || {}).utm_term, 60).toLowerCase();
     const co = cleanName(st.company);
     const calLink = LP.CAL_LINK_COACH || LP.CAL_LINK, bookUrl = LP.BOOKING_URL_COACH || LP.BOOKING_URL;
-    const noun = coachNoun(kw), Noun = noun[0].toUpperCase() + noun.slice(1), one = noun === "jobs" ? "job" : "customer";
-    const g = coachGap(st.have, st.want, st.worth, noun);
-    const dd = coachDots(st.have, st.want);
-    const dots = []
-      .concat(Array.from({ length: dd.have }, () => ({ c: "dot dot-have", s: "" })))
-      .concat(Array.from({ length: dd.gap }, (_, i) => ({ c: "dot dot-gap", s: "animation-delay: " + Math.min(i * 35, 900) + "ms" })))
-      .concat(Array.from({ length: dd.ghost }, () => ({ c: "dot dot-ghost", s: "" })));
-    const step = (key, d) => () => {
-      const cur = this.state[key];
-      const n = cur === "" ? (d > 0 ? 1 : 0) : Math.max(0, Math.min(999, Number(cur) + d));
-      this.setNum(key, String(n));
-    };
+    const noun = coachNoun(kw), one = noun === "jobs" ? "job" : "customer";
+    const reach = REACH_STOPS[st.cReachIdx], job = JOB_STOPS[st.cJobIdx];
+    const rd = coachRead(reach, st.cPriced, st.cYes, job, noun);
+    const hot = (k) => "rd-chip" + (rd.key === k ? " hot" : "");
+    const v = (e) => Number(e.target.value) || 0;
+    const bubbles = rd.lines.map((t, i) => ({ t, c: "bub", s: "animation-delay: " + (i * 220) + "ms" }));
+    if (rd.money) bubbles.push({ t: rd.money, c: "bub money", s: "animation-delay: " + (rd.lines.length * 220) + "ms" });
     return {
       topic: coachTopic(kw, HOME),
       smsHref: smsHref(co, "coach"),
       hasQuote: !!(LP.QUOTE && LP.QUOTE.text), quoteText: (LP.QUOTE && LP.QUOTE.text) || "", quoteWho: (LP.QUOTE && LP.QUOTE.who) || "",
       hasCal: !!calLink && !st.calDown, noCal: !calLink || st.calDown,
       bookingUrl: bookUrl || "#", bookClick: () => track("booking_click", { from: "page" }),
-      haveLabel: Noun + " a month now", wantLabel: Noun + " a month you want",
-      have: st.have, want: st.want, worth: st.worth,
-      setHave: (e) => this.setNum("have", wholeNum(e.target.value)),
-      setWant: (e) => this.setNum("want", wholeNum(e.target.value)),
-      setWorth: (e) => this.setState({ worth: wholeNum(e.target.value, 7) }),
-      haveUp: step("have", 1), haveDown: step("have", -1), wantUp: step("want", 1), wantDown: step("want", -1),
-      gapShow: g.state !== "empty", gapEmpty: g.state === "empty", gapHead: g.head || "", gapLine: g.line || "",
-      askWorth: g.state === "gap", worthLabel: "One " + one + " is worth about $",
-      worthShow: !!g.worthMonth, worthMonth: g.worthMonth || "", worthYear: g.worthYear || "",
-      gapNone: g.state === "none", gapBook: g.state !== "none",
-      shortH: "How many " + noun + " are you short?",
-      monthLabel: "YOUR MONTH",
-      dots: dots,
-      dotLegend: g.state !== "empty", hasGap: dd.gap > 0,
-      legendHave: dd.unit > 1 ? "You have (each dot is " + dd.unit + ")" : "You have",
-      legendGap: "Short",
-      ctaText: g.state === "gap" ? (g.gap === 1 ? "Find my next one on a free call" : "Find my " + g.gap + " on a free call") : "Book a free call"
+      cReachIdx: st.cReachIdx, cReachMax: REACH_STOPS.length - 1, cReachN: reach,
+      cPriced: st.cPriced, cYes: st.cYes,
+      cJobIdx: st.cJobIdx, cJobMax: JOB_STOPS.length - 1, cJobShown: money(job),
+      pricedLabel: noun === "jobs" ? "How many get a quote from you" : "How many get a price from you",
+      jobLabel: "A typical " + one + " is worth",
+      setReach: (e) => { const i = v(e), r = REACH_STOPS[i] || 0, pc = Math.min(this.state.cPriced, r); this.slide({ cReachIdx: i, cPriced: pc, cYes: Math.min(this.state.cYes, pc) }); },
+      setPriced: (e) => { const pc = Math.min(v(e), REACH_STOPS[this.state.cReachIdx]); this.slide({ cPriced: pc, cYes: Math.min(this.state.cYes, pc) }); },
+      setYes: (e) => this.slide({ cYes: Math.min(v(e), this.state.cPriced) }),
+      setCJob: (e) => this.slide({ cJobIdx: v(e) }),
+      chipA: rd.key === "start" ? "Still early" : rd.lostA > 0 ? rd.lostA + " never got a price" + (rd.key === "phone" ? ". I’d start here." : "") : "Everyone got a price",
+      chipAClass: hot("phone"),
+      chipB: rd.key === "start" ? "Still early" : rd.key === "price" ? "Only " + rd.lostB + " said no. Too few." : rd.lostB > 0 ? rd.lostB + " heard the price and walked" + (rd.key === "sale" ? ". I’d start here." : "") : "Everyone said yes",
+      chipBClass: "rd-chip" + (rd.key === "sale" || rd.key === "price" ? " hot" : ""),
+      cTyping: st.cTyping, cShow: !st.cTyping, threadId: "rd-" + st.cVer, bubbles,
+      hasOrder: rd.order.length > 0 && !st.cTyping, order: rd.order,
+      readBook: rd.key !== "start", readText: rd.key === "start"
     };
   }
   renderVals() {
