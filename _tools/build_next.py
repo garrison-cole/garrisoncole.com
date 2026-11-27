@@ -16,7 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LIVE = "--live" in sys.argv
 OUT = ROOT if LIVE else os.path.join(ROOT, "next")
 P = "/" if LIVE else "/next/"          # where the other new pages live
-V = "20261127b"                        # cache tag for b/site.css and b/lp2.js
+V = "20261127c"                        # cache tag for b/site.css and b/lp2.js
 
 # ---------- SETTINGS (from the master build doc) ----------
 LOGO_HEADER = "/b/logo-gc.png"   # Garrison's horizontal logo, background cut out. Blank: the text wordmark
@@ -60,7 +60,9 @@ def head(title, desc, canon, page, lp, town="", topic=""):
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
 <meta name="theme-color" content="#FFFFFF">
-<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="icon" href="/b/favicon-32.png" sizes="32x32" type="image/png">
+<link rel="icon" href="/b/favicon-64.png" sizes="64x64" type="image/png">
+<link rel="apple-touch-icon" href="/b/apple-touch.png">
 <link rel="preload" href="/b/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://app.cal.com">
 <link rel="stylesheet" href="/b/site.css?v={V}">
@@ -104,9 +106,9 @@ def qa(rows, sec_class="sec sec-s"):
 </div></section>
 '''
 
-def close(line, button, sub=""):
+def close(line, button, sub="You deal with me, start to finish."):
     s = f"<p>{e(sub)}</p>" if sub else ""
-    return f'''<section class="close" aria-label="Book a call"><div class="wrap"><div><h2>{e(line)}</h2>{s}</div><a class="btn" href="#book">{e(button)}</a></div></section>
+    return f'''<section class="close" aria-label="Book a call"><div class="wrap"><div class="close-l"><img class="close-mark" src="/b/mark-gc.png" alt="" width="379" height="200" loading="lazy" decoding="async"><div><h2>{e(line)}</h2>{s}</div></div><a class="btn" href="#book">{e(button)}</a></div></section>
 </main>
 '''
 

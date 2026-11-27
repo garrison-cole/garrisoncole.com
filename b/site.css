@@ -140,6 +140,9 @@ button,input{font:inherit;color:inherit}
 .close .wrap{display:flex;flex-wrap:wrap;align-items:center;justify-content:space-between;gap:18px 28px}
 .close h2{margin:0;font-weight:800;font-size:clamp(26px,18px + 2vw,40px);line-height:1.1}
 .close p{margin:6px 0 0;color:var(--on-dark)}
+.close-l{display:flex;align-items:center;gap:18px}
+.close-mark{width:auto;height:48px;flex:none}
+@media (min-width:760px){.close-mark{height:64px}}
 .foot{background:var(--deep);color:var(--on-dark-quiet);border-top:1px solid var(--panel-line);padding:22px 0 calc(90px + env(safe-area-inset-bottom,0px));font-size:14px}
 @media (min-width:768px){.foot{padding-bottom:26px}}
 .foot p{margin:0 0 10px;max-width:60em}
