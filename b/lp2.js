@@ -389,7 +389,7 @@ function initDoors() {
   initTracking();
   const kw = cleanName(utm.utm_term, 60);
   /* The small line over the headline follows the search. With no search term the HTML already says the right thing. */
-  const topic = $("[data-topic]");
+  const topic = $("span[data-topic]"); /* never <html>, which also carries data-topic on town pages */
   if (topic && new URLSearchParams(location.search).get("utm_term")) {
     topic.textContent = PAGE === "coach" ? coachTopic(kw, HOME) : kwTopic(kw, PAGE === "websites", HOME, PAGE_TOPIC);
   }

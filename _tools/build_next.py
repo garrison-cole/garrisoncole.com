@@ -16,7 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LIVE = "--live" in sys.argv
 OUT = ROOT if LIVE else os.path.join(ROOT, "next")
 P = "/" if LIVE else "/next/"          # where the other new pages live
-V = "20261127f"                        # cache tag for b/site.css and b/lp2.js
+V = "20261127g"                        # cache tag for b/site.css and b/lp2.js
 
 # ---------- SETTINGS (from the master build doc) ----------
 LOGO_HEADER = "/b/logo-gc.png"   # Garrison's horizontal logo, background cut out. Blank: the text wordmark
