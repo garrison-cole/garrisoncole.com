@@ -16,7 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LIVE = "--live" in sys.argv
 OUT = ROOT if LIVE else os.path.join(ROOT, "next")
 P = "/" if LIVE else "/next/"          # where the other new pages live
-V = "20261127e"                        # cache tag for b/site.css and b/lp2.js
+V = "20261127f"                        # cache tag for b/site.css and b/lp2.js
 
 # ---------- SETTINGS (from the master build doc) ----------
 LOGO_HEADER = "/b/logo-gc.png"   # Garrison's horizontal logo, background cut out. Blank: the text wordmark
@@ -106,9 +106,9 @@ def qa(rows, sec_class="sec sec-s"):
 </div></section>
 '''
 
-def quick(rows):
+def quick(rows, h="Quick answers."):
     items = "".join(f"<details><summary>{e(q)}</summary><p>{e(a)}</p></details>" for q, a in rows)
-    return f'''<section class="sec quick" aria-labelledby="quick-h"><div class="wrap"><h2 id="quick-h">Quick answers.</h2>{items}</div></section>
+    return f'''<section class="sec quick" aria-labelledby="quick-h"><div class="wrap"><h2 id="quick-h">{e(h)}</h2>{items}</div></section>
 '''
 
 def close(line, button, sub="You deal with me, start to finish."):
@@ -211,7 +211,7 @@ def websites(sac=False):
         ("Do you do a website redesign if I already have a site?", "Yes. Most of my work is a website redesign. You compare the two side by side, and nothing changes until you say go."),
         ("How long does website design take?", "About 10 days from your go to live."),
         ("Will my website show up on Google?", "It’s built so Google can read it, with your services and your towns on the page. Ranking takes time, and I’ll tell you what to expect on the call."),
-    ])
+    ], "Website design questions.")
     h += close("Your site, built first.", "Book a call. I build yours first.")
     h += footer(area, [("Google and Meta ads", P + ("growth-sacramento" if sac else "growth"))])
     h += viewer() + rev_templates("Book a call. I build yours first.") + end()
@@ -270,7 +270,7 @@ def growth(sac=False):
         ("Do you do marketing for contractors?", "Yes. I do contractor marketing for local trades: landscaping marketing, tree service marketing, concrete, fencing and other home service marketing."),
         ("Is this a marketing company or one person?", "You get me. One Roseville local who works as your marketing and Google Ads consultant, and sits down with you to go through the numbers."),
         ("Can you help in the slow winter months?", "Yes. We book winter work in the fall, while you’re still busy, and stop paying for shared leads."),
-    ])
+    ], "Google Ads and marketing questions.")
     h += close("One person. Every step.", "Book a free call. I look you up first.")
     h += footer(area, [("Website design", P + ("websites-sacramento" if sac else "websites"))])
     h += end()
@@ -335,7 +335,7 @@ def coach():
         ("Do you work as a business coach for contractors?", "Yes. I work as a contractor business coach for trades and home service companies. Med spas, dental offices and consultants are a fit too."),
         ("Is this business coaching or a business consultant?", "Call it either one. I tell you what I’d change the way a business consultant would, then I build it with you."),
         ("Where do you offer business coaching?", "I’m a business coach in Roseville and Sacramento, and I meet in person in Rocklin and Folsom too. Anywhere else, we meet on Zoom."),
-    ])
+    ], "Business coaching questions.")
     h += close("Let’s find your next 10.", "Book a free call. We find your next 10.")
     h += footer("Business coaching for owner-run companies in Roseville, Rocklin, Granite Bay, Lincoln, Auburn, Folsom, El Dorado Hills and Sacramento. Glad to meet in person. Outside the area, we meet on Zoom.", [])
     h += end()
