@@ -192,8 +192,8 @@ def websites(sac=False):
 <h2 id="sites-h">Open a site I built.</h2>
 <p class="sub">Website design for contractors, trades and other owner-run local businesses. Every site is built to get you the call or the quote request, even while you’re on a job.</p>
 <div class="sites">
-<article class="site"><img class="shot" src="/work-florist-800.webp" srcset="/work-florist-800.webp 800w, /work-florist-1600.webp 1600w" sizes="(min-width: 760px) 540px, 92vw" width="800" height="500" alt="The wedding florist site" loading="lazy" decoding="async"><div class="body"><h3>Wedding florist, Auburn.</h3><button class="btn btn-ink btn-sm" type="button" data-site="florist" data-src="/preview/the-blonde-bouquet/" data-label="Wedding florist, Auburn">Open the site</button></div></article>
-<article class="site"><img class="shot" src="/work-coaching-800.webp" srcset="/work-coaching-800.webp 800w, /work-coaching-1600.webp 1600w" sizes="(min-width: 760px) 540px, 92vw" width="800" height="500" alt="The coaching company site" loading="lazy" decoding="async"><div class="body"><h3>Coaching company.</h3><button class="btn btn-ink btn-sm" type="button" data-site="coaching" data-src="/preview/freelyfit/" data-label="Coaching company">Open the site</button></div></article>
+<article class="site"><img class="shot" src="/work-florist-v2-800.webp" srcset="/work-florist-v2-800.webp 800w, /work-florist-v2-1600.webp 1600w" sizes="(min-width: 760px) 540px, 92vw" width="800" height="500" alt="The wedding florist site" loading="lazy" decoding="async"><div class="body"><h3>Wedding florist, Auburn.</h3><button class="btn btn-ink btn-sm" type="button" data-site="florist" data-src="/preview/the-blonde-bouquet/" data-label="Wedding florist, Auburn">Open the site</button></div></article>
+<article class="site"><img class="shot" src="/work-coaching-v2-800.webp" srcset="/work-coaching-v2-800.webp 800w, /work-coaching-v2-1600.webp 1600w" sizes="(min-width: 760px) 540px, 92vw" width="800" height="500" alt="The coaching company site" loading="lazy" decoding="async"><div class="body"><h3>Coaching company.</h3><button class="btn btn-ink btn-sm" type="button" data-site="coaching" data-src="/preview/freelyfit/" data-label="Coaching company">Open the site</button></div></article>
 </div>
 <div class="risk"><div><span>Until you’ve seen yours</span><b class="g">$0</b></div><div><span>When you say go</span><b>You pay, and it goes live.</b></div></div>
 <p style="margin:22px 0 0"><a class="btn" href="#book">Book a call. I build yours first.</a></p>
@@ -388,8 +388,8 @@ def home():
     h += f'''<section class="sec sec-s" aria-labelledby="owners-h"><div class="wrap">
 <h2 id="owners-h">Two owners, in their own words.</h2>
 <div class="owners">
-<article class="owner"><button type="button" data-site="florist" data-src="/preview/the-blonde-bouquet/" data-label="Wedding florist, Auburn" aria-label="Open the wedding florist site"><img src="/work-florist-800.webp" width="800" height="450" alt="" loading="lazy" decoding="async"></button>{rev_card(LARAYE, LARAYE_ATTRIBUTION, full=False)}</article>
-<article class="owner"><button type="button" data-site="coaching" data-src="/preview/freelyfit/" data-label="Coaching company" aria-label="Open the coaching company site"><img src="/work-coaching-800.webp" width="800" height="450" alt="" loading="lazy" decoding="async"></button>{rev_card(AVERY, "coaching company owner.")}</article>
+<article class="owner"><button type="button" data-site="florist" data-src="/preview/the-blonde-bouquet/" data-label="Wedding florist, Auburn" aria-label="Open the wedding florist site"><img src="/work-florist-v2-800.webp" width="800" height="450" alt="" loading="lazy" decoding="async"></button>{rev_card(LARAYE, LARAYE_ATTRIBUTION, full=False)}</article>
+<article class="owner"><button type="button" data-site="coaching" data-src="/preview/freelyfit/" data-label="Coaching company" aria-label="Open the coaching company site"><img src="/work-coaching-v2-800.webp" width="800" height="450" alt="" loading="lazy" decoding="async"></button>{rev_card(AVERY, "coaching company owner.")}</article>
 </div>
 <a class="tt" href="{THUMBTACK}" target="_blank" rel="noopener">Reviews on Thumbtack</a>
 <p class="result-line">$4.08 came back for every $1 one client spent on ads. In one spring, $12,149 went in and $49,616 came out.</p>
