@@ -68,6 +68,8 @@ button,input{font:inherit;color:inherit}
 @media (min-width:900px){.hero .wrap{grid-template-columns:minmax(0,1.25fr) minmax(0,.9fr)}}
 .hero h1{margin:0;font-weight:800;font-size:clamp(34px,20px + 4.2vw,62px);line-height:1.04;letter-spacing:-.012em;text-wrap:balance}
 .eyebrow{display:block;margin:0 0 18px;color:var(--sky);font-size:13px;line-height:1.4;font-stretch:125%;font-weight:700;letter-spacing:.1em;text-transform:uppercase}
+.pain{margin:18px 0 0;max-width:30em;color:var(--white);font-weight:700;font-size:clamp(18px,17px + .4vw,21px);line-height:1.35}
+.pain+.lede{margin-top:10px}
 .lede{margin:20px 0 28px;max-width:34em;color:var(--on-dark);font-size:clamp(17px,16px + .3vw,19px)}
 .hero-acts{display:flex;flex-wrap:wrap;align-items:center;gap:14px 22px}
 .pull{margin:26px 0 0;padding-left:16px;border-left:3px solid var(--sky)}
@@ -134,6 +136,16 @@ button,input{font:inherit;color:inherit}
 @media (min-width:860px){.qa div{grid-template-columns:minmax(0,.8fr) minmax(0,1.2fr);gap:28px}}
 .qa dt{font-weight:700;font-size:18px}
 .qa dd{margin:0;color:var(--muted)}
+
+/* Quick answers: the question shows, the answer opens on a tap. All of it is in the HTML. */
+.quick{padding-top:0}
+.quick h2{font-size:clamp(20px,17px + 1vw,26px);margin-bottom:6px}
+.quick details{border-bottom:1px solid var(--line)}
+.quick summary{display:flex;align-items:center;justify-content:space-between;gap:14px;min-height:52px;padding:12px 0;font-weight:700;cursor:pointer;list-style:none}
+.quick summary::-webkit-details-marker{display:none}
+.quick summary::after{content:"+";flex:none;font-weight:800;font-size:20px}
+.quick details[open] summary::after{content:"\2212"}
+.quick details p{margin:0 0 16px;max-width:44em;color:var(--muted)}
 
 /* Closing band and footer */
 .close{background:var(--deep);color:var(--white);padding:clamp(40px,5vw,64px) 0}

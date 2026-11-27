@@ -16,7 +16,7 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LIVE = "--live" in sys.argv
 OUT = ROOT if LIVE else os.path.join(ROOT, "next")
 P = "/" if LIVE else "/next/"          # where the other new pages live
-V = "20261127c"                        # cache tag for b/site.css and b/lp2.js
+V = "20261127e"                        # cache tag for b/site.css and b/lp2.js
 
 # ---------- SETTINGS (from the master build doc) ----------
 LOGO_HEADER = "/b/logo-gc.png"   # Garrison's horizontal logo, background cut out. Blank: the text wordmark
@@ -106,6 +106,11 @@ def qa(rows, sec_class="sec sec-s"):
 </div></section>
 '''
 
+def quick(rows):
+    items = "".join(f"<details><summary>{e(q)}</summary><p>{e(a)}</p></details>" for q, a in rows)
+    return f'''<section class="sec quick" aria-labelledby="quick-h"><div class="wrap"><h2 id="quick-h">Quick answers.</h2>{items}</div></section>
+'''
+
 def close(line, button, sub="You deal with me, start to finish."):
     s = f"<p>{e(sub)}</p>" if sub else ""
     return f'''<section class="close" aria-label="Book a call"><div class="wrap"><div class="close-l"><img class="close-mark" src="/b/mark-gc.png" alt="" width="379" height="200" loading="lazy" decoding="async"><div><h2>{e(line)}</h2>{s}</div></div><a class="btn" href="#book">{e(button)}</a></div></section>
@@ -174,6 +179,7 @@ def websites(sac=False):
     h += f'''<section class="hero"><div class="wrap">
 <div>
 <h1><span class="eyebrow" data-topic>Website design in {town}</span>See your new website before you pay for it.</h1>
+<p class="pain">Customers look you up, then call the next guy?</p>
 <p class="lede">{e(first)} I design your site and write every word on it. You click through the real thing on your phone before you decide. If you pass, you owe nothing.</p>
 <div class="hero-acts"><a class="btn" href="#book">Book a call. I build yours first.</a></div>
 <figure class="pull"><q>{e(pull)}</q><small>{e(LARAYE["name"])}, {e(LARAYE_ATTRIBUTION)} Review on Thumbtack.</small></figure>
@@ -184,6 +190,7 @@ def websites(sac=False):
     h += book("Pick a time. I start on your site after we talk.", e(cal_body))
     h += f'''<section class="sec sec-s" aria-labelledby="sites-h"><div class="wrap">
 <h2 id="sites-h">Open a site I built.</h2>
+<p class="sub">Website design for contractors, trades and other owner-run local businesses. Every site is built to get you the call or the quote request, even while you’re on a job.</p>
 <div class="sites">
 <article class="site"><img class="shot" src="/work-florist-800.webp" srcset="/work-florist-800.webp 800w, /work-florist-1600.webp 1600w" sizes="(min-width: 760px) 540px, 92vw" width="800" height="500" alt="The wedding florist site" loading="lazy" decoding="async"><div class="body"><h3>Wedding florist, Auburn.</h3><button class="btn btn-ink btn-sm" type="button" data-site="florist" data-src="/preview/the-blonde-bouquet/" data-label="Wedding florist, Auburn">Open the site</button></div></article>
 <article class="site"><img class="shot" src="/work-coaching-800.webp" srcset="/work-coaching-800.webp 800w, /work-coaching-1600.webp 1600w" sizes="(min-width: 760px) 540px, 92vw" width="800" height="500" alt="The coaching company site" loading="lazy" decoding="async"><div class="body"><h3>Coaching company.</h3><button class="btn btn-ink btn-sm" type="button" data-site="coaching" data-src="/preview/freelyfit/" data-label="Coaching company">Open the site</button></div></article>
@@ -194,6 +201,17 @@ def websites(sac=False):
 '''
     h += who(" I’ve spent eight years in sales and marketing, so your site gets built by someone who knows what a customer asks before they call. " + GROWTH_CLAIM + " I live in Roseville with my wife and our son, and you deal with me, start to finish.")
     h += qa(rows)
+    town_q = ([("Do you do web design in Sacramento?", "Yes. Web design and website design for owner-run businesses in Sacramento, Elk Grove, Rancho Cordova and Folsom. I’m glad to meet in person in Sacramento."),
+               ("Are you a web design company in Sacramento?", "You get me. One local web designer, just up 80 from Sacramento, who builds your site and answers when you text."),
+               ("Is a Sacramento website designer going to hand me a template?", "No. Every site is designed from scratch around your work and the way your customers pick who to call.")] if sac else
+              [("Where do you do web design?", "I’m a web designer in Roseville. I do web design and website design for businesses in Rocklin, Folsom, El Dorado Hills, Elk Grove, Lincoln, Auburn and Sacramento."),
+               ("I searched for a web designer near me. Are you local?", "Yes. I live in Roseville and I’m glad to meet in person.")])
+    h += quick(town_q + [
+        ("Do you build websites for contractors?", "Yes. I do contractor website design for trades like concrete, fencing, tree service, landscaping and painting. I build for florists, home organizers and coaches too."),
+        ("Do you do a website redesign if I already have a site?", "Yes. Most of my work is a website redesign. You compare the two side by side, and nothing changes until you say go."),
+        ("How long does website design take?", "About 10 days from your go to live."),
+        ("Will my website show up on Google?", "It’s built so Google can read it, with your services and your towns on the page. Ranking takes time, and I’ll tell you what to expect on the call."),
+    ])
     h += close("Your site, built first.", "Book a call. I build yours first.")
     h += footer(area, [("Google and Meta ads", P + ("growth-sacramento" if sac else "growth"))])
     h += viewer() + rev_templates("Book a call. I build yours first.") + end()
@@ -221,6 +239,7 @@ def growth(sac=False):
     h += f'''<section class="hero"><div class="wrap">
 <div>
 <h1><span class="eyebrow" data-topic>{topic}</span>More booked jobs. One person who answers for all of it.</h1>
+<p class="pain">Paying for leads three other guys get? Quotes going out and nothing coming back?</p>
 <p class="lede">{e(first)} I run your ads and build the page behind them. I track every call and help you close the ones that come in. You see every dollar, and you deal with me.</p>
 <div class="hero-acts"><a class="btn" href="#book">Book a free call. I look you up first.</a></div>
 </div>
@@ -245,6 +264,13 @@ def growth(sac=False):
 '''
     h += who(" I started out selling face to face on a gym floor. Later I built a sales team from zero at a startup and ran sales for founder-led companies. Eight years in, I still take sales calls every week, so I know what a customer says right before they walk. I live in Roseville with my wife and our son.")
     h += qa(GROW_QA)
+    h += quick([
+        ("Do you do Google Ads management?", ("Yes. Google Ads management for service businesses in Sacramento and Roseville, sometimes called PPC. You pay Google directly." if sac else "Yes. Google Ads management for local service businesses in Roseville and the Sacramento area, sometimes called PPC. You pay Google directly.")),
+        ("Do you run Facebook and Instagram ads?", "Yes. Facebook ads and Instagram ads (Meta ads) work well for before and after work. I handle the Facebook ads management and build the landing page they go to."),
+        ("Do you do marketing for contractors?", "Yes. I do contractor marketing for local trades: landscaping marketing, tree service marketing, concrete, fencing and other home service marketing."),
+        ("Is this a marketing company or one person?", "You get me. One Roseville local who works as your marketing and Google Ads consultant, and sits down with you to go through the numbers."),
+        ("Can you help in the slow winter months?", "Yes. We book winter work in the fall, while you’re still busy, and stop paying for shared leads."),
+    ])
     h += close("One person. Every step.", "Book a free call. I look you up first.")
     h += footer(area, [("Website design", P + ("websites-sacramento" if sac else "websites"))])
     h += end()
@@ -271,7 +297,8 @@ def coach():
     h += f'''<section class="hero"><div class="wrap">
 <div>
 <h1><span class="eyebrow" data-topic>Business coach in Roseville</span>More customers every month. No more guessing.</h1>
-<p class="lede">I’m Garrison, a Roseville local. You’re good at the work. I help with getting customers and getting them to say yes. I tell you what I’d change, then I do the hard parts with you.</p>
+<p class="pain">Referrals slowing down? Good at the work, but customers come and go?</p>
+<p class="lede">I’m Garrison, a Roseville local. I help with getting customers and getting them to say yes. I tell you what I’d change, then I do the hard parts with you.</p>
 <div class="hero-acts"><a class="btn" href="#book">Book a free call. We find your next 10.</a><a class="quiet" href="#month">Run your month past me first</a></div>
 </div>
 <div class="card-d"><div class="who-mini"><img src="/garrison.webp" alt="" width="64" height="64"><span><b>Garrison Cole</b>Roseville, CA</span></div>{climb()}</div>
@@ -303,6 +330,12 @@ def coach():
 '''
     h += who(" I started out selling face to face on a gym floor. Later I built a sales team from zero at a startup and ran sales for founder-led companies. Eight years in, I still take sales calls every week. I live in Roseville with my wife and our son, and you deal with me, start to finish.")
     h += qa(COACH_QA)
+    h += quick([
+        ("Are you a small business coach?", "Yes. I’m a small business coach for owner-run companies that already have customers and want more of them."),
+        ("Do you work as a business coach for contractors?", "Yes. I work as a contractor business coach for trades and home service companies. Med spas, dental offices and consultants are a fit too."),
+        ("Is this business coaching or a business consultant?", "Call it either one. I tell you what I’d change the way a business consultant would, then I build it with you."),
+        ("Where do you offer business coaching?", "I’m a business coach in Roseville and Sacramento, and I meet in person in Rocklin and Folsom too. Anywhere else, we meet on Zoom."),
+    ])
     h += close("Let’s find your next 10.", "Book a free call. We find your next 10.")
     h += footer("Business coaching for owner-run companies in Roseville, Rocklin, Granite Bay, Lincoln, Auburn, Folsom, El Dorado Hills and Sacramento. Glad to meet in person. Outside the area, we meet on Zoom.", [])
     h += end()
@@ -328,7 +361,8 @@ def home():
     h += f'''<section class="hero"><div class="wrap">
 <div>
 <h1><span class="eyebrow">Roseville, CA. Websites, ads and coaching for owner-run businesses.</span>More customers for the business you built.</h1>
-<p class="lede">I’m Garrison, a Roseville local. You’re good at the work. I help you get more customers, and I own it from the first search to the paid job.</p>
+<p class="pain">Good at the work, but customers come and go?</p>
+<p class="lede">I’m Garrison, a Roseville local. I help you get more customers, and I own it from the first search to the paid job.</p>
 <div class="hero-acts"><a class="btn" href="#book">Book a free call. I look you up first.</a></div>
 </div>
 <div class="card-d"><div class="who-mini"><img src="/garrison.webp" alt="" width="64" height="64"><span><b>Garrison Cole</b>Roseville, CA</span></div>{climb()}</div>
