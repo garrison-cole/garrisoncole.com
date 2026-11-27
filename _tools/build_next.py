@@ -357,6 +357,8 @@ def home():
     h = head("Garrison Cole | More Customers for Owner-Run Businesses in Roseville, CA",
              "Websites, ads and coaching for owner-run businesses in Roseville and Sacramento. One person owns it, start to finish. Book a free call.",
              "", "home", "home")
+    if LIVE:  # personalized ?co= links from link.html keep opening the old home
+        h = h.replace('<meta charset="utf-8">', '<meta charset="utf-8">\n<script>if(/[?&](co|trade)=/.test(location.search))location.replace("/home-v3"+location.search+location.hash)</script>', 1)
     h += header(nav=True)
     h += f'''<section class="hero"><div class="wrap">
 <div>
