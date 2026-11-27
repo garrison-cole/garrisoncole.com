@@ -16,10 +16,10 @@ ROOT = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 LIVE = "--live" in sys.argv
 OUT = ROOT if LIVE else os.path.join(ROOT, "next")
 P = "/" if LIVE else "/next/"          # where the other new pages live
-V = "20261127a"                        # cache tag for b/site.css and b/lp2.js
+V = "20261127b"                        # cache tag for b/site.css and b/lp2.js
 
 # ---------- SETTINGS (from the master build doc) ----------
-LOGO_HEADER_DARK = ""   # blank: the text wordmark
+LOGO_HEADER = "/b/logo-gc.png"   # Garrison's horizontal logo, background cut out. Blank: the text wordmark
 LARAYE_ATTRIBUTION = "wedding florist, Auburn. She’s also family."
 GROWTH_CLAIM = "I’ve grown online businesses from $5,000 a month to more than $300,000 a month."
 GROWTH_TIMEFRAME = ""   # blank: no time frame shown
@@ -59,7 +59,7 @@ def head(title, desc, canon, page, lp, town="", topic=""):
 <meta property="og:url" content="{url}">
 <meta property="og:title" content="{e(title)}">
 <meta property="og:description" content="{e(desc)}">
-<meta name="theme-color" content="#111315">
+<meta name="theme-color" content="#FFFFFF">
 <link rel="icon" href="/favicon.svg" type="image/svg+xml">
 <link rel="preload" href="/b/fonts/archivo-latin.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preconnect" href="https://app.cal.com">
@@ -71,8 +71,8 @@ def head(title, desc, canon, page, lp, town="", topic=""):
 '''
 
 def logo():
-    if LOGO_HEADER_DARK:
-        return f'<img src="{LOGO_HEADER_DARK}" alt="Garrison Cole" width="200" height="34">'
+    if LOGO_HEADER:
+        return f'<img src="{LOGO_HEADER}" alt="Garrison Cole" width="566" height="96">'
     return 'GARRISON&nbsp;<span>COLE</span>'
 
 def header(nav=False, home_href=None):
