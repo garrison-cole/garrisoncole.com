@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pool Service in your town | Elite Pool Service</title>
+<meta name="description" content="Weekly pool cleaning in your town from Dale at Elite Pool Service. You get a photo of your pool after every visit. Text for a free quote.">
+<meta name="robots" content="noindex, nofollow">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns=%27http://www.w3.org/2000/svg%27 viewBox=%270 0 32 32%27%3E%3Cpath d=%27M16 3S6 14.5 6 20.5a10 10 0 0 0 20 0C26 14.5 16 3 16 3z%27 fill=%27%230E7AA8%27/%3E%3C/svg%3E">
+<meta name="theme-color" content="#0E7AA8">
+<style>
+:root{
+  --deep:#0B2A4A; --water:#0E7AA8; --surface:#E9F6FB; --sun:#FFC83D; --white:#FFFFFF;
+  --line:rgba(11,42,74,.18); --radius:12px;
+  --font:system-ui,-apple-system,"Segoe UI",Roboto,"Helvetica Neue",Arial,sans-serif;
+}
+*{box-sizing:border-box}
+[hidden]{display:none!important}
+html{-webkit-text-size-adjust:100%}
+body{margin:0;font-family:var(--font);color:var(--deep);background:var(--white);line-height:1.5;font-size:17px;overflow-x:hidden}
+img,svg{display:block;max-width:100%}
+a{color:var(--water)}
+h1,h2,h3{line-height:1.12;margin:0 0 .5em;font-weight:800;letter-spacing:-.01em}
+h1{font-size:clamp(2rem,5.2vw,3.25rem)}
+h2{font-size:clamp(1.55rem,3.6vw,2.2rem)}
+p{margin:0 0 1em}
+.wrap{max-width:1120px;margin:0 auto;padding:0 20px}
+.sr-only{position:absolute;width:1px;height:1px;padding:0;margin:-1px;overflow:hidden;clip:rect(0,0,0,0);border:0}
+:focus-visible{outline:3px solid var(--sun);outline-offset:3px;border-radius:6px}
+
+/* preview bar */
+.preview-bar{background:var(--deep);color:#fff;font-size:.82rem;text-align:center;padding:7px 12px}
+
+/* header */
+.site-header{background:var(--white);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:20}
+.site-header .wrap{display:flex;align-items:center;justify-content:space-between;gap:12px;min-height:64px}
+.brand{display:flex;align-items:center;gap:9px;font-weight:800;font-size:1.12rem;color:var(--deep);text-decoration:none}
+.brand svg{width:26px;height:26px;flex:none}
+
+/* buttons */
+.btn{display:inline-flex;align-items:center;justify-content:center;gap:8px;min-height:48px;padding:12px 22px;border-radius:999px;font:inherit;font-weight:800;text-decoration:none;cursor:pointer;border:2px solid var(--deep);transition:transform .12s ease,box-shadow .12s ease}
+.btn:hover{transform:translateY(-1px);box-shadow:0 4px 0 rgba(11,42,74,.25)}
+.btn-sun{background:var(--sun);color:var(--deep)}
+.btn-outline{background:transparent;color:#fff;border-color:#fff}
+.btn-small{min-height:44px;padding:9px 16px;font-size:.95rem}
+.btn svg{width:20px;height:20px;flex:none}
+
+/* hero */
+.hero{background:var(--water);color:#fff;position:relative;padding:44px 0 92px}
+.hero .wrap{display:grid;gap:34px;align-items:center}
+.eyebrow{display:inline-block;font-weight:700;font-size:.95rem;background:#0A5F86;border:1px solid rgba(255,255,255,.45);padding:5px 12px;border-radius:999px;margin-bottom:16px}
+.hero h1{color:#fff;margin-bottom:.45em}
+.hero .lede{font-size:1.12rem;max-width:34em}
+.cta-row{display:flex;flex-wrap:wrap;gap:12px;margin:22px 0 14px}
+.rating{font-weight:700;font-size:.95rem;display:flex;align-items:center;gap:8px}
+.rating .stars{color:var(--sun);letter-spacing:2px}
+.hero-art{position:relative;max-width:520px;width:100%;justify-self:center}
+.hero-art .scene{border:3px solid var(--deep);border-radius:22px;overflow:hidden;box-shadow:0 18px 40px rgba(11,42,74,.35)}
+.notify{position:absolute;left:-6px;right:24px;bottom:-26px;background:#fff;color:var(--deep);border:2px solid var(--deep);border-radius:16px;padding:12px 14px;display:flex;gap:12px;align-items:center;box-shadow:0 10px 24px rgba(11,42,74,.28)}
+.notify .ico{width:38px;height:38px;border-radius:10px;background:var(--water);display:grid;place-items:center;flex:none}
+.notify .ico svg{width:22px;height:22px}
+.notify b{display:block;font-size:.92rem}
+.notify span{font-size:.9rem}
+.wave{position:absolute;left:0;right:0;bottom:-1px;height:56px;width:100%}
+
+/* sections */
+section{padding:64px 0}
+.band-surface{background:var(--surface)}
+.center{text-align:center}
+.section-intro{max-width:36em;margin:0 auto 28px}
+
+/* thread */
+.thread-grid{display:grid;gap:24px;justify-items:center;grid-template-areas:"copy" "phone" "cta"}
+.thread-copy{grid-area:copy}.thread-cta{grid-area:cta}.phone{grid-area:phone}
+.tabs{display:flex;flex-wrap:wrap;justify-content:center;gap:8px}
+.tab{font:inherit;font-weight:700;font-size:.98rem;min-height:44px;padding:9px 18px;border-radius:999px;border:2px solid var(--deep);background:#fff;color:var(--deep);cursor:pointer}
+.tab[aria-selected="true"]{background:var(--deep);color:#fff}
+.phone{width:100%;max-width:340px;background:var(--deep);border-radius:40px;padding:12px;box-shadow:0 20px 44px rgba(11,42,74,.28)}
+.phone-screen{background:#fff;border-radius:30px;overflow:hidden;display:flex;flex-direction:column}
+.phone-top{display:flex;flex-direction:column;align-items:center;gap:4px;padding:16px 12px 12px;border-bottom:1px solid var(--line);background:#F7FBFD}
+.avatar{width:42px;height:42px;border-radius:50%;background:var(--water);color:#fff;font-weight:800;display:grid;place-items:center;font-size:.95rem}
+.phone-top b{font-size:.92rem}
+.phone-top small{font-size:.75rem;color:#41607d}
+.msgs{padding:16px 14px 20px;display:flex;flex-direction:column;gap:8px;flex:1}
+.stamp{align-self:center;font-size:.72rem;color:#41607d;margin-bottom:4px}
+.bubble{align-self:flex-start;max-width:88%;background:#E6ECF2;color:var(--deep);border-radius:18px 18px 18px 6px;padding:10px 13px;font-size:.95rem;line-height:1.38}
+.pic{align-self:flex-start;width:88%;border-radius:16px;overflow:hidden;border:1px solid var(--line)}
+.pic-pair{display:grid;grid-template-columns:1fr 1fr;gap:2px;background:var(--line)}
+.pic-pair figure{margin:0;position:relative;background:#fff;aspect-ratio:4/5}
+.pic-pair figure svg{width:100%;height:100%}
+.pic-pair figcaption{position:absolute;left:6px;bottom:6px;background:rgba(11,42,74,.82);color:#fff;font-size:.68rem;font-weight:700;padding:2px 7px;border-radius:999px}
+.reply{align-self:flex-end;background:var(--water);color:#fff;border-radius:18px 18px 6px 18px;padding:9px 13px;font-size:.95rem}
+.note{font-size:.95rem;color:#2c4a68;margin:4px 0 0}
+
+/* reviews */
+.cards{display:grid;gap:16px;max-width:980px;margin:0 auto}
+.card{background:#fff;border:2px solid var(--deep);border-radius:var(--radius);padding:20px}
+.card.placeholder{border-style:dashed;text-align:center;color:#2c4a68;padding:34px 20px}
+.card q{display:block;quotes:none;margin-bottom:10px}
+.card cite{font-style:normal;font-weight:700;font-size:.92rem}
+
+/* who */
+.who{display:grid;gap:24px;align-items:center;max-width:860px;margin:0 auto}
+.initials{width:150px;height:150px;border-radius:50%;border:3px solid var(--deep);background:var(--surface);display:grid;place-items:center;font-weight:800;font-size:2.6rem;color:var(--water);justify-self:center}
+
+/* towns */
+.chips{display:flex;flex-wrap:wrap;justify-content:center;gap:10px;margin-top:18px;padding:0;list-style:none}
+.chips li{background:#fff;border:2px solid var(--deep);border-radius:999px;padding:7px 16px;font-weight:700}
+
+/* faq */
+.faq{max-width:760px;margin:0 auto;display:grid;gap:12px}
+.faq details{background:#fff;border:2px solid var(--deep);border-radius:var(--radius);padding:0}
+.faq summary{cursor:pointer;font-weight:800;padding:16px 18px;list-style:none;display:flex;justify-content:space-between;gap:12px}
+.faq summary::-webkit-details-marker{display:none}
+.faq summary::after{content:"+";font-size:1.3rem;line-height:1}
+.faq details[open] summary::after{content:"\2212"}
+.faq details p{padding:0 18px 16px;margin:0}
+
+/* closing + footer */
+.closing{background:var(--deep);color:#fff;text-align:center}
+.closing h2{color:#fff}
+.site-footer{background:#082036;color:#cfe3f2;font-size:.9rem;padding:22px 0}
+.site-footer .wrap{display:flex;flex-wrap:wrap;justify-content:space-between;gap:10px}
+.site-footer a{color:#cfe3f2}
+
+/* text dialog (desktop) */
+dialog{border:3px solid var(--deep);border-radius:18px;padding:26px 24px;max-width:360px;width:calc(100% - 32px);text-align:center;color:var(--deep)}
+dialog::backdrop{background:rgba(11,42,74,.55)}
+.big-number{font-size:1.9rem;font-weight:800;margin:6px 0 16px;letter-spacing:.01em}
+.dialog-actions{display:flex;gap:10px;justify-content:center;flex-wrap:wrap}
+.btn-plain{background:#fff;color:var(--deep)}
+
+@media (min-width:880px){
+  .hero{padding:64px 0 110px}
+  .hero .wrap{grid-template-columns:1.05fr .95fr}
+  .thread-grid{grid-template-columns:1fr 1fr;grid-template-areas:"copy phone" "cta phone";align-items:end;justify-items:start;row-gap:8px}
+  .thread-cta{align-self:start}
+  .thread-copy .tabs{justify-content:flex-start}
+  .thread-copy.center,.thread-cta.center{text-align:left}
+  .phone{justify-self:center}
+  .phone-screen{min-height:440px}
+  .cards{grid-template-columns:repeat(2,1fr)}
+  .cards.single{grid-template-columns:1fr;max-width:620px}
+  .who{grid-template-columns:180px 1fr}
+}
+@media (max-width:420px){
+  body{font-size:16px}
+  .cta-row .btn{width:100%}
+  .site-header .brand span{font-size:1rem}
+}
+@media (prefers-reduced-motion:reduce){*{transition:none!important}}
+</style>
+</head>
+<body>
+
+<div class="preview-bar" id="previewBar">Preview built for Dale by Garrison Cole. This site is not live yet.</div>
+
+<header class="site-header">
+  <div class="wrap">
+    <a class="brand" href="#top" aria-label="Elite Pool Service, home">
+      <svg viewBox="0 0 32 32" aria-hidden="true"><path d="M16 3C16 3 6 14.5 6 20.5a10 10 0 0 0 20 0C26 14.5 16 3 16 3z" fill="#0E7AA8"/><path d="M11 21.5c1.6 1.3 3.2 1.3 5 0s3.4-1.3 5 0" stroke="#fff" stroke-width="2.2" fill="none" stroke-linecap="round"/></svg>
+      <span data-bind="BUSINESS_NAME">Elite Pool Service</span>
+    </a>
+    <a class="btn btn-sun btn-small js-text" href="sms:+12098402197">Text for a quote</a>
+  </div>
+</header>
+
+<main id="top">
+
+<section class="hero" aria-labelledby="h1">
+  <div class="wrap">
+    <div>
+      <h1 id="h1"><span class="eyebrow" data-town-line>Weekly pool service in <span data-bind="TOWN">your town</span></span><br>A clean pool every week, with a photo to show it.</h1>
+      <p class="lede">I'm <span data-bind="OWNER_FIRST">Dale</span>. I own <span data-bind="BUSINESS_NAME">Elite Pool Service</span> and I clean every pool myself. After each visit, a photo of your pool lands on your phone, so you know it's done even when you're at work.</p>
+      <div class="cta-row">
+        <a class="btn btn-sun js-text" href="sms:+12098402197">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 5h16v11H8l-4 4z" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linejoin="round"/></svg>
+          Text me for a free quote</a>
+        <a class="btn btn-outline js-call" href="tel:+12098402197">
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M6.6 3.5l3 3.2-1.8 2.5a12 12 0 0 0 7 7l2.5-1.8 3.2 3-1.6 3.1C11.4 20.6 3.4 12.6 3.5 5.1z" fill="none" stroke="currentColor" stroke-width="2" stroke-linejoin="round"/></svg>
+          Call <span data-bind="PHONE_DISPLAY">(209) 840-2197</span></a>
+      </div>
+      <p class="rating" id="ratingLine" hidden><span class="stars" aria-hidden="true">&#9733;&#9733;&#9733;&#9733;&#9733;</span> 5.0 stars from <span data-bind="REVIEW_COUNT">4</span> homeowner reviews</p>
+    </div>
+    <div class="hero-art">
+      <div class="scene" data-art="clear" role="img" aria-label="Drawing of a clean backyard pool on a sunny day"></div>
+      <div class="notify" aria-hidden="true">
+        <div class="ico"><svg viewBox="0 0 24 24"><path d="M4 5h16v11H8l-4 4z" fill="#fff"/></svg></div>
+        <div><b><span data-bind="OWNER_FIRST">Dale</span>, <span data-bind="BUSINESS_NAME">Elite Pool Service</span></b><span>Pool's done for the week. Here's how it looks today.</span></div>
+      </div>
+    </div>
+  </div>
+  <svg class="wave" viewBox="0 0 1440 56" preserveAspectRatio="none" aria-hidden="true"><path d="M0 26C180 52 360 52 540 30S900 0 1080 18s270 34 360 24V56H0z" fill="#E9F6FB"/></svg>
+</section>
+
+<section class="band-surface" aria-labelledby="h-thread">
+  <div class="wrap thread-grid">
+    <div class="thread-copy center">
+      <h2 id="h-thread">Here's what lands on your phone.</h2>
+      <div class="tabs" role="tablist" aria-label="Services">
+        <button class="tab" role="tab" id="tab-weekly" aria-controls="thread" aria-selected="true" tabindex="0" data-tab="weekly">Weekly visit</button>
+        <button class="tab" role="tab" id="tab-filter" aria-controls="thread" aria-selected="false" tabindex="-1" data-tab="filter">Filter clean</button>
+        <button class="tab" role="tab" id="tab-tile" aria-controls="thread" aria-selected="false" tabindex="-1" data-tab="tile">Tile cleaning</button>
+      </div>
+    </div>
+    <div class="thread-cta center">
+      <p class="note">Saturday visits by appointment.</p>
+      <p style="margin-top:16px"><a class="btn btn-sun js-text" href="sms:+12098402197">Text me for a free quote</a></p>
+    </div>
+    <div class="phone">
+      <div class="phone-screen">
+        <div class="phone-top">
+          <div class="avatar" aria-hidden="true">DB</div>
+          <b><span data-bind="OWNER_FIRST">Dale</span>, <span data-bind="BUSINESS_NAME">Elite Pool Service</span></b>
+          <small>Text message</small>
+        </div>
+        <div class="msgs" id="thread" role="tabpanel" aria-labelledby="tab-weekly" aria-live="polite" tabindex="0"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-reviews" id="reviews">
+  <div class="wrap">
+    <h2 id="h-reviews" class="center">What my customers say.</h2>
+    <div class="cards" id="reviewCards"></div>
+  </div>
+</section>
+
+<section class="band-surface" aria-labelledby="h-who">
+  <div class="wrap who">
+    <div class="initials" aria-hidden="true">DB</div>
+    <div>
+      <h2 id="h-who">You get me, every week.</h2>
+      <p>I'm <span data-bind="OWNER_FULL">Dale Basi</span>. <span id="yearsLine">I've been taking care of pools for years.</span> I own the business and I do the work, so the person you text is the person standing at your pool.</p>
+    </div>
+  </div>
+</section>
+
+<section aria-labelledby="h-towns">
+  <div class="wrap center">
+    <h2 id="h-towns">Serving <span data-bind="TOWN">your town</span> and the towns around it.</h2>
+    <ul class="chips" id="townChips"></ul>
+  </div>
+</section>
+
+<section class="band-surface" aria-labelledby="h-faq">
+  <div class="wrap">
+    <h2 id="h-faq" class="center">Two quick questions.</h2>
+    <div class="faq">
+      <details>
+        <summary>What does weekly service cost?</summary>
+        <p>It depends on your pool. Text me your town and a photo of the pool and I'll send you a quote.</p>
+      </details>
+      <details>
+        <summary>Do you work Saturdays?</summary>
+        <p>Yes, by appointment.</p>
+      </details>
+    </div>
+  </div>
+</section>
+
+<section class="closing" aria-labelledby="h-close">
+  <div class="wrap">
+    <h2 id="h-close">Get your pool on my route.</h2>
+    <p style="margin-top:20px"><a class="btn btn-sun js-text" href="sms:+12098402197">Text me for a free quote</a></p>
+  </div>
+</section>
+
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span><span data-bind="BUSINESS_NAME">Elite Pool Service</span> &middot; <a class="js-call" href="tel:+12098402197" data-bind="PHONE_DISPLAY">(209) 840-2197</a><span id="footTown"></span></span>
+    <span>Site by Garrison Cole</span>
+  </div>
+</footer>
+
+<dialog id="textDialog" aria-labelledby="dlgTitle">
+  <h2 id="dlgTitle" style="font-size:1.3rem">Text <span data-bind="OWNER_FIRST">Dale</span> from your phone</h2>
+  <p class="big-number" data-bind="PHONE_DISPLAY">(209) 840-2197</p>
+  <div class="dialog-actions">
+    <button class="btn btn-sun btn-small" type="button" id="copyNum">Copy number</button>
+    <button class="btn btn-plain btn-small" type="button" id="closeDlg">Close</button>
+  </div>
+  <p class="note" id="copyStatus" role="status" style="margin-top:12px"></p>
+</dialog>
+
+<script>
+/* ===== SETTINGS: the only place facts about the business live ===== */
+var SETTINGS = {
+  BUSINESS_NAME: "Elite Pool Service",   // [Dale] confirm
+  OWNER_FIRST: "Dale",
+  OWNER_FULL: "Dale Basi",
+  PHONE_DISPLAY: "(209) 840-2197",
+  PHONE_E164: "+12098402197",
+  TOWN: "your town",                     // [Dale] default until known
+  SERVICE_TOWNS: [],                     // [Dale]
+  YEARS: null,                           // [Dale] 8 or 12
+  VISIT_CHECKLIST: "",                   // [Dale] what every visit includes
+  RATING_LINE: false,                    // true only after he confirms the profile
+  REVIEW_COUNT: 4,
+  REVIEWS: [],                           // [{text, name, where}] word for word, after his yes
+  SHOW_PREVIEW_BAR: true
+};
+
+(function(){
+  "use strict";
+  var S = SETTINGS;
+  var DEFAULT_TOWN = "your town";
+
+  /* Town switch: ?town=Lodi. Letters, spaces and periods only, up to 30 characters. */
+  try {
+    var q = new URLSearchParams(window.location.search).get("town");
+    if (q !== null) {
+      q = q.replace(/\s+/g, " ").trim();
+      if (/^[A-Za-z .]{1,30}$/.test(q) && /[A-Za-z]/.test(q)) { S.TOWN = q; }
+    }
+  } catch (e) {}
+  var hasTown = S.TOWN !== DEFAULT_TOWN;
+
+  function setText(sel, val){ document.querySelectorAll(sel).forEach(function(el){ el.textContent = val; }); }
+  ["BUSINESS_NAME","OWNER_FIRST","OWNER_FULL","PHONE_DISPLAY","TOWN","REVIEW_COUNT"].forEach(function(k){
+    setText('[data-bind="'+k+'"]', String(S[k]));
+  });
+
+  document.title = "Pool Service in " + S.TOWN + " | " + S.BUSINESS_NAME;
+  var md = document.querySelector('meta[name="description"]');
+  if (md) md.setAttribute("content", "Weekly pool cleaning in " + S.TOWN + " from " + S.OWNER_FIRST + " at " + S.BUSINESS_NAME + ". You get a photo of your pool after every visit. Text for a free quote.");
+
+  document.getElementById("previewBar").hidden = !S.SHOW_PREVIEW_BAR;
+  document.getElementById("ratingLine").hidden = !S.RATING_LINE;
+  if (S.YEARS) document.getElementById("yearsLine").textContent = "I've been taking care of pools for " + S.YEARS + " years.";
+  if (hasTown) document.getElementById("footTown").textContent = " · " + S.TOWN;
+
+  /* Town chips */
+  var chips = document.getElementById("townChips");
+  var towns = S.SERVICE_TOWNS.length ? S.SERVICE_TOWNS.slice() : (hasTown ? [S.TOWN] : []);
+  if (hasTown && towns.indexOf(S.TOWN) === -1) towns.unshift(S.TOWN);
+  towns.forEach(function(t){ var li = document.createElement("li"); li.textContent = t; chips.appendChild(li); });
+  chips.hidden = towns.length === 0;
+
+  /* Reviews */
+  var rc = document.getElementById("reviewCards");
+  if (S.REVIEWS.length) {
+    S.REVIEWS.slice(0,4).forEach(function(r){
+      var c = document.createElement("figure"); c.className = "card"; c.style.margin = "0";
+      var qq = document.createElement("q"); qq.textContent = r.text;
+      var ci = document.createElement("cite"); ci.textContent = r.name + (r.where ? ", " + r.where : "");
+      c.appendChild(qq); c.appendChild(ci); rc.appendChild(c);
+    });
+    if (S.REVIEWS.length === 1) rc.classList.add("single");
+  } else if (S.SHOW_PREVIEW_BAR) {
+    var p = document.createElement("div"); p.className = "card placeholder";
+    p.textContent = "Your reviews go here, word for word."; rc.appendChild(p); rc.classList.add("single");
+  } else {
+    document.getElementById("reviews").hidden = true;
+  }
+
+  /* Text and call links */
+  var smsBody = "Hi " + S.OWNER_FIRST + ", I'd like a quote for weekly pool service. I'm in ";
+  var smsHref = "sms:" + S.PHONE_E164 + "?&body=" + encodeURIComponent(smsBody);
+  document.querySelectorAll(".js-text").forEach(function(a){ a.setAttribute("href", smsHref); });
+  document.querySelectorAll(".js-call").forEach(function(a){ a.setAttribute("href", "tel:" + S.PHONE_E164); });
+
+  var isDesktop = window.matchMedia && window.matchMedia("(hover: hover) and (pointer: fine)").matches && !("ontouchstart" in window);
+  var dlg = document.getElementById("textDialog"), lastBtn = null;
+  if (isDesktop && dlg && typeof dlg.showModal === "function") {
+    document.querySelectorAll(".js-text").forEach(function(a){
+      a.addEventListener("click", function(e){ e.preventDefault(); lastBtn = a; document.getElementById("copyStatus").textContent = ""; dlg.showModal(); });
+    });
+    document.getElementById("closeDlg").addEventListener("click", function(){ dlg.close(); });
+    dlg.addEventListener("close", function(){ if (lastBtn) lastBtn.focus(); });
+    document.getElementById("copyNum").addEventListener("click", function(){
+      var st = document.getElementById("copyStatus");
+      var done = function(){ st.textContent = "Copied. Paste it into a text on your phone."; };
+      if (navigator.clipboard && window.isSecureContext) { navigator.clipboard.writeText(S.PHONE_DISPLAY).then(done, function(){ st.textContent = S.PHONE_DISPLAY; }); }
+      else {
+        var ta = document.createElement("textarea"); ta.value = S.PHONE_DISPLAY; document.body.appendChild(ta); ta.select();
+        try { document.execCommand("copy"); done(); } catch (err) { st.textContent = S.PHONE_DISPLAY; }
+        document.body.removeChild(ta);
+      }
+    });
+  }
+
+  /* ===== Drawn pool scenes (inline SVG, no photos) ===== */
+  var uid = 0;
+  function poolSVG(kind){
+    var id = "p" + (uid++);
+    var green = kind === "green";
+    var w1 = green ? "#7FA35A" : "#4FC3E8", w2 = green ? "#4E6E33" : "#0E7AA8";
+    var debris = green
+      ? '<g fill="#5B4A2C" opacity=".75"><ellipse cx="120" cy="120" rx="9" ry="4" transform="rotate(-20 120 120)"/><ellipse cx="250" cy="160" rx="8" ry="3.5" transform="rotate(30 250 160)"/><ellipse cx="300" cy="105" rx="7" ry="3"/><ellipse cx="175" cy="185" rx="9" ry="4" transform="rotate(12 175 185)"/><ellipse cx="90" cy="175" rx="6" ry="3" transform="rotate(-35 90 175)"/></g>'
+      : '';
+    var ripples = '<g fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity="' + (green ? '.18' : '.55') + '">' +
+      '<path d="M70 112c14-8 26 8 40 0s26 8 40 0"/><path d="M210 140c14-8 26 8 40 0s26 8 40 0"/><path d="M120 178c14-8 26 8 40 0s26 8 40 0"/><path d="M250 92c10-6 20 6 30 0"/></g>';
+    var glare = green ? '' : '<ellipse cx="290" cy="80" rx="40" ry="10" fill="#fff" opacity=".35" transform="rotate(-12 290 80)"/>';
+    return '<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
+      '<defs><linearGradient id="' + id + 'w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="' + w1 + '"/><stop offset="1" stop-color="' + w2 + '"/></linearGradient>' +
+      '<linearGradient id="' + id + 'd" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#EBDDC5"/><stop offset="1" stop-color="#D9C6A6"/></linearGradient></defs>' +
+      '<rect width="400" height="260" fill="url(#' + id + 'd)"/>' +
+      '<g stroke="#CDB794" stroke-width="1.5" opacity=".6"><path d="M0 40h400M0 225h400M80 0v40M200 0v40M320 0v40M60 225v35M180 225v35M300 225v35"/></g>' +
+      '<rect x="34" y="52" width="332" height="160" rx="26" fill="#F3F1EC" stroke="#BFB6A6" stroke-width="2"/>' +
+      '<rect x="46" y="64" width="308" height="136" rx="18" fill="url(#' + id + 'w)"/>' +
+      '<rect x="46" y="64" width="308" height="10" rx="5" fill="' + (green ? '#3F5A2A' : '#1C6E93') + '" opacity=".55"/>' +
+      ripples + glare + debris +
+      '<circle cx="372" cy="22" r="14" fill="#FFC83D"/>' +
+      '<g stroke="#9AA6AF" stroke-width="4" stroke-linecap="round" fill="none"><path d="M300 52v-16a8 8 0 0 1 16 0"/><path d="M322 52v-16a8 8 0 0 1 16 0"/></g>' +
+      '</svg>';
+  }
+  function tileSVG(dirty){
+    var id = "t" + (uid++);
+    var tiles = "";
+    for (var i = 0; i < 9; i++) {
+      tiles += '<rect x="' + (i*46 - 6) + '" y="40" width="42" height="42" rx="3" fill="' + (i % 2 ? '#2A86B8' : '#3597C9') + '"/>';
+    }
+    var scale = dirty
+      ? '<path d="M-5 58c40 6 70-4 110 2s80 8 120 0 90-6 120 2 40 4 60 0V92H-5z" fill="#E9E4D6" opacity=".92"/><path d="M-5 66c50 4 90-2 140 3s110 4 150-1 70 2 120 1" stroke="#CFC6B0" stroke-width="5" fill="none" opacity=".9"/>'
+      : '<ellipse cx="300" cy="55" rx="30" ry="6" fill="#fff" opacity=".35"/>';
+    return '<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
+      '<defs><linearGradient id="' + id + 'w" x1="0" y1="0" x2="0" y2="1"><stop offset="0" stop-color="#4FC3E8"/><stop offset="1" stop-color="#0E7AA8"/></linearGradient></defs>' +
+      '<rect width="400" height="40" fill="#F3F1EC"/><rect y="0" width="400" height="8" fill="#D9C6A6"/>' +
+      '<rect y="40" width="400" height="220" fill="url(#' + id + 'w)"/>' + tiles +
+      '<g stroke="#fff" stroke-width="2" opacity=".5">' + '<path d="M-6 40h412M-6 82h412"/></g>' + scale +
+      '<g fill="none" stroke="#fff" stroke-width="2.4" stroke-linecap="round" opacity=".5"><path d="M60 150c14-8 26 8 40 0s26 8 40 0"/><path d="M220 190c14-8 26 8 40 0s26 8 40 0"/></g>' +
+      '</svg>';
+  }
+  function filterSVG(dirty){
+    var c = dirty ? "#8E8A72" : "#F2F5F7", line = dirty ? "#6E6A55" : "#C9D3DA";
+    var pleats = "";
+    for (var i = 0; i < 9; i++) { pleats += '<path d="M' + (138 + i*14) + ' 62v150" stroke="' + line + '" stroke-width="3"/>'; }
+    var grime = dirty ? '<g fill="#5B4A2C" opacity=".55"><circle cx="160" cy="110" r="6"/><circle cx="215" cy="150" r="8"/><circle cx="185" cy="185" r="5"/><circle cx="240" cy="95" r="5"/></g>' : '';
+    return '<svg viewBox="0 0 400 260" preserveAspectRatio="xMidYMid slice" aria-hidden="true">' +
+      '<rect width="400" height="260" fill="#E9F6FB"/><rect y="212" width="400" height="48" fill="#D9C6A6"/>' +
+      '<rect x="126" y="50" width="148" height="174" rx="16" fill="' + c + '" stroke="#0B2A4A" stroke-width="3"/>' + pleats + grime +
+      '<rect x="116" y="40" width="168" height="18" rx="6" fill="#0B2A4A"/><rect x="116" y="214" width="168" height="18" rx="6" fill="#0B2A4A"/>' +
+      '</svg>';
+  }
+
+  /* hero scene */
+  document.querySelectorAll('[data-art="clear"]').forEach(function(el){ el.innerHTML = poolSVG("clear"); });
+
+  /* ===== Thread tabs ===== */
+  var checklist = S.VISIT_CHECKLIST || "Skimmed, brushed and vacuumed, baskets emptied, water tested.";
+  var THREADS = {
+    weekly: { msg: "Pool's done for the week. " + checklist + " Here's how it looks today.", single: function(){ return poolSVG("clear"); } },
+    filter: { msg: "Filter is cleaned and back together. Here's the before and after.", pair: [function(){ return filterSVG(true); }, function(){ return filterSVG(false); }] },
+    tile:   { msg: "Tile line is done. Here's this morning next to right now.", pair: [function(){ return tileSVG(true); }, function(){ return tileSVG(false); }], labels: ["This morning","Right now"] }
+  };
+
+  var thread = document.getElementById("thread");
+  function el(tag, cls, text){ var e = document.createElement(tag); if (cls) e.className = cls; if (text) e.textContent = text; return e; }
+  function render(key){
+    var t = THREADS[key];
+    thread.innerHTML = "";
+    thread.appendChild(el("div", "stamp", "Today 10:42 AM"));
+    thread.appendChild(el("div", "bubble", t.msg));
+    var pic = el("div", "pic");
+    if (t.single) { pic.innerHTML = t.single(); pic.setAttribute("role","img"); pic.setAttribute("aria-label","Photo of a clean pool"); }
+    else {
+      var pair = el("div", "pic-pair"), labels = t.labels || ["Before","After"];
+      t.pair.forEach(function(fn, i){
+        var f = document.createElement("figure"); f.innerHTML = fn();
+        var cap = document.createElement("figcaption"); cap.textContent = labels[i]; f.appendChild(cap); pair.appendChild(f);
+      });
+      pic.appendChild(pair); pic.setAttribute("role","img"); pic.setAttribute("aria-label", labels[0] + " and " + labels[1].toLowerCase() + " photos");
+    }
+    thread.appendChild(pic);
+  }
+
+  var tabs = Array.prototype.slice.call(document.querySelectorAll('[role="tab"]'));
+  function select(tab, focus){
+    tabs.forEach(function(t){ var on = t === tab; t.setAttribute("aria-selected", on ? "true" : "false"); t.tabIndex = on ? 0 : -1; });
+    thread.setAttribute("aria-labelledby", tab.id);
+    render(tab.getAttribute("data-tab"));
+    if (focus) tab.focus();
+  }
+  tabs.forEach(function(tab, i){
+    tab.addEventListener("click", function(){ select(tab, false); });
+    tab.addEventListener("keydown", function(e){
+      var n = null;
+      if (e.key === "ArrowRight" || e.key === "ArrowDown") n = tabs[(i + 1) % tabs.length];
+      else if (e.key === "ArrowLeft" || e.key === "ArrowUp") n = tabs[(i - 1 + tabs.length) % tabs.length];
+      else if (e.key === "Home") n = tabs[0];
+      else if (e.key === "End") n = tabs[tabs.length - 1];
+      if (n) { e.preventDefault(); select(n, true); }
+    });
+  });
+  render("weekly");
+})();
+</script>
+</body>
+</html>
