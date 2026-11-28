@@ -20,7 +20,7 @@ V = "20261127g"                        # cache tag for b/site.css and b/lp2.js
 
 # ---------- SETTINGS (from the master build doc) ----------
 LOGO_HEADER = "/b/logo-gc.png"   # Garrison's horizontal logo, background cut out. Blank: the text wordmark
-LARAYE_ATTRIBUTION = "wedding florist, Auburn. She’s also family."
+LARAYE_ATTRIBUTION = "wedding florist, Auburn."
 GROWTH_CLAIM = "I’ve grown online businesses from $5,000 a month to more than $300,000 a month."
 GROWTH_TIMEFRAME = ""   # blank: no time frame shown
 THUMBTACK = "https://www.thumbtack.com/ca/roseville/web-design/garrison-cole-websites-for-local-businesses/service/595967527377379336"
