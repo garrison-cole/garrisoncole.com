@@ -166,7 +166,7 @@ WEB_QA = [
 def websites(sac=False):
     town = "Sacramento" if sac else "Roseville"
     first = "I’m Garrison. I’m local, just up 80 in Roseville." if sac else "I’m Garrison, a Roseville local."
-    cal_body = "Free, 30 minutes, on Zoom or in person. I look at your current site and your Google listing before the call. Most sites are live about 10 days after you say go." + (" Glad to meet in person in Sacramento." if sac else "")
+    cal_body = "Free, 30 minutes, on Zoom or in person. I look at your current site and your Google listing before the call." +(" Glad to meet in person in Sacramento." if sac else "")
     rows = WEB_QA + ([("Do you work with Sacramento businesses?", "Yes. I’m just up 80 in Roseville, and I’m glad to meet in person.")] if sac else [])
     area = ("Web design for owner-run businesses in Sacramento, Elk Grove, Rancho Cordova, Folsom, Roseville, Rocklin and the towns around them." if sac
             else "Website design for owner-run businesses in Roseville, Rocklin, Granite Bay, Lincoln, Auburn, Folsom, El Dorado Hills and the rest of the Sacramento area. Glad to meet in person.")
@@ -180,7 +180,7 @@ def websites(sac=False):
 <div>
 <h1><span class="eyebrow" data-topic>Website design in {town}</span>See your new website before you pay for it.</h1>
 <p class="pain">Customers look you up, then call the next guy?</p>
-<p class="lede">{e(first)} I design your site and write every word on it. You click through the real thing on your phone before you decide. If you pass, you owe nothing.</p>
+<p class="lede">{e(first)} I design your site and write every word on it. You click through the real thing on your phone before you decide. If you pass, you owe nothing. If you say go, it’s live in about 10 days.</p>
 <div class="hero-acts"><a class="btn" href="#book">Book a call. I build yours first.</a></div>
 <figure class="pull"><q>{e(pull)}</q><small>{e(LARAYE["name"])}, {e(LARAYE_ATTRIBUTION)} Review on Thumbtack.</small></figure>
 </div>
