@@ -15,7 +15,7 @@ Static site. No build step. Push these files to the root of the GitHub Pages rep
 | `styles.css` | All styling. Colors, type and motion are tokens at the top |
 | `app.js` | Everything that moves. `CONFIG` at the very top, then the pure functions with their tests |
 | `link.js` | Only for `link.html`. Builds the link and draws the QR code |
-| images, `favicon.svg`, `og.jpg`, `og.svg`, `sitemap.xml`, `robots.txt` | Same as v2 |
+| images, `og.jpg`, `og.svg`, `sitemap.xml`, `robots.txt` | Same as v2 |
 
 ## Go-live settings
 
