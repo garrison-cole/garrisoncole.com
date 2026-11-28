@@ -31,9 +31,9 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 .fr{background-color:#F8EFE4;background-image:url(assets/stripe-rose.svg);background-repeat:repeat;background-size:120px 480px;background-position:center top}
 .fr-petal{background-image:url(assets/stripe-petal.svg)}.fr-blush{background-image:url(assets/stripe-blush.svg)}.fr-raspberry{background-image:url(assets/stripe-raspberry.svg)}
 .shd{filter:drop-shadow(0 18px 38px rgba(70,45,35,.14))}
-.hc{position:absolute;inset:0}
+.hc{position:absolute;inset:0;isolation:isolate}
 .hc img{position:absolute;inset:0;width:100%;height:100%;object-fit:cover;display:block;opacity:0;animation:hcf 24s linear infinite both}
-@keyframes hcf{0%{opacity:0;transform:scale(1.06)}5%{opacity:1}25%{opacity:1}30%{opacity:0;transform:scale(1)}100%{opacity:0;transform:scale(1)}}
+@keyframes hcf{0%{opacity:0;transform:scale(1.06);z-index:2}5%{opacity:1}25%{opacity:1;z-index:2}25.01%{z-index:1}30%{opacity:1;transform:scale(1);z-index:1}30.01%{opacity:0}100%{opacity:0;transform:scale(1);z-index:1}}
 .hcd{position:absolute;left:0;right:0;bottom:46px;z-index:4;display:flex;justify-content:center;gap:10px}
 .hcd span{width:8px;height:8px;border-radius:50%;border:1px solid #FFFFFF;background:transparent;animation:hcd 24s linear infinite both}
 @keyframes hcd{0%,27.5%{background:#FFFFFF}30%,100%{background:transparent}}
@@ -49,12 +49,7 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 .in3{animation:up 1.2s cubic-bezier(.2,.7,.2,1) .7s both}
 .in4{animation:up 1.2s cubic-bezier(.2,.7,.2,1) .95s both}
 .kb{animation:kb 7s cubic-bezier(.2,.7,.2,1) both}
-@supports (animation-timeline: view()){
-.rv{animation:up linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
-.rvi{animation:unveil linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
-.rvl{animation:draw linear both;animation-timeline:view();animation-range:entry 10% cover 30%}
-.rvb{animation:bloom linear both;animation-timeline:view();animation-range:entry 10% cover 35%}
-}}
+}
 @media (max-width: 640px){.fr{padding-left:12px !important;padding-right:12px !important}.scal{-webkit-mask:radial-gradient(circle 7px at 7px 7px,#000 95%,#0000) 0 0/14px 14px round,linear-gradient(#000 0 0) center/calc(100% - 14px) calc(100% - 14px) no-repeat;mask:radial-gradient(circle 7px at 7px 7px,#000 95%,#0000) 0 0/14px 14px round,linear-gradient(#000 0 0) center/calc(100% - 14px) calc(100% - 14px) no-repeat;outline-offset:-30px !important;padding:64px 48px !important}.scal ol{gap:32px !important}.scal ol li>span:first-child{font-size:40px !important}}
 </style>
 <style>html{scroll-behavior:smooth}#dc-root{min-height:100vh}
@@ -339,6 +334,7 @@ class Component extends DCLogic {
 }
 
 DCLite.mount(Component, {"stripe": "rose", "accent": "#A3134F"});</script>
+<script src="reveal.js"></script>
 
 <script>(function(){function f(){var h=document.querySelector('section.hero');if(!h)return false;document.documentElement.style.setProperty('--hdr',Math.round(h.getBoundingClientRect().top+window.scrollY)+'px');return true}var mo=new MutationObserver(function(){if(f())mo.disconnect()});mo.observe(document.documentElement,{childList:true,subtree:true});window.addEventListener('load',f);window.addEventListener('resize',f);if(document.fonts)document.fonts.ready.then(f);f()})();</script>
 </body></html>

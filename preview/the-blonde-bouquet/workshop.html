@@ -39,11 +39,7 @@ a{color:#A3134F}a:hover{color:#7A0E3B}
 .in1{animation:up 1.2s cubic-bezier(.2,.7,.2,1) .2s both}
 .in2{animation:up 1.2s cubic-bezier(.2,.7,.2,1) .45s both}
 .in3{animation:up 1.2s cubic-bezier(.2,.7,.2,1) .7s both}
-@supports (animation-timeline: view()){
-.rv{animation:up linear both;animation-timeline:view();animation-range:entry 0% cover 25%}
-.rvi{animation:unveil linear both;animation-timeline:view();animation-range:entry 0% cover 35%}
-.rvl{animation:draw linear both;animation-timeline:view();animation-range:entry 10% cover 30%}
-}}
+}
 </style>
 <style>html{scroll-behavior:smooth}#dc-root{min-height:100vh}</style>
 </head>
@@ -159,5 +155,6 @@ class Component extends DCLogic {
 }
 
 DCLite.mount(Component, {"stripe": "rose", "accent": "#A3134F"});</script>
+<script src="reveal.js"></script>
 </body>
 </html>
